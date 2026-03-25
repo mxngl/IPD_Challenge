@@ -1,0 +1,12 @@
+C:\Ashmitha\Stanford\Quarter 2\PBL\IPD Challenge\HelloWorld\bin\Debug\net8.0\HelloWorld.deps.json
+C:\Ashmitha\Stanford\Quarter 2\PBL\IPD Challenge\HelloWorld\bin\Debug\net8.0\HelloWorld.dll
+C:\Ashmitha\Stanford\Quarter 2\PBL\IPD Challenge\HelloWorld\bin\Debug\net8.0\HelloWorld.pdb
+C:\Ashmitha\Stanford\Quarter 2\PBL\IPD Challenge\HelloWorld\obj\Debug\net8.0\HelloWorld.csproj.AssemblyReference.cache
+C:\Ashmitha\Stanford\Quarter 2\PBL\IPD Challenge\HelloWorld\obj\Debug\net8.0\HelloWorld.GeneratedMSBuildEditorConfig.editorconfig
+C:\Ashmitha\Stanford\Quarter 2\PBL\IPD Challenge\HelloWorld\obj\Debug\net8.0\HelloWorld.AssemblyInfoInputs.cache
+C:\Ashmitha\Stanford\Quarter 2\PBL\IPD Challenge\HelloWorld\obj\Debug\net8.0\HelloWorld.AssemblyInfo.cs
+C:\Ashmitha\Stanford\Quarter 2\PBL\IPD Challenge\HelloWorld\obj\Debug\net8.0\HelloWorld.csproj.CoreCompileInputs.cache
+C:\Ashmitha\Stanford\Quarter 2\PBL\IPD Challenge\HelloWorld\obj\Debug\net8.0\HelloWorld.dll
+C:\Ashmitha\Stanford\Quarter 2\PBL\IPD Challenge\HelloWorld\obj\Debug\net8.0\refint\HelloWorld.dll
+C:\Ashmitha\Stanford\Quarter 2\PBL\IPD Challenge\HelloWorld\obj\Debug\net8.0\HelloWorld.pdb
+C:\Ashmitha\Stanford\Quarter 2\PBL\IPD Challenge\HelloWorld\obj\Debug\net8.0\ref\HelloWorld.dll
