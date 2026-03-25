@@ -22,22 +22,21 @@ namespace HelloWorld
                 UIDocument uidoc = commandData.Application.ActiveUIDocument;
                 Document doc = uidoc.Document;
 
-                IList<Element> columns = GetAllColumns(doc);
+                IList<Element> structuralElements = GetAllStructuralElements(doc);
 
-                if (columns.Count == 0)
+                if (structuralElements.Count == 0)
                 {
-                    TaskDialog.Show("Revit", "No columns found in this model.");
+                    TaskDialog.Show("Revit", "No structural elements found in this model.");
                     return Result.Succeeded;
                 }
 
-                string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                string csvPath = Path.Combine(desktopPath, "revit_columns_export.csv");
+                string csvPath = GetScheduleFilePath();
 
-                ExportColumnsToCsv(doc, columns, csvPath);
+                ExportElementsToCsv(doc, structuralElements, csvPath);
 
                 TaskDialog.Show(
                     "Revit Export",
-                    $"Exported {columns.Count} columns to:\n{csvPath}"
+                    $"Exported {structuralElements.Count} structural elements to:\n{csvPath}"
                 );
 
                 return Result.Succeeded;
@@ -50,32 +49,61 @@ namespace HelloWorld
             }
         }
 
-        private IList<Element> GetAllColumns(Document doc)
+        private IList<Element> GetAllStructuralElements(Document doc)
         {
-            List<Element> allColumns = new List<Element>();
+            List<BuiltInCategory> categories = new List<BuiltInCategory>
+            {
+                BuiltInCategory.OST_StructuralColumns,
+                BuiltInCategory.OST_StructuralFraming,
+                BuiltInCategory.OST_StructuralFoundation,
+                BuiltInCategory.OST_StructuralStiffener,
+                BuiltInCategory.OST_StructuralTruss,
+                BuiltInCategory.OST_StructConnections,
+                BuiltInCategory.OST_StructConnectionPlates,
+                BuiltInCategory.OST_StructConnectionBolts,
+                BuiltInCategory.OST_StructConnectionAnchors,
+                BuiltInCategory.OST_Rebar,
+                BuiltInCategory.OST_AreaRein,
+                BuiltInCategory.OST_PathRein,
+                BuiltInCategory.OST_FabricReinforcement
+            };
 
-            // Structural columns
-            FilteredElementCollector structuralCollector = new FilteredElementCollector(doc)
-                .OfCategory(BuiltInCategory.OST_StructuralColumns)
-                .WhereElementIsNotElementType();
+            ElementMulticategoryFilter filter = new ElementMulticategoryFilter(
+                categories.Cast<BuiltInCategory>().ToList()
+            );
 
-            allColumns.AddRange(structuralCollector.ToElements());
-
-            // Architectural columns
-            FilteredElementCollector archCollector = new FilteredElementCollector(doc)
-                .OfCategory(BuiltInCategory.OST_Columns)
-                .WhereElementIsNotElementType();
-
-            allColumns.AddRange(archCollector.ToElements());
-
-            // Remove duplicates if any
-            return allColumns
+            return new FilteredElementCollector(doc)
+                .WherePasses(filter)
+                .WhereElementIsNotElementType()
+                .ToElements()
                 .GroupBy(e => e.Id.Value)
                 .Select(g => g.First())
                 .ToList();
         }
 
-        private void ExportColumnsToCsv(Document doc, IList<Element> columns, string filePath)
+        private string GetScheduleFilePath()
+        {
+            string assemblyDirectory = Path.GetDirectoryName(
+                System.Reflection.Assembly.GetExecutingAssembly().Location
+            ) ?? "";
+
+            DirectoryInfo? directory = new DirectoryInfo(assemblyDirectory);
+            while (directory != null &&
+                   !Directory.Exists(Path.Combine(directory.FullName, "revit_schedules")))
+            {
+                directory = directory.Parent;
+            }
+
+            string schedulesDirectory = directory != null
+                ? Path.Combine(directory.FullName, "revit_schedules")
+                : Path.Combine(assemblyDirectory, "revit_schedules");
+
+            Directory.CreateDirectory(schedulesDirectory);
+
+            return Path.Combine(schedulesDirectory, "Structural_Schedule.csv");
+        }
+
+        private void ExportElementsToCsv(Document doc, IList<Element> elementsToExport, string filePath)
         {
             StringBuilder csv = new StringBuilder();
 
@@ -84,7 +112,7 @@ namespace HelloWorld
                 "ElementId,Category,Family,Type,Level,Mark,Assembly Code,Assembly Description,Length,Width,Depth,Height,Area,Volume,Material,Type Comments,Base Level,Top Level,Base Offset,Top Offset,Comments"
             );
 
-            foreach (Element elem in columns)
+            foreach (Element elem in elementsToExport)
             {
                 string elementId = elem.Id.Value.ToString();
                 string category = elem.Category?.Name ?? "";
