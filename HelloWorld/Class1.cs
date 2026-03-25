@@ -81,7 +81,7 @@ namespace HelloWorld
 
             // Header row
             csv.AppendLine(
-                "ElementId,Category,Family,Type,Level,Mark,Base Level,Top Level,Base Offset,Top Offset,Comments"
+                "ElementId,Category,Family,Type,Level,Mark,Assembly Code,Assembly Description,Length,Width,Depth,Height,Area,Volume,Material,Type Comments,Base Level,Top Level,Base Offset,Top Offset,Comments"
             );
 
             foreach (Element elem in columns)
@@ -92,6 +92,16 @@ namespace HelloWorld
                 string typeName = GetTypeName(doc, elem);
                 string level = GetLevelName(doc, elem);
                 string mark = GetParameterValue(elem.LookupParameter("Mark"), doc);
+                string assemblyCode = GetAssemblyCode(elem, doc);
+                string assemblyDescription = GetParameterValue(elem.LookupParameter("Assembly Description"), doc);
+                string length = GetParameterValue(elem.LookupParameter("Length"), doc);
+                string width = GetParameterValue(elem.LookupParameter("Width"), doc);
+                string depth = GetParameterValue(elem.LookupParameter("Depth"), doc);
+                string height = GetParameterValue(elem.LookupParameter("Height"), doc);
+                string area = GetParameterValue(elem.LookupParameter("Area"), doc);
+                string volume = GetParameterValue(elem.LookupParameter("Volume"), doc);
+                string material = GetMaterialSummary(doc, elem);
+                string typeComments = GetTypeParameterValue(doc, elem, "Type Comments");
                 string baseLevel = GetParameterValue(elem.LookupParameter("Base Level"), doc);
                 string topLevel = GetParameterValue(elem.LookupParameter("Top Level"), doc);
                 string baseOffset = GetParameterValue(elem.LookupParameter("Base Offset"), doc);
@@ -105,6 +115,16 @@ namespace HelloWorld
                     EscapeCsv(typeName),
                     EscapeCsv(level),
                     EscapeCsv(mark),
+                    EscapeCsv(assemblyCode),
+                    EscapeCsv(assemblyDescription),
+                    EscapeCsv(length),
+                    EscapeCsv(width),
+                    EscapeCsv(depth),
+                    EscapeCsv(height),
+                    EscapeCsv(area),
+                    EscapeCsv(volume),
+                    EscapeCsv(material),
+                    EscapeCsv(typeComments),
                     EscapeCsv(baseLevel),
                     EscapeCsv(topLevel),
                     EscapeCsv(baseOffset),
@@ -153,6 +173,56 @@ namespace HelloWorld
             }
 
             return "";
+        }
+
+        private string GetAssemblyCode(Element elem, Document doc)
+        {
+            Parameter parameter = elem.LookupParameter("Assembly Code");
+            string value = GetParameterValue(parameter, doc);
+
+            if (!string.IsNullOrWhiteSpace(value))
+                return value;
+
+            ElementId typeId = elem.GetTypeId();
+            if (typeId == ElementId.InvalidElementId)
+                return "";
+
+            Element typeElem = doc.GetElement(typeId);
+            if (typeElem == null)
+                return "";
+
+            Parameter typeParameter = typeElem.LookupParameter("Assembly Code");
+            value = GetParameterValue(typeParameter, doc);
+
+            return string.IsNullOrWhiteSpace(value) ? "" : value;
+        }
+
+        private string GetTypeParameterValue(Document doc, Element elem, string parameterName)
+        {
+            ElementId typeId = elem.GetTypeId();
+            if (typeId == ElementId.InvalidElementId)
+                return "";
+
+            Element typeElem = doc.GetElement(typeId);
+            if (typeElem == null)
+                return "";
+
+            return GetParameterValue(typeElem.LookupParameter(parameterName), doc);
+        }
+
+        private string GetMaterialSummary(Document doc, Element elem)
+        {
+            ICollection<ElementId> materialIds = elem.GetMaterialIds(false);
+            if (materialIds == null || materialIds.Count == 0)
+                return "";
+
+            return string.Join("; ",
+                materialIds
+                    .Select(doc.GetElement)
+                    .OfType<Material>()
+                    .Select(material => material.Name)
+                    .Distinct()
+            );
         }
 
         private string GetParameterValue(Parameter para, Document document)
