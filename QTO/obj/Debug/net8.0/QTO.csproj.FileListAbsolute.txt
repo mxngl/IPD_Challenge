@@ -1,0 +1,16 @@
+C:\Ashmitha\Stanford\Quarter 2\PBL\IPD Challenge\QTO\bin\Debug\net8.0\QTO.deps.json
+C:\Ashmitha\Stanford\Quarter 2\PBL\IPD Challenge\QTO\bin\Debug\net8.0\QTO.dll
+C:\Ashmitha\Stanford\Quarter 2\PBL\IPD Challenge\QTO\bin\Debug\net8.0\QTO.pdb
+C:\Ashmitha\Stanford\Quarter 2\PBL\IPD Challenge\QTO\obj\Debug\net8.0\QTO.csproj.AssemblyReference.cache
+C:\Ashmitha\Stanford\Quarter 2\PBL\IPD Challenge\QTO\obj\Debug\net8.0\QTO.GeneratedMSBuildEditorConfig.editorconfig
+C:\Ashmitha\Stanford\Quarter 2\PBL\IPD Challenge\QTO\obj\Debug\net8.0\QTO.AssemblyInfoInputs.cache
+C:\Ashmitha\Stanford\Quarter 2\PBL\IPD Challenge\QTO\obj\Debug\net8.0\QTO.AssemblyInfo.cs
+C:\Ashmitha\Stanford\Quarter 2\PBL\IPD Challenge\QTO\obj\Debug\net8.0\QTO.csproj.CoreCompileInputs.cache
+C:\Ashmitha\Stanford\Quarter 2\PBL\IPD Challenge\QTO\obj\Debug\net8.0\QTO.sourcelink.json
+C:\Ashmitha\Stanford\Quarter 2\PBL\IPD Challenge\QTO\obj\Debug\net8.0\QTO.dll
+C:\Ashmitha\Stanford\Quarter 2\PBL\IPD Challenge\QTO\obj\Debug\net8.0\refint\QTO.dll
+C:\Ashmitha\Stanford\Quarter 2\PBL\IPD Challenge\QTO\obj\Debug\net8.0\QTO.pdb
+C:\Ashmitha\Stanford\Quarter 2\PBL\IPD Challenge\QTO\obj\Debug\net8.0\ref\QTO.dll
+C:\Ashmitha\Stanford\Quarter 2\PBL\IPD Challenge\QTO\bin\verify\QTO.deps.json
+C:\Ashmitha\Stanford\Quarter 2\PBL\IPD Challenge\QTO\bin\verify\QTO.dll
+C:\Ashmitha\Stanford\Quarter 2\PBL\IPD Challenge\QTO\bin\verify\QTO.pdb

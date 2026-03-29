@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<RevitAddIns>
+  <AddIn Type="Command">
+    <Text>Structural TakeOff</Text>
+    <Description>Exports structural quantities to CSV.</Description>
+    <Assembly>C:\Ashmitha\Stanford\Quarter 2\PBL\IPD Challenge\QTO\bin\Debug\net8.0\QTO.dll</Assembly>
+    <FullClassName>QTO.Structural_TakeOff</FullClassName>
+    <ClientId>7A8794B0-05F5-4A8F-9B74-7338E8E83B11</ClientId>
+    <VendorId>QTO</VendorId>
+    <VendorDescription>QTO Structural Export</VendorDescription>
+  </AddIn>
+  <AddIn Type="Command">
+    <Text>MEP TakeOff</Text>
+    <Description>Exports MEP quantities and dimensional parameters to CSV.</Description>
+    <Assembly>C:\Ashmitha\Stanford\Quarter 2\PBL\IPD Challenge\QTO\bin\Debug\net8.0\QTO.dll</Assembly>
+    <FullClassName>QTO.MEP_TakeOff</FullClassName>
+    <ClientId>2A8D899B-02E1-453B-8C81-3E473F73A812</ClientId>
+    <VendorId>QTO</VendorId>
+    <VendorDescription>QTO MEP Export</VendorDescription>
+  </AddIn>
+</RevitAddIns>

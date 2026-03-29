@@ -1,0 +1,59 @@
+{
+  "team": "Island",
+  "construction_items": [
+    {
+      "assembly": "MEP",
+      "material_type": "Stainless Steel Duct (kg)",
+      "amount": 10180.95
+    },
+    {
+      "assembly": "MEP",
+      "material_type": "Air Handling Unit (m^3/s)",
+      "amount": 0.7844444444
+    },
+    {
+      "assembly": "Floor",
+      "material_type": "Wood System (sf)",
+      "amount": 34275.0
+    },
+    {
+      "assembly": "Columns",
+      "material_type": "Wood Column (kg)",
+      "amount": 2709.0
+    },
+    {
+      "assembly": "Foundation",
+      "material_type": "Concrete Slab (cy)",
+      "amount": 10337.0
+    },
+    {
+      "assembly": "Interior Wall",
+      "material_type": "Curtain Wall (sf)",
+      "amount": 12826.0
+    }
+  ],
+  "use_phase": {
+    "electricity_from_grid_kwh": 0.0,
+    "onsite_renewable_kwh": 0.0,
+    "natural_gas_m3": 0.0,
+    "cogeneration": {
+      "fuel_type": null,
+      "electricity_kwh": 0.0,
+      "heating_mj": 0.0,
+      "cooling_kwh": 0.0,
+      "electricity_split": 0.0,
+      "heating_split": 0.0,
+      "cooling_split": 0.0
+    },
+    "water_use": {
+      "toilet_gpf": 0.0,
+      "urinal_gpf": 0.0,
+      "wc_sink_gpm": 0.0,
+      "lab_sink_gpm": 0.0,
+      "kitchen_sink_gpm": 0.0,
+      "shower_gpm": 0.0,
+      "landscaping_gal": 0.0,
+      "rainwater_collection_gal": 0.0
+    }
+  }
+}

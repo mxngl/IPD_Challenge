@@ -1,0 +1,293 @@
+from __future__ import annotations
+
+import csv
+import math
+import re
+from collections import defaultdict
+from dataclasses import dataclass
+from pathlib import Path
+
+from .models import ConstructionItem
+
+
+@dataclass(slots=True)
+class MEPScheduleReport:
+    construction_items: list[ConstructionItem]
+    mapped_rows: int
+    skipped_rows: list[dict[str, str]]
+
+    def to_dict(self) -> dict[str, object]:
+        return {
+            "mapped_rows": self.mapped_rows,
+            "skipped_rows": self.skipped_rows,
+            "construction_items": [
+                {
+                    "assembly": item.assembly,
+                    "material_type": item.material_type,
+                    "amount": item.amount,
+                }
+                for item in self.construction_items
+            ],
+        }
+
+
+def load_mep_schedule(csv_path: Path | str) -> MEPScheduleReport:
+    path = Path(csv_path)
+    totals: dict[tuple[str, str], float] = defaultdict(float)
+    skipped_rows: list[dict[str, str]] = []
+    mapped_rows = 0
+
+    with path.open(newline="", encoding="utf-8-sig") as handle:
+        reader = csv.DictReader(handle)
+        for row in reader:
+            mapped = _map_mep_row(row)
+            if mapped is None:
+                skipped_rows.append(
+                    {
+                        "element_id": row.get("ElementId", ""),
+                        "category": row.get("Category", ""),
+                        "family": row.get("Family", ""),
+                        "type": row.get("Type", ""),
+                        "system_type": row.get("System Type", ""),
+                        "size": row.get("Size", ""),
+                        "length": row.get("Length", ""),
+                        "area": row.get("Area", ""),
+                        "volume": row.get("Volume", ""),
+                        "material": row.get("Material", ""),
+                        "reason": "No STV MEP mapping rule matched this row.",
+                    }
+                )
+                continue
+
+            mapped_rows += 1
+            totals[(mapped.assembly, mapped.material_type)] += mapped.amount
+
+    construction_items = [
+        ConstructionItem(assembly=assembly, material_type=material_type, amount=amount)
+        for (assembly, material_type), amount in sorted(totals.items())
+        if amount > 0
+    ]
+
+    return MEPScheduleReport(
+        construction_items=construction_items,
+        mapped_rows=mapped_rows,
+        skipped_rows=skipped_rows,
+    )
+
+
+def _map_mep_row(row: dict[str, str]) -> ConstructionItem | None:
+    category = _normalized(row.get("Category"))
+    family = _normalized(row.get("Family"))
+    material = _normalized(row.get("Material"))
+    snapshot = row.get("Parameter Snapshot", "")
+
+    if category in {"ducts", "flex ducts", "duct fittings", "air terminals"}:
+        equivalent_length_ft = _resolve_duct_equivalent_length(row)
+        if equivalent_length_ft <= 0:
+            return None
+        nominal_diameter_in = _resolve_nominal_diameter_inches(row)
+        material_type = "Steel Duct 12\"D (ft)" if nominal_diameter_in <= 15 else "Steel Duct 18\"D (ft)"
+        if "stainless" in material:
+            weight_kg = _resolve_weight_kg(row)
+            if weight_kg > 0:
+                return ConstructionItem(
+                    assembly="MEP",
+                    material_type="Stainless Steel Duct (kg)",
+                    amount=weight_kg,
+                )
+        return ConstructionItem(
+            assembly="MEP",
+            material_type=material_type,
+            amount=equivalent_length_ft,
+        )
+
+    if category in {"pipe fittings", "pipe accessories", "pipes", "flex pipes"}:
+        material_type = _resolve_pipe_material_type(material, family, snapshot)
+        if not material_type:
+            return None
+        weight_kg = _resolve_weight_kg(row)
+        if weight_kg <= 0:
+            return None
+        return ConstructionItem(
+            assembly="MEP",
+            material_type=material_type,
+            amount=weight_kg,
+        )
+
+    if category == "mechanical equipment":
+        airflow_m3s = _resolve_airflow_m3s(row, snapshot)
+        if airflow_m3s > 0 and "ahu" in family:
+            return ConstructionItem(
+                assembly="MEP",
+                material_type="Air Handling Unit (m^3/s)",
+                amount=airflow_m3s,
+            )
+
+    return None
+
+
+def _resolve_pipe_material_type(material: str, family: str, snapshot: str) -> str | None:
+    search_text = " ".join([material, family, snapshot.lower()])
+    if "copper" in search_text:
+        return "Copper Pipe (kg)"
+    if "stainless" in search_text or "steel" in search_text:
+        return "Stainless Steel Pipe (kg)"
+    if "hdpe" in search_text or "polyethylene" in search_text:
+        return "HDPE Pipe (kg)"
+    return None
+
+
+def _resolve_duct_equivalent_length(row: dict[str, str]) -> float:
+    length_ft = _parse_length_feet(row.get("Length", ""))
+    if length_ft > 0:
+        return length_ft
+
+    area_sf = _parse_measurement_value(row.get("Area", ""))
+    volume_cf = _parse_measurement_value(row.get("Volume", ""))
+    if area_sf > 0 and volume_cf > 0:
+        return volume_cf / area_sf
+    if volume_cf > 0:
+        return volume_cf ** (1.0 / 3.0)
+    return 0.0
+
+
+def _resolve_nominal_diameter_inches(row: dict[str, str]) -> float:
+    for field in ("Diameter", "Size", "Width", "Height"):
+        candidate = row.get(field, "")
+        diameter = _extract_inches(candidate)
+        if diameter > 0:
+            return diameter
+
+    snapshot = row.get("Parameter Snapshot", "")
+    hydraulic = _extract_snapshot_value(snapshot, "Hydraulic Diameter")
+    if hydraulic:
+        diameter = _extract_inches(hydraulic)
+        if diameter > 0:
+            return diameter
+
+    width = _extract_snapshot_value(snapshot, "Duct Width")
+    height = _extract_snapshot_value(snapshot, "Duct Height")
+    width_in = _extract_inches(width)
+    height_in = _extract_inches(height)
+    if width_in > 0 and height_in > 0:
+        return 2 * width_in * height_in / (width_in + height_in)
+    if width_in > 0:
+        return width_in
+    if height_in > 0:
+        return height_in
+    return 12.0
+
+
+def _resolve_weight_kg(row: dict[str, str]) -> float:
+    for field in ("Weight", "Unit Weight"):
+        value = _parse_measurement_value(row.get(field, ""))
+        if value > 0:
+            return value
+    return 0.0
+
+
+def _resolve_airflow_m3s(row: dict[str, str], snapshot: str) -> float:
+    for field in ("Airflow", "Flow"):
+        value = _parse_flow_m3s(row.get(field, ""))
+        if value > 0:
+            return value
+
+    for key in (
+        "Supply Air Outlet Flow",
+        "Supply Air Inlet Flow",
+        "Return Air Inlet Flow",
+        "Flow",
+    ):
+        value = _parse_flow_m3s(_extract_snapshot_value(snapshot, key))
+        if value > 0:
+            return value
+
+    connector_flow = _parse_measurement_value(row.get("Connector Flow", ""))
+    if connector_flow > 0:
+        # Connector flow is used as a fallback only. In this dataset it is
+        # lower fidelity than the explicit snapshot airflow values.
+        return connector_flow
+
+    return 0.0
+
+
+def _parse_flow_m3s(raw_value: str | None) -> float:
+    text = (raw_value or "").strip().lower()
+    if not text:
+        return 0.0
+
+    value = _parse_measurement_value(text)
+    if value <= 0:
+        return 0.0
+
+    if "/h" in text:
+        return value / 3600.0
+    if "/s" in text:
+        return value
+    return value
+
+
+def _extract_snapshot_value(snapshot: str, parameter_name: str) -> str:
+    prefix = f"{parameter_name}="
+    for part in snapshot.split(" | "):
+        if part.startswith(prefix):
+            return part[len(prefix):]
+    return ""
+
+
+def _extract_inches(text: str | None) -> float:
+    raw = (text or "").strip()
+    if not raw:
+        return 0.0
+
+    values = re.findall(r"(\d+(?:\.\d+)?)\s*\"", raw)
+    if values:
+        return max(float(value) for value in values)
+
+    metric = re.findall(r"(\d+(?:\.\d+)?)", raw)
+    if metric:
+        return max(float(value) for value in metric)
+    return 0.0
+
+
+def _parse_measurement_value(raw_value: str | None) -> float:
+    text = (raw_value or "").strip()
+    if not text:
+        return 0.0
+    match = re.search(r"-?\d+(?:\.\d+)?", text.replace(",", ""))
+    return float(match.group(0)) if match else 0.0
+
+
+def _parse_length_feet(raw_value: str | None) -> float:
+    text = (raw_value or "").strip()
+    if not text:
+        return 0.0
+
+    feet_match = re.search(r"(-?\d+)\s*'", text)
+    inches_match = re.search(r"(-?\d+(?:\s+\d+/\d+|\.\d+)?)\s*\"", text)
+
+    feet = float(feet_match.group(1)) if feet_match else 0.0
+    inches = _parse_inches_fraction(inches_match.group(1)) if inches_match else 0.0
+    return feet + inches / 12.0
+
+
+def _parse_inches_fraction(text: str) -> float:
+    value = text.strip()
+    if " " in value:
+        whole, fraction = value.split(" ", 1)
+        return float(whole) + _parse_fraction(fraction)
+    if "/" in value:
+        return _parse_fraction(value)
+    return float(value)
+
+
+def _parse_fraction(value: str) -> float:
+    numerator, denominator = value.split("/", 1)
+    denominator_value = float(denominator)
+    if math.isclose(denominator_value, 0.0):
+        return 0.0
+    return float(numerator) / denominator_value
+
+
+def _normalized(value: str | None) -> str:
+    return (value or "").strip().lower()
