@@ -6,6 +6,7 @@ import re
 from collections import defaultdict
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Callable
 
 from .models import ConstructionItem
 
@@ -76,30 +77,19 @@ def load_mep_schedule(csv_path: Path | str) -> MEPScheduleReport:
 
 
 def _map_mep_row(row: dict[str, str]) -> ConstructionItem | None:
+    family_category_key = _family_category_key(row)
+    if family_category_key:
+        explicit_handler = MEP_FAMILY_CATEGORY_MAPPINGS.get(family_category_key)
+        if explicit_handler is not None:
+            return explicit_handler(row)
+
     category = _normalized(row.get("Category"))
     family = _normalized(row.get("Family"))
     material = _normalized(row.get("Material"))
     snapshot = row.get("Parameter Snapshot", "")
 
     if category in {"ducts", "flex ducts", "duct fittings", "air terminals"}:
-        equivalent_length_ft = _resolve_duct_equivalent_length(row)
-        if equivalent_length_ft <= 0:
-            return None
-        nominal_diameter_in = _resolve_nominal_diameter_inches(row)
-        material_type = "Steel Duct 12\"D (ft)" if nominal_diameter_in <= 15 else "Steel Duct 18\"D (ft)"
-        if "stainless" in material:
-            weight_kg = _resolve_weight_kg(row)
-            if weight_kg > 0:
-                return ConstructionItem(
-                    assembly="MEP",
-                    material_type="Stainless Steel Duct (kg)",
-                    amount=weight_kg,
-                )
-        return ConstructionItem(
-            assembly="MEP",
-            material_type=material_type,
-            amount=equivalent_length_ft,
-        )
+        return _map_steel_duct_from_geometry(row)
 
     if category in {"pipe fittings", "pipe accessories", "pipes", "flex pipes"}:
         material_type = _resolve_pipe_material_type(material, family, snapshot)
@@ -114,16 +104,120 @@ def _map_mep_row(row: dict[str, str]) -> ConstructionItem | None:
             amount=weight_kg,
         )
 
-    if category == "mechanical equipment":
-        airflow_m3s = _resolve_airflow_m3s(row, snapshot)
-        if airflow_m3s > 0 and "ahu" in family:
+    return None
+
+
+def _family_category_key(row: dict[str, str]) -> str:
+    family = (row.get("Family") or "").strip()
+    category = (row.get("Category") or "").strip()
+    if not family or not category:
+        return ""
+    return f"{family} : {category}"
+
+
+def _map_steel_duct_from_geometry(row: dict[str, str]) -> ConstructionItem | None:
+    material = _normalized(row.get("Material"))
+    if "stainless" in material:
+        weight_kg = _resolve_weight_kg(row)
+        if weight_kg > 0:
             return ConstructionItem(
                 assembly="MEP",
-                material_type="Air Handling Unit (m^3/s)",
-                amount=airflow_m3s,
+                material_type="Stainless Steel Duct (kg)",
+                amount=weight_kg,
             )
 
-    return None
+    equivalent_length_ft = _resolve_duct_equivalent_length(row)
+    if equivalent_length_ft <= 0:
+        return None
+
+    nominal_diameter_in = _resolve_nominal_diameter_inches(row)
+    material_type = "Steel Duct 12\"D (ft)" if nominal_diameter_in <= 15 else "Steel Duct 18\"D (ft)"
+    return ConstructionItem(
+        assembly="MEP",
+        material_type=material_type,
+        amount=equivalent_length_ft,
+    )
+
+
+def _map_air_filter_from_flow(row: dict[str, str]) -> ConstructionItem | None:
+    snapshot = row.get("Parameter Snapshot", "")
+    airflow_m3s = _resolve_airflow_m3s(row, snapshot)
+    if airflow_m3s <= 0:
+        return None
+    return ConstructionItem(
+        assembly="MEP",
+        material_type="Air Filters (m^3/s)",
+        amount=airflow_m3s,
+    )
+
+
+def _map_ahu_from_flow(row: dict[str, str]) -> ConstructionItem | None:
+    snapshot = row.get("Parameter Snapshot", "")
+    airflow_m3s = _resolve_airflow_m3s(row, snapshot)
+    if airflow_m3s <= 0:
+        return None
+    return ConstructionItem(
+        assembly="MEP",
+        material_type="Air Handling Unit (m^3/s)",
+        amount=airflow_m3s,
+    )
+
+
+def _map_stainless_duct_from_weight(row: dict[str, str]) -> ConstructionItem | None:
+    return _map_stainless_duct_from_weight_with_multiplier(row, surface_multiplier=1.0)
+
+
+def _map_stainless_duct_elbow_from_weight(row: dict[str, str]) -> ConstructionItem | None:
+    return _map_stainless_duct_from_weight_with_multiplier(row, surface_multiplier=1.3)
+
+
+def _map_stainless_duct_tee_from_weight(row: dict[str, str]) -> ConstructionItem | None:
+    return _map_stainless_duct_from_weight_with_multiplier(row, surface_multiplier=1.6)
+
+
+def _map_stainless_duct_cross_from_weight(row: dict[str, str]) -> ConstructionItem | None:
+    return _map_stainless_duct_from_weight_with_multiplier(row, surface_multiplier=1.8)
+
+
+def _map_stainless_duct_transition_from_weight(row: dict[str, str]) -> ConstructionItem | None:
+    return _map_stainless_duct_from_weight_with_multiplier(row, surface_multiplier=1.2)
+
+
+def _map_stainless_duct_rect_to_round_transition_from_weight(
+    row: dict[str, str],
+) -> ConstructionItem | None:
+    return _map_stainless_duct_from_weight_with_multiplier(row, surface_multiplier=1.25)
+
+
+def _map_stainless_duct_from_weight_with_multiplier(
+    row: dict[str, str], *, surface_multiplier: float
+) -> ConstructionItem | None:
+    weight_kg = _resolve_weight_kg(row)
+    if weight_kg <= 0:
+        weight_kg = _estimate_rectangular_duct_weight_kg(row, surface_multiplier=surface_multiplier)
+    if weight_kg <= 0:
+        return None
+    return ConstructionItem(
+        assembly="MEP",
+        material_type="Stainless Steel Duct (kg)",
+        amount=weight_kg,
+    )
+
+
+MEP_FAMILY_CATEGORY_MAPPINGS: dict[str, Callable[[dict[str, str]], ConstructionItem | None]] = {
+    "Supply Diffuser : Air Terminals": _map_ahu_from_flow,
+    "Exhaust Grill : Air Terminals": _map_ahu_from_flow,
+    "PRICE-40FF- Filter Frame Stamped Residential Grille-RETURN Hosted : Air Terminals": _map_air_filter_from_flow,
+    "34274 : Electrical Fixtures": lambda row: None,
+    "Return Diffuser : Air Terminals": _map_ahu_from_flow,
+    "Utility Switchboard : Electrical Equipment": lambda row: None,
+    "Outdoor AHU - Horizontal : Mechanical Equipment": _map_ahu_from_flow,
+    "Rectangular Elbow - Mitered : Duct Fittings": _map_stainless_duct_elbow_from_weight,
+    "Rectangular Tee : Duct Fittings": _map_stainless_duct_tee_from_weight,
+    "Rectangular Cross : Duct Fittings": _map_stainless_duct_cross_from_weight,
+    "Rectangular Transition - Angle : Duct Fittings": _map_stainless_duct_transition_from_weight,
+    "Rectangular to Round Transition - Angle : Duct Fittings": _map_stainless_duct_rect_to_round_transition_from_weight,
+}
 
 
 def _resolve_pipe_material_type(material: str, family: str, snapshot: str) -> str | None:
@@ -184,6 +278,88 @@ def _resolve_weight_kg(row: dict[str, str]) -> float:
         if value > 0:
             return value
     return 0.0
+
+
+def _estimate_rectangular_duct_weight_kg(
+    row: dict[str, str], *, surface_multiplier: float = 1.0
+) -> float:
+    width_m, height_m = _resolve_rectangular_dimensions_m(row)
+    length_m = _resolve_length_m(row)
+    if width_m <= 0 or height_m <= 0 or length_m <= 0:
+        return 0.0
+
+    thickness_m = _resolve_duct_thickness_m(width_m, height_m)
+    density_kg_per_m3 = 8000.0
+    sheet_area_m2 = surface_multiplier * 2.0 * (width_m + height_m) * length_m
+    return sheet_area_m2 * thickness_m * density_kg_per_m3
+
+
+def _resolve_rectangular_dimensions_m(row: dict[str, str]) -> tuple[float, float]:
+    width_in = _extract_inches(row.get("Width", ""))
+    height_in = _extract_inches(row.get("Height", ""))
+    snapshot = row.get("Parameter Snapshot", "")
+
+    if width_in <= 0:
+        width_in = _extract_inches(_extract_snapshot_value(snapshot, "Duct Width"))
+    if height_in <= 0:
+        height_in = _extract_inches(_extract_snapshot_value(snapshot, "Duct Height"))
+
+    if width_in <= 0 or height_in <= 0:
+        size = row.get("Size", "")
+        parsed_width_in, parsed_height_in = _extract_size_pair_inches(size)
+        if width_in <= 0:
+            width_in = parsed_width_in
+        if height_in <= 0:
+            height_in = parsed_height_in
+
+    return width_in * 0.0254, height_in * 0.0254
+
+
+def _resolve_length_m(row: dict[str, str]) -> float:
+    length_ft = _parse_length_feet(row.get("Length", ""))
+    if length_ft > 0:
+        return length_ft * 0.3048
+
+    snapshot = row.get("Parameter Snapshot", "")
+    for key in ("Length", "Duct Length", "Computed Length", "Length 1", "Duct Length 1"):
+        candidate_ft = _parse_length_feet(_extract_snapshot_value(snapshot, key))
+        if candidate_ft > 0:
+            return candidate_ft * 0.3048
+
+    volume_cf = _parse_measurement_value(row.get("Volume", ""))
+    width_m, height_m = _resolve_rectangular_dimensions_m(row)
+    if volume_cf > 0 and width_m > 0 and height_m > 0:
+        volume_m3 = volume_cf * 0.0283168
+        cross_section_m2 = width_m * height_m
+        if cross_section_m2 > 0:
+            return volume_m3 / cross_section_m2
+
+    return 0.0
+
+
+def _resolve_duct_thickness_m(width_m: float, height_m: float) -> float:
+    largest_dimension_m = max(width_m, height_m)
+    if largest_dimension_m <= 0.3:
+        return 0.0005
+    if largest_dimension_m <= 0.6:
+        return 0.0006
+    return 0.0008
+
+
+def _extract_size_pair_inches(text: str | None) -> tuple[float, float]:
+    raw = (text or "").strip()
+    if not raw:
+        return 0.0, 0.0
+
+    matches = re.findall(r"(\d+(?:\.\d+)?)\s*\"", raw)
+    if len(matches) >= 2:
+        return float(matches[0]), float(matches[1])
+
+    metric_matches = re.findall(r"(\d+(?:\.\d+)?)", raw)
+    if len(metric_matches) >= 2:
+        return float(metric_matches[0]), float(metric_matches[1])
+
+    return 0.0, 0.0
 
 
 def _resolve_airflow_m3s(row: dict[str, str], snapshot: str) -> float:

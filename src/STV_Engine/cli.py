@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 
 from .engine import STVEngine
-from .models import STVInputs
+from .models import STVInputs, STVResults
 from .revit_mep import load_mep_schedule
 from .reference import DEFAULT_TEMPLATE_PATH, STVReferenceData
 from .revit_structural import load_structural_schedule
@@ -34,6 +34,11 @@ def build_parser() -> argparse.ArgumentParser:
         default="outputs/stv",
         help="Directory for result JSON and generated charts.",
     )
+    parser.add_argument(
+        "--combine-results",
+        nargs="+",
+        help="Paths to one or more existing stv_results.json files to merge into a project STV.",
+    )
     return parser
 
 
@@ -43,6 +48,29 @@ def main() -> None:
 
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
+
+    if args.combine_results:
+        result_paths = [Path(path) for path in args.combine_results]
+        loaded_results = [
+            STVResults.from_dict(json.loads(path.read_text(encoding="utf-8")))
+            for path in result_paths
+        ]
+        combined_results = STVResults.combine(loaded_results, team=args.team)
+
+        results_path = output_dir / "stv_results.json"
+        results_path.write_text(
+            json.dumps(combined_results.to_dict(), indent=2),
+            encoding="utf-8",
+        )
+        image_paths = export_visualizations(combined_results, output_dir)
+
+        response: dict[str, object] = {
+            "results_json": str(results_path),
+            "charts": {key: str(path) for key, path in image_paths.items()},
+            "combined_from": [str(path) for path in result_paths],
+        }
+        print(json.dumps(response, indent=2))
+        return
 
     payload: dict[str, object] = {}
     if args.input:

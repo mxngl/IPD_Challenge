@@ -10,7 +10,9 @@ from .models import ConstructionItem
 
 CF_TO_CY = 1.0 / 27.0
 SOFTWOOD_LUMBER_KG_PER_CF = 12.72
-GLULAM_KG_PER_CF = 15.86
+GLULAM_KG_PER_CF = 19.43
+CONCRETE_FLOOR_TYPE = "Concrete (sf)"
+WOOD_FLOOR_TYPE = "Wood System (sf)"
 
 
 @dataclass(slots=True)
@@ -80,6 +82,7 @@ def _map_structural_row(row: dict[str, str]) -> ConstructionItem | None:
     type_name = _normalized(row.get("Type"))
     material = _normalized(row.get("Material"))
     volume_cf = _parse_measurement(row.get("Volume", ""))
+    area_sf = _parse_measurement(row.get("Area", ""))
 
     if category == "structural columns":
         if "concrete" in family or "concrete" in material:
@@ -88,18 +91,18 @@ def _map_structural_row(row: dict[str, str]) -> ConstructionItem | None:
                 material_type="Reinforced Concrete Column (cy)",
                 amount=volume_cf * CF_TO_CY,
             )
-        if "glulam" in family:
+        if "glulam" in family or "timber" in family:
             return ConstructionItem(
                 assembly="Columns",
                 material_type="Glulam Column (kg)",
                 amount=volume_cf * GLULAM_KG_PER_CF,
             )
-        if "timber" in family or "softwood" in material or "lumber" in material:
-            return ConstructionItem(
-                assembly="Columns",
-                material_type="Wood Column (kg)",
-                amount=volume_cf * SOFTWOOD_LUMBER_KG_PER_CF,
-            )
+        # if "timber" in family or "softwood" in material or "lumber" in material:
+        #     return ConstructionItem(
+        #         assembly="Columns",
+        #         material_type="Wood Column (kg)",
+        #         amount=volume_cf * SOFTWOOD_LUMBER_KG_PER_CF,
+        #     )
         return None
 
     if category == "structural framing":
@@ -144,6 +147,23 @@ def _map_structural_row(row: dict[str, str]) -> ConstructionItem | None:
             )
         return None
 
+    if category == "floors":
+        if area_sf <= 0:
+            return None
+        if _is_wood_floor(family, type_name, material):
+            return ConstructionItem(
+                assembly="Floor",
+                material_type=WOOD_FLOOR_TYPE,
+                amount=area_sf,
+            )
+        if _is_concrete_floor(family, type_name, material):
+            return ConstructionItem(
+                assembly="Floor",
+                material_type=CONCRETE_FLOOR_TYPE,
+                amount=area_sf,
+            )
+        return None
+
     return None
 
 
@@ -153,6 +173,16 @@ def _parse_measurement(raw_value: str) -> float:
         return 0.0
     token = text.split()[0].replace(",", "")
     return float(token)
+
+
+def _is_wood_floor(family: str, type_name: str, material: str) -> bool:
+    search_text = " ".join((family, type_name, material))
+    return any(keyword in search_text for keyword in ("wood", "timber", "glulam", "lumber", "clt", "plywood"))
+
+
+def _is_concrete_floor(family: str, type_name: str, material: str) -> bool:
+    search_text = " ".join((family, type_name, material))
+    return any(keyword in search_text for keyword in ("concrete", "slab", "deck"))
 
 
 def _normalized(value: str | None) -> str:

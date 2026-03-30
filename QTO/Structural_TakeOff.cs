@@ -75,6 +75,7 @@ namespace QTO
         {
             List<BuiltInCategory> categories = new List<BuiltInCategory>
             {
+                BuiltInCategory.OST_Floors,
                 BuiltInCategory.OST_StructuralColumns,
                 BuiltInCategory.OST_StructuralFraming,
                 BuiltInCategory.OST_StructuralFoundation,
@@ -144,12 +145,45 @@ namespace QTO
                 string mark = GetParameterValue(elem.LookupParameter("Mark"), doc);
                 string assemblyCode = GetAssemblyCode(elem, doc);
                 string assemblyDescription = GetParameterValue(elem.LookupParameter("Assembly Description"), doc);
-                string length = GetParameterValue(elem.LookupParameter("Length"), doc);
-                string width = GetParameterValue(elem.LookupParameter("Width"), doc);
-                string depth = GetParameterValue(elem.LookupParameter("Depth"), doc);
-                string height = GetParameterValue(elem.LookupParameter("Height"), doc);
-                string area = GetParameterValue(elem.LookupParameter("Area"), doc);
-                string volume = GetParameterValue(elem.LookupParameter("Volume"), doc);
+                string length = GetFirstAvailableParameterValue(
+                    doc,
+                    elem,
+                    "Length",
+                    "Cut Length",
+                    "Span"
+                );
+                string width = GetFirstAvailableParameterValue(
+                    doc,
+                    elem,
+                    "Width",
+                    "Actual Width"
+                );
+                string depth = GetFirstAvailableParameterValue(
+                    doc,
+                    elem,
+                    "Depth",
+                    "Thickness",
+                    "Structural Depth"
+                );
+                string height = GetFirstAvailableParameterValue(
+                    doc,
+                    elem,
+                    "Height",
+                    "Thickness"
+                );
+                string area = GetFirstAvailableParameterValue(
+                    doc,
+                    elem,
+                    "Area",
+                    "Host Area Computed",
+                    "Computed Area"
+                );
+                string volume = GetFirstAvailableParameterValue(
+                    doc,
+                    elem,
+                    "Volume",
+                    "Host Volume Computed"
+                );
                 string weight = GetFirstAvailableParameterValue(
                     doc,
                     elem,
@@ -430,3 +464,4 @@ namespace QTO
         }
     }
 }
+

@@ -36,6 +36,15 @@ class ImpactVector:
     def to_dict(self) -> dict[str, float]:
         return {key: self.get(key) for key in IMPACT_KEYS}
 
+    @classmethod
+    def from_dict(cls, payload: dict[str, Any]) -> "ImpactVector":
+        return cls(
+            carbon=float(payload.get("carbon", 0.0)),
+            energy=float(payload.get("energy", 0.0)),
+            water=float(payload.get("water", 0.0)),
+            ozone=float(payload.get("ozone", 0.0)),
+        )
+
 
 @dataclass(slots=True)
 class ImpactBreakdown:
@@ -62,6 +71,16 @@ class ImpactBreakdown:
     def life_cycle(self) -> ImpactVector:
         return self.embodied + self.use_phase
 
+    def __add__(self, other: "ImpactBreakdown") -> "ImpactBreakdown":
+        return ImpactBreakdown(
+            embodied_materials=self.embodied_materials + other.embodied_materials,
+            embodied_transport=self.embodied_transport + other.embodied_transport,
+            embodied_construction=self.embodied_construction + other.embodied_construction,
+            use_electricity=self.use_electricity + other.use_electricity,
+            use_heating=self.use_heating + other.use_heating,
+            use_water=self.use_water + other.use_water,
+        )
+
     def to_dict(self) -> dict[str, dict[str, float]]:
         return {
             "embodied_materials": self.embodied_materials.to_dict(),
@@ -74,6 +93,17 @@ class ImpactBreakdown:
             "use_phase": self.use_phase.to_dict(),
             "life_cycle": self.life_cycle.to_dict(),
         }
+
+    @classmethod
+    def from_dict(cls, payload: dict[str, Any]) -> "ImpactBreakdown":
+        return cls(
+            embodied_materials=ImpactVector.from_dict(payload.get("embodied_materials", {})),
+            embodied_transport=ImpactVector.from_dict(payload.get("embodied_transport", {})),
+            embodied_construction=ImpactVector.from_dict(payload.get("embodied_construction", {})),
+            use_electricity=ImpactVector.from_dict(payload.get("use_electricity", {})),
+            use_heating=ImpactVector.from_dict(payload.get("use_heating", {})),
+            use_water=ImpactVector.from_dict(payload.get("use_water", {})),
+        )
 
 
 @dataclass(slots=True)
@@ -195,6 +225,19 @@ class ConstructionImpactResult:
             "construction": self.construction.to_dict(),
         }
 
+    @classmethod
+    def from_dict(cls, payload: dict[str, Any]) -> "ConstructionImpactResult":
+        return cls(
+            assembly=payload["assembly"],
+            material_type=payload["material_type"],
+            amount=float(payload["amount"]),
+            unit_multiplier=float(payload.get("unit_multiplier", 1.0)),
+            embodied_total=ImpactVector.from_dict(payload.get("embodied_total", {})),
+            materials=ImpactVector.from_dict(payload.get("materials", {})),
+            transport=ImpactVector.from_dict(payload.get("transport", {})),
+            construction=ImpactVector.from_dict(payload.get("construction", {})),
+        )
+
 
 @dataclass(slots=True)
 class STVResults:
@@ -226,3 +269,52 @@ class STVResults:
 
     def to_json_ready(self) -> dict[str, Any]:
         return asdict(self)
+
+    @classmethod
+    def from_dict(cls, payload: dict[str, Any]) -> "STVResults":
+        return cls(
+            team=payload["team"],
+            targets=ImpactVector.from_dict(payload.get("targets", {})),
+            breakdown=ImpactBreakdown.from_dict(payload.get("breakdown", {})),
+            construction_items=[
+                ConstructionImpactResult.from_dict(item)
+                for item in payload.get("construction_items", [])
+            ],
+            lifetime_years=int(payload.get("lifetime_years", 0)),
+        )
+
+    @classmethod
+    def combine(cls, results: list["STVResults"], *, team: str | None = None) -> "STVResults":
+        if not results:
+            raise ValueError("At least one STV result is required to create a project STV.")
+
+        first = results[0]
+        combined_team = team or first.team
+        combined_targets = first.targets
+        combined_lifetime = first.lifetime_years
+        combined_breakdown = ImpactBreakdown()
+        combined_items: list[ConstructionImpactResult] = []
+
+        for result in results:
+            if result.team != first.team:
+                raise ValueError(
+                    f"Cannot combine STV results from different teams: '{first.team}' and '{result.team}'."
+                )
+            if result.lifetime_years != combined_lifetime:
+                raise ValueError(
+                    "Cannot combine STV results with different lifetimes: "
+                    f"{combined_lifetime} and {result.lifetime_years}."
+                )
+            if result.targets.to_dict() != combined_targets.to_dict():
+                raise ValueError("Cannot combine STV results with different target values.")
+
+            combined_breakdown = combined_breakdown + result.breakdown
+            combined_items.extend(result.construction_items)
+
+        return cls(
+            team=combined_team,
+            targets=combined_targets,
+            breakdown=combined_breakdown,
+            construction_items=combined_items,
+            lifetime_years=combined_lifetime,
+        )

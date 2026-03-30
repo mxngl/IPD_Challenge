@@ -1,6 +1,110 @@
 {
-  "mapped_rows": 971,
+  "mapped_rows": 959,
   "skipped_rows": [
+    {
+      "element_id": "1022788",
+      "category": "Air Terminals",
+      "family": "PRICE-40FF- Filter Frame Stamped Residential Grille-RETURN Hosted",
+      "type": "24\" x 12\"",
+      "system_type": "Return Air",
+      "size": "24\"x12\"",
+      "length": "2' - 0\"",
+      "area": "",
+      "volume": "0.26 CF",
+      "material": "",
+      "reason": "No STV MEP mapping rule matched this row."
+    },
+    {
+      "element_id": "1023916",
+      "category": "Air Terminals",
+      "family": "PRICE-40FF- Filter Frame Stamped Residential Grille-RETURN Hosted",
+      "type": "24\" x 12\"",
+      "system_type": "Return Air",
+      "size": "24\"x12\"",
+      "length": "2' - 0\"",
+      "area": "",
+      "volume": "0.26 CF",
+      "material": "",
+      "reason": "No STV MEP mapping rule matched this row."
+    },
+    {
+      "element_id": "1023982",
+      "category": "Air Terminals",
+      "family": "PRICE-40FF- Filter Frame Stamped Residential Grille-RETURN Hosted",
+      "type": "24\" x 12\"",
+      "system_type": "Return Air",
+      "size": "24\"x12\"",
+      "length": "2' - 0\"",
+      "area": "",
+      "volume": "0.26 CF",
+      "material": "",
+      "reason": "No STV MEP mapping rule matched this row."
+    },
+    {
+      "element_id": "1023993",
+      "category": "Air Terminals",
+      "family": "PRICE-40FF- Filter Frame Stamped Residential Grille-RETURN Hosted",
+      "type": "24\" x 12\"",
+      "system_type": "Return Air",
+      "size": "24\"x12\"",
+      "length": "2' - 0\"",
+      "area": "",
+      "volume": "0.26 CF",
+      "material": "",
+      "reason": "No STV MEP mapping rule matched this row."
+    },
+    {
+      "element_id": "1024003",
+      "category": "Air Terminals",
+      "family": "PRICE-40FF- Filter Frame Stamped Residential Grille-RETURN Hosted",
+      "type": "24\" x 12\"",
+      "system_type": "Return Air",
+      "size": "24\"x12\"",
+      "length": "2' - 0\"",
+      "area": "",
+      "volume": "0.26 CF",
+      "material": "",
+      "reason": "No STV MEP mapping rule matched this row."
+    },
+    {
+      "element_id": "1024013",
+      "category": "Air Terminals",
+      "family": "PRICE-40FF- Filter Frame Stamped Residential Grille-RETURN Hosted",
+      "type": "24\" x 12\"",
+      "system_type": "Return Air",
+      "size": "24\"x12\"",
+      "length": "2' - 0\"",
+      "area": "",
+      "volume": "0.26 CF",
+      "material": "",
+      "reason": "No STV MEP mapping rule matched this row."
+    },
+    {
+      "element_id": "1024023",
+      "category": "Air Terminals",
+      "family": "PRICE-40FF- Filter Frame Stamped Residential Grille-RETURN Hosted",
+      "type": "24\" x 12\"",
+      "system_type": "Return Air",
+      "size": "24\"x12\"",
+      "length": "2' - 0\"",
+      "area": "",
+      "volume": "0.26 CF",
+      "material": "",
+      "reason": "No STV MEP mapping rule matched this row."
+    },
+    {
+      "element_id": "1024033",
+      "category": "Air Terminals",
+      "family": "PRICE-40FF- Filter Frame Stamped Residential Grille-RETURN Hosted",
+      "type": "24\" x 12\"",
+      "system_type": "Return Air",
+      "size": "24\"x12\"",
+      "length": "2' - 0\"",
+      "area": "",
+      "volume": "0.26 CF",
+      "material": "",
+      "reason": "No STV MEP mapping rule matched this row."
+    },
     {
       "element_id": "1024964",
       "category": "Electrical Fixtures",
@@ -50,6 +154,45 @@
       "length": "",
       "area": "58 SF",
       "volume": "45.29 CF",
+      "material": "",
+      "reason": "No STV MEP mapping rule matched this row."
+    },
+    {
+      "element_id": "1043305",
+      "category": "Air Terminals",
+      "family": "PRICE-40FF- Filter Frame Stamped Residential Grille-RETURN Hosted",
+      "type": "24\" x 12\"",
+      "system_type": "Return Air",
+      "size": "24\"x12\"",
+      "length": "2' - 0\"",
+      "area": "",
+      "volume": "0.26 CF",
+      "material": "",
+      "reason": "No STV MEP mapping rule matched this row."
+    },
+    {
+      "element_id": "1043316",
+      "category": "Air Terminals",
+      "family": "PRICE-40FF- Filter Frame Stamped Residential Grille-RETURN Hosted",
+      "type": "24\" x 12\"",
+      "system_type": "Return Air",
+      "size": "24\"x12\"",
+      "length": "2' - 0\"",
+      "area": "",
+      "volume": "0.26 CF",
+      "material": "",
+      "reason": "No STV MEP mapping rule matched this row."
+    },
+    {
+      "element_id": "1043326",
+      "category": "Air Terminals",
+      "family": "PRICE-40FF- Filter Frame Stamped Residential Grille-RETURN Hosted",
+      "type": "24\" x 12\"",
+      "system_type": "Return Air",
+      "size": "24\"x12\"",
+      "length": "2' - 0\"",
+      "area": "",
+      "volume": "0.26 CF",
       "material": "",
       "reason": "No STV MEP mapping rule matched this row."
     },
@@ -220,6 +363,19 @@
       "area": "3 SF",
       "volume": "0.04 CF",
       "material": "FARO_White Matt",
+      "reason": "No STV MEP mapping rule matched this row."
+    },
+    {
+      "element_id": "1057923",
+      "category": "Air Terminals",
+      "family": "PRICE-40FF- Filter Frame Stamped Residential Grille-RETURN Hosted",
+      "type": "24\" x 12\"",
+      "system_type": "Return Air",
+      "size": "24\"x12\"",
+      "length": "2' - 0\"",
+      "area": "",
+      "volume": "0.26 CF",
+      "material": "",
       "reason": "No STV MEP mapping rule matched this row."
     },
     {
@@ -629,18 +785,28 @@
   "construction_items": [
     {
       "assembly": "MEP",
+      "material_type": "Air Filters (m^3/s)",
+      "amount": 0.09722222222222225
+    },
+    {
+      "assembly": "MEP",
       "material_type": "Air Handling Unit (m^3/s)",
-      "amount": 2.8316666666666666
+      "amount": 6.396944444444445
+    },
+    {
+      "assembly": "MEP",
+      "material_type": "Stainless Steel Duct (kg)",
+      "amount": 620.3515334879993
     },
     {
       "assembly": "MEP",
       "material_type": "Steel Duct 12\"D (ft)",
-      "amount": 1772.7926041666635
+      "amount": 1553.6692708333344
     },
     {
       "assembly": "MEP",
       "material_type": "Steel Duct 18\"D (ft)",
-      "amount": 669.6197916666667
+      "amount": 532.703125
     }
   ]
 }

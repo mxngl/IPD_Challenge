@@ -1,11 +1,11 @@
 {
-  "mapped_rows": 207,
+  "mapped_rows": 210,
   "skipped_rows": [],
   "construction_items": [
     {
       "assembly": "Beams",
       "material_type": "Glulam Beam (kg)",
-      "amount": 67118.40979999985
+      "amount": 82226.39989999993
     },
     {
       "assembly": "Beams",
@@ -19,13 +19,18 @@
     },
     {
       "assembly": "Columns",
+      "material_type": "Glulam Column (kg)",
+      "amount": 34214.67559999997
+    },
+    {
+      "assembly": "Columns",
       "material_type": "Reinforced Concrete Column (cy)",
       "amount": 9.5
     },
     {
-      "assembly": "Columns",
-      "material_type": "Wood Column (kg)",
-      "amount": 22398.9024
+      "assembly": "Floor",
+      "material_type": "Wood System (sf)",
+      "amount": 28505.0
     },
     {
       "assembly": "Foundation",
