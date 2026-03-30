@@ -12,6 +12,28 @@ namespace QTO
     [Transaction(TransactionMode.Manual)]
     public class Structural_TakeOff : IExternalCommand
     {
+        private static readonly string[] SnapshotKeywords =
+        {
+            "size",
+            "diameter",
+            "radius",
+            "width",
+            "height",
+            "length",
+            "area",
+            "volume",
+            "material",
+            "weight",
+            "mass",
+            "thickness",
+            "depth",
+            "mark",
+            "level",
+            "offset",
+            "comment",
+            "assembly"
+        };
+
         public Result Execute(
             ExternalCommandData commandData,
             ref string message,
@@ -109,7 +131,7 @@ namespace QTO
 
             // Header row
             csv.AppendLine(
-                "ElementId,Category,Family,Type,Level,Mark,Assembly Code,Assembly Description,Length,Width,Depth,Height,Area,Volume,Material,Type Comments,Base Level,Top Level,Base Offset,Top Offset,Comments"
+                "ElementId,Category,Family,Type,Level,Mark,Assembly Code,Assembly Description,Length,Width,Depth,Height,Area,Volume,Weight,Unit Weight,Material,Type Comments,Base Level,Top Level,Base Offset,Top Offset,Comments,Parameter Snapshot"
             );
 
             foreach (Element elem in elementsToExport)
@@ -128,6 +150,21 @@ namespace QTO
                 string height = GetParameterValue(elem.LookupParameter("Height"), doc);
                 string area = GetParameterValue(elem.LookupParameter("Area"), doc);
                 string volume = GetParameterValue(elem.LookupParameter("Volume"), doc);
+                string weight = GetFirstAvailableParameterValue(
+                    doc,
+                    elem,
+                    "Weight",
+                    "Calculated Weight",
+                    "Mass"
+                );
+                string unitWeight = GetFirstAvailableParameterValue(
+                    doc,
+                    elem,
+                    "Material: Unit weight",
+                    "Unit Weight",
+                    "Weight per Unit Length",
+                    "Mass per Unit Length"
+                );
                 string material = GetMaterialSummary(doc, elem);
                 string typeComments = GetTypeParameterValue(doc, elem, "Type Comments");
                 string baseLevel = GetParameterValue(elem.LookupParameter("Base Level"), doc);
@@ -135,6 +172,7 @@ namespace QTO
                 string baseOffset = GetParameterValue(elem.LookupParameter("Base Offset"), doc);
                 string topOffset = GetParameterValue(elem.LookupParameter("Top Offset"), doc);
                 string comments = GetParameterValue(elem.LookupParameter("Comments"), doc);
+                string parameterSnapshot = BuildParameterSnapshot(doc, elem);
 
                 csv.AppendLine(string.Join(",",
                     EscapeCsv(elementId),
@@ -151,17 +189,67 @@ namespace QTO
                     EscapeCsv(height),
                     EscapeCsv(area),
                     EscapeCsv(volume),
+                    EscapeCsv(weight),
+                    EscapeCsv(unitWeight),
                     EscapeCsv(material),
                     EscapeCsv(typeComments),
                     EscapeCsv(baseLevel),
                     EscapeCsv(topLevel),
                     EscapeCsv(baseOffset),
                     EscapeCsv(topOffset),
-                    EscapeCsv(comments)
+                    EscapeCsv(comments),
+                    EscapeCsv(parameterSnapshot)
                 ));
             }
 
             File.WriteAllText(filePath, csv.ToString(), Encoding.UTF8);
+        }
+
+        private string BuildParameterSnapshot(Document doc, Element elem)
+        {
+            Dictionary<string, string> values = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+
+            foreach (Parameter parameter in elem.Parameters.Cast<Parameter>())
+            {
+                AddSnapshotValue(values, parameter, doc);
+            }
+
+            ElementId typeId = elem.GetTypeId();
+            if (typeId != ElementId.InvalidElementId)
+            {
+                Element? typeElem = doc.GetElement(typeId);
+                if (typeElem != null)
+                {
+                    foreach (Parameter parameter in typeElem.Parameters.Cast<Parameter>())
+                    {
+                        AddSnapshotValue(values, parameter, doc);
+                    }
+                }
+            }
+
+            return string.Join(
+                " | ",
+                values
+                    .OrderBy(kvp => kvp.Key, StringComparer.OrdinalIgnoreCase)
+                    .Select(kvp => $"{kvp.Key}={kvp.Value}")
+            );
+        }
+
+        private void AddSnapshotValue(Dictionary<string, string> values, Parameter parameter, Document doc)
+        {
+            string name = parameter.Definition?.Name ?? "";
+            if (string.IsNullOrWhiteSpace(name))
+                return;
+
+            string lowered = name.ToLowerInvariant();
+            if (!SnapshotKeywords.Any(keyword => lowered.Contains(keyword)))
+                return;
+
+            string value = GetParameterValue(parameter, doc);
+            if (string.IsNullOrWhiteSpace(value))
+                return;
+
+            values.TryAdd(name, value);
         }
 
         private string GetFamilyName(Element elem)
@@ -223,6 +311,30 @@ namespace QTO
             value = GetParameterValue(typeParameter, doc);
 
             return string.IsNullOrWhiteSpace(value) ? "" : value;
+        }
+
+        private string GetFirstAvailableParameterValue(Document doc, Element elem, params string[] parameterNames)
+        {
+            foreach (string parameterName in parameterNames)
+            {
+                string value = GetParameterValue(elem.LookupParameter(parameterName), doc);
+                if (!string.IsNullOrWhiteSpace(value))
+                    return value;
+
+                ElementId typeId = elem.GetTypeId();
+                if (typeId == ElementId.InvalidElementId)
+                    continue;
+
+                Element? typeElem = doc.GetElement(typeId);
+                if (typeElem == null)
+                    continue;
+
+                value = GetParameterValue(typeElem.LookupParameter(parameterName), doc);
+                if (!string.IsNullOrWhiteSpace(value))
+                    return value;
+            }
+
+            return "";
         }
 
         private string GetTypeParameterValue(Document doc, Element elem, string parameterName)
@@ -318,4 +430,3 @@ namespace QTO
         }
     }
 }
-

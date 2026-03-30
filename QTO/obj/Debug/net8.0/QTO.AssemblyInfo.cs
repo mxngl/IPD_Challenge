@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("QTO")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b254526a8e26936ae2f9060920e3c78beee4c6b3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5c22049fa872fdf70d07081e63e2df3e93240b6c")]
 [assembly: System.Reflection.AssemblyProductAttribute("QTO")]
 [assembly: System.Reflection.AssemblyTitleAttribute("QTO")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

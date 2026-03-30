@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STV Dashboard</title>
+  <style>
+    :root {
+      --bg: #f4efe7;
+      --surface: rgba(255, 252, 247, 0.86);
+      --surface-strong: #fffaf3;
+      --ink: #1f2a2e;
+      --muted: #5f6c69;
+      --line: rgba(31, 42, 46, 0.12);
+      --accent: #b45d3c;
+      --accent-soft: #e7c7ad;
+      --sage: #6b8a7a;
+      --shadow: 0 18px 48px rgba(45, 39, 31, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(180, 93, 60, 0.16), transparent 28%),
+        radial-gradient(circle at top right, rgba(107, 138, 122, 0.18), transparent 24%),
+        linear-gradient(180deg, #f7f1e8 0%, #f1ece3 100%);
+    }
+
+    .shell {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 32px 0 56px;
+    }
+
+    .hero {
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: linear-gradient(135deg, rgba(255, 250, 243, 0.95), rgba(248, 240, 231, 0.9));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -90px -90px auto;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: rgba(180, 93, 60, 0.08);
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--accent);
+      font-size: 0.9rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 12ch;
+      font-size: clamp(2.4rem, 4vw, 4.8rem);
+      line-height: 0.96;
+      font-weight: 600;
+    }
+
+    .hero p {
+      max-width: 58ch;
+      margin: 16px 0 0;
+      font-size: 1.05rem;
+      line-height: 1.65;
+      color: var(--muted);
+    }
+
+    .run-list {
+      margin-top: 28px;
+      display: grid;
+      gap: 24px;
+    }
+
+    .run-card {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--surface);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      padding: 24px;
+    }
+
+    .run-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: start;
+      margin-bottom: 18px;
+    }
+
+    .run-title {
+      margin: 0;
+      font-size: clamp(1.5rem, 2vw, 2rem);
+      line-height: 1.05;
+    }
+
+    .run-subtitle {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      white-space: nowrap;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: #6d331f;
+      font-size: 0.9rem;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .stat {
+      padding: 14px;
+      border-radius: 18px;
+      background: var(--surface-strong);
+      border: 1px solid var(--line);
+    }
+
+    .stat-label {
+      display: block;
+      color: var(--muted);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+
+    .stat-value {
+      font-size: 1.3rem;
+      line-height: 1.1;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    figure {
+      margin: 0;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      background: linear-gradient(135deg, #f6efe6, #ece4d8);
+    }
+
+    figcaption {
+      padding: 12px 14px 14px;
+      font-size: 0.96rem;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+    }
+
+    .footer-note,
+    .empty-state {
+      margin-top: 24px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .empty-state {
+      display: none;
+      padding: 24px;
+      border-radius: 20px;
+      border: 1px dashed var(--line);
+      background: rgba(255, 250, 243, 0.7);
+    }
+
+    @media (max-width: 720px) {
+      .shell {
+        width: min(100% - 20px, 1180px);
+        padding-top: 20px;
+      }
+
+      .hero,
+      .run-card {
+        padding: 18px;
+      }
+
+      .run-header {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <p class="eyebrow">Sustainability Tracking Value</p>
+      <h1>STV plot dashboard</h1>
+      <p>
+        This page is ready for static hosting and displays the generated STV plots in
+        <code>outputs/</code>. It can be published with GitHub Pages and then linked or embedded from Notion.
+      </p>
+    </section>
+
+    <section id="run-list" class="run-list" aria-label="STV runs"></section>
+    <section id="empty-state" class="empty-state">
+      No STV result folders were found. Generate results into <code>outputs/stv_*/</code> and refresh this page.
+    </section>
+
+    <p class="footer-note">
+      Hosting note: if you use GitHub Pages, keep this file at the repo root and make sure the
+      <code>outputs/</code> folder is published with it so the relative image paths continue to work.
+    </p>
+  </main>
+
+  <script>
+    const RUNS = [
+      { id: "stv_structural", title: "Structural STV", subtitle: "Derived from the Revit structural schedule" },
+      { id: "stv_mep", title: "MEP STV", subtitle: "Derived from the Revit MEP takeoff" },
+      { id: "stv_example", title: "Example STV", subtitle: "Reference example generated from bundled inputs" }
+    ];
+
+    const IMAGE_CAPTIONS = [
+      { file: "target_vs_project.png", caption: "Target vs project impacts" },
+      { file: "life_cycle_breakdown.png", caption: "Life-cycle impact breakdown" },
+      { file: "target_vs_project_radial.png", caption: "Target vs project percentages" }
+    ];
+
+    const runList = document.getElementById("run-list");
+    const emptyState = document.getElementById("empty-state");
+
+    const numberFormatter = new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 });
+    const percentFormatter = new Intl.NumberFormat("en-US", { maximumFractionDigits: 1 });
+
+    function formatMetric(metric) {
+      if (metric == null) {
+        return "N/A";
+      }
+      return numberFormatter.format(metric);
+    }
+
+    function formatPercent(value) {
+      if (value == null) {
+        return "N/A";
+      }
+      return percentFormatter.format(value * 100) + "%";
+    }
+
+    function metricCard(label, value) {
+      return `
+        <div class="stat">
+          <span class="stat-label">${label}</span>
+          <span class="stat-value">${value}</span>
+        </div>
+      `;
+    }
+
+    function buildPlots(run) {
+      return IMAGE_CAPTIONS.map((image) => `
+        <figure>
+          <img
+            src="outputs/${run.id}/${image.file}"
+            alt="${run.title} - ${image.caption}"
+            loading="lazy"
+          >
+          <figcaption>${image.caption}</figcaption>
+        </figure>
+      `).join("");
+    }
+
+    function buildRunCard(run, results) {
+      const summary = results.metric_summary || {};
+      const carbon = summary.carbon || {};
+      const energy = summary.energy || {};
+      const water = summary.water || {};
+      const lifetime = results.lifetime_years != null ? `${results.lifetime_years} years` : "Lifetime not set";
+      const team = results.team || "Unknown team";
+
+      return `
+        <article class="run-card">
+          <div class="run-header">
+            <div>
+              <h2 class="run-title">${run.title}</h2>
+              <p class="run-subtitle">${run.subtitle} for team ${team}.</p>
+            </div>
+            <span class="tag">${lifetime}</span>
+          </div>
+          <div class="stats">
+            ${metricCard("Carbon vs target", formatPercent(carbon.percent_of_target))}
+            ${metricCard("Energy vs target", formatPercent(energy.percent_of_target))}
+            ${metricCard("Water vs target", formatPercent(water.percent_of_target))}
+            ${metricCard("Project carbon", formatMetric(carbon.project))}
+            ${metricCard("Project energy", formatMetric(energy.project))}
+            ${metricCard("Project water", formatMetric(water.project))}
+          </div>
+          <div class="gallery">
+            ${buildPlots(run)}
+          </div>
+        </article>
+      `;
+    }
+
+    async function loadRun(run) {
+      const response = await fetch(`outputs/${run.id}/stv_results.json`, { cache: "no-store" });
+      if (!response.ok) {
+        throw new Error(`Missing results for ${run.id}`);
+      }
+      return response.json();
+    }
+
+    async function render() {
+      const cards = [];
+
+      for (const run of RUNS) {
+        try {
+          const results = await loadRun(run);
+          cards.push(buildRunCard(run, results));
+        } catch (error) {
+          console.warn(error);
+        }
+      }
+
+      if (cards.length === 0) {
+        emptyState.style.display = "block";
+        return;
+      }
+
+      runList.innerHTML = cards.join("");
+    }
+
+    render();
+  </script>
+</body>
+</html>
