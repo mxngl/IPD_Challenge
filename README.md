@@ -39,7 +39,7 @@ $env:APS_CLIENT_SECRET="your-client-secret"
 
 This repo also includes a Python-based STV engine that can:
 
-- read structural and MEP takeoff CSVs exported from Revit
+- read structural, MEP, and architecture takeoff CSVs exported from Revit
 - map those schedule rows into STV construction items
 - calculate STV impacts using the workbook in `STV_Template/`
 - generate JSON outputs and PNG charts under `outputs/`
@@ -154,6 +154,54 @@ For rectangular fittings, the current approximation applies a surface-area multi
 
 These are practical BIM/LCA assumptions for early-stage estimating, not fabrication-grade quantities.
 
+### Run the architecture STV flow
+
+```powershell
+python -m src.STV_Engine.cli --team Island --architecture-schedule .\revit_schedules\Architecture_TakeOff.csv --output-dir .\outputs\stv_architecture
+```
+
+This writes:
+
+- `outputs/stv_architecture/stv_results.json`
+- `outputs/stv_architecture/architecture_schedule_items.json`
+- `outputs/stv_architecture/target_vs_project.png`
+- `outputs/stv_architecture/life_cycle_breakdown.png`
+- `outputs/stv_architecture/target_vs_project_radial.png`
+
+### Architecture mapping notes
+
+The architecture importer in `src/STV_Engine/revit_architecture.py` currently maps the envelope and partition categories from `Architecture_TakeOff.csv`.
+
+Current mappings include:
+
+- `Floors` -> `Floor`
+  - `Concrete (sf)`
+  - `Wood System (sf)`
+- `Walls` -> `Interior Wall` or `Exterior Wall`
+  - `Steel Studs and Painted Gypsum (sf)`
+  - `Timber Studs and Painted Gypsum (sf)`
+  - `Curtain Wall Double Pane (sf)`
+  - `EIFS on Metal Stud (sf)`
+  - `Brick on Metal Stud (sf)`
+  - `Concrete Cladding (sf)`
+- `Curtain Panels` -> `Curtain Wall Double Pane (sf)`
+- `Curtain Wall Mullions` -> `Curtain Wall Double Pane (sf)`
+- `Roofs` -> `Roof`
+  - currently maps to `EPDM Membrane (sf)`, `Green Roof (sf)`, or `Wood Structure (sf)` based on type/material text
+- `Doors` -> an interior-wall proxy by area using `Timber Studs and Painted Gypsum (sf)`
+
+Currently skipped in this first pass:
+
+- `Furniture`
+- `Furniture Systems`
+- `Casework`
+- `Plumbing Fixtures`
+- `Stairs`
+- `Runs`
+- `Landings`
+
+These can be added later with more explicit STV equivalency rules.
+
 ### Combine individual STVs into a project STV
 
 If you already have separate result folders, you can merge their `stv_results.json` files into one project-level STV:
@@ -184,6 +232,7 @@ python -m src.STV_Engine.cli --input .\src\STV_Engine\examples\concept_a_bambo.j
 A static dashboard page is available at `index.html`. It loads the existing files in:
 
 - `outputs/stv_project/`
+- `outputs/stv_architecture/`
 - `outputs/stv_structural/`
 - `outputs/stv_mep/`
 - `outputs/stv_example/`

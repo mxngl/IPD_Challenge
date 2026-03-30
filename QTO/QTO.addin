@@ -18,4 +18,13 @@
     <VendorId>QTO</VendorId>
     <VendorDescription>QTO MEP Export</VendorDescription>
   </AddIn>
-</RevitAddIns>
+  <AddIn Type="Command">
+    <Text>Architecture TakeOff</Text>
+    <Description>Exports architectural quantities to CSV.</Description>
+    <Assembly>C:\Ashmitha\Stanford\Quarter 2\PBL\IPD Challenge\QTO\bin\Debug\net8.0\QTO.dll</Assembly>
+    <FullClassName>QTO.Architecture_TakeOff</FullClassName>
+    <ClientId>91C6F6B7-8D8B-43D5-8A49-1FA88A51A2D4</ClientId>
+    <VendorId>QTO</VendorId>
+    <VendorDescription>QTO Architecture Export</VendorDescription>
+  </AddIn></RevitAddIns>
+

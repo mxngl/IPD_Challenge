@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 
 from .engine import STVEngine
+from .revit_architecture import load_architecture_schedule
 from .models import STVInputs, STVResults
 from .revit_mep import load_mep_schedule
 from .reference import DEFAULT_TEMPLATE_PATH, STVReferenceData
@@ -28,6 +29,10 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--mep-schedule",
         help="Path to a Revit MEP takeoff CSV to convert into embodied STV inputs.",
+    )
+    parser.add_argument(
+        "--architecture-schedule",
+        help="Path to a Revit architecture takeoff CSV to convert into embodied STV inputs.",
     )
     parser.add_argument(
         "--output-dir",
@@ -113,6 +118,24 @@ def main() -> None:
             encoding="utf-8",
         )
 
+    if args.architecture_schedule:
+        report = load_architecture_schedule(args.architecture_schedule)
+        existing_items = list(payload.get("construction_items", []))
+        architecture_items = [
+            {
+                "assembly": item.assembly,
+                "material_type": item.material_type,
+                "amount": item.amount,
+            }
+            for item in report.construction_items
+        ]
+        payload["construction_items"] = existing_items + architecture_items
+        architecture_report_path = output_dir / "architecture_schedule_items.json"
+        architecture_report_path.write_text(
+            json.dumps(report.to_dict(), indent=2),
+            encoding="utf-8",
+        )
+
     team = args.team or payload.get("team")
     if not team:
         parser.error("Provide a team with --team or in the input JSON.")
@@ -138,6 +161,8 @@ def main() -> None:
         response["structural_schedule_items"] = str(output_dir / "structural_schedule_items.json")
     if args.mep_schedule:
         response["mep_schedule_items"] = str(output_dir / "mep_schedule_items.json")
+    if args.architecture_schedule:
+        response["architecture_schedule_items"] = str(output_dir / "architecture_schedule_items.json")
     print(json.dumps(response, indent=2))
 
 
