@@ -162,6 +162,103 @@
       gap: 16px;
     }
 
+    .history-panel {
+      margin: 8px 0 20px;
+      padding: 16px;
+      border-radius: 18px;
+      background: var(--surface-strong);
+      border: 1px solid var(--line);
+    }
+
+    .history-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .history-title {
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    .history-subtitle {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .delta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .delta-card {
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .delta-label {
+      display: block;
+      color: var(--muted);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+    }
+
+    .delta-value {
+      font-size: 1.1rem;
+      line-height: 1.2;
+    }
+
+    .delta-positive {
+      color: #8a3f21;
+    }
+
+    .delta-negative {
+      color: #2d6a4f;
+    }
+
+    .delta-neutral {
+      color: var(--ink);
+    }
+
+    .trend-chart {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 14px;
+      background: linear-gradient(180deg, rgba(244, 239, 231, 0.65), rgba(255, 255, 255, 0.9));
+      border: 1px solid var(--line);
+    }
+
+    .trend-legend {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .legend-swatch {
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+    }
+
     figure {
       margin: 0;
       border: 1px solid var(--line);
@@ -254,6 +351,18 @@
 
     const numberFormatter = new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 });
     const percentFormatter = new Intl.NumberFormat("en-US", { maximumFractionDigits: 1 });
+    const dateFormatter = new Intl.DateTimeFormat("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      hour: "numeric",
+      minute: "2-digit"
+    });
+    const TREND_SERIES = [
+      { key: "carbon", label: "Carbon", color: "#b45d3c" },
+      { key: "energy", label: "Energy", color: "#6b8a7a" },
+      { key: "water", label: "Water", color: "#5d7ea8" }
+    ];
 
     function formatMetric(metric) {
       if (metric == null) {
@@ -278,6 +387,143 @@
       `;
     }
 
+    function formatSignedDelta(value) {
+      if (value == null || Number.isNaN(value)) {
+        return "N/A";
+      }
+      if (value === 0) {
+        return "0";
+      }
+      const prefix = value > 0 ? "+" : "";
+      return prefix + numberFormatter.format(Math.round(value));
+    }
+
+    function formatSignedPercentDelta(value) {
+      if (value == null || Number.isNaN(value)) {
+        return "N/A";
+      }
+      if (value === 0) {
+        return "0.0 pp";
+      }
+      const prefix = value > 0 ? "+" : "";
+      return prefix + percentFormatter.format(value * 100) + " pp";
+    }
+
+    function deltaClass(value) {
+      if (value == null || Number.isNaN(value) || value === 0) {
+        return "delta-neutral";
+      }
+      return value > 0 ? "delta-positive" : "delta-negative";
+    }
+
+    function buildTrendSvg(history) {
+      if (!history || history.length < 2) {
+        return `<p class="history-subtitle">Trend chart will appear after at least two recorded runs.</p>`;
+      }
+
+      const width = 840;
+      const height = 260;
+      const padding = { top: 20, right: 20, bottom: 34, left: 42 };
+      const innerWidth = width - padding.left - padding.right;
+      const innerHeight = height - padding.top - padding.bottom;
+
+      const points = TREND_SERIES.flatMap((series) =>
+        history.map((entry) => (entry.metric_summary?.[series.key]?.percent_of_target ?? 0) * 100)
+      );
+      const maxValue = Math.max(...points, 1);
+
+      const makeX = (index) =>
+        padding.left + (history.length === 1 ? innerWidth / 2 : (innerWidth * index) / (history.length - 1));
+      const makeY = (value) => padding.top + innerHeight - (value / maxValue) * innerHeight;
+
+      const grid = Array.from({ length: 4 }, (_, idx) => {
+        const ratio = idx / 3;
+        const y = padding.top + innerHeight * ratio;
+        const labelValue = maxValue * (1 - ratio);
+        return `
+          <line x1="${padding.left}" y1="${y}" x2="${width - padding.right}" y2="${y}" stroke="rgba(31,42,46,0.10)" />
+          <text x="${padding.left - 8}" y="${y + 4}" text-anchor="end" font-size="11" fill="#5f6c69">${percentFormatter.format(labelValue)}%</text>
+        `;
+      }).join("");
+
+      const labels = history.map((entry, index) => {
+        const x = makeX(index);
+        const text = dateFormatter.format(new Date(entry.timestamp));
+        return `<text x="${x}" y="${height - 10}" text-anchor="middle" font-size="11" fill="#5f6c69">${text}</text>`;
+      }).join("");
+
+      const seriesMarkup = TREND_SERIES.map((series) => {
+        const values = history.map((entry) => (entry.metric_summary?.[series.key]?.percent_of_target ?? 0) * 100);
+        const path = values.map((value, index) => `${index === 0 ? "M" : "L"} ${makeX(index)} ${makeY(value)}`).join(" ");
+        const dots = values.map((value, index) => `
+          <circle cx="${makeX(index)}" cy="${makeY(value)}" r="4" fill="${series.color}" />
+        `).join("");
+        return `
+          <path d="${path}" fill="none" stroke="${series.color}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+          ${dots}
+        `;
+      }).join("");
+
+      return `
+        <svg class="trend-chart" viewBox="0 0 ${width} ${height}" role="img" aria-label="STV trend over time">
+          ${grid}
+          ${seriesMarkup}
+          ${labels}
+        </svg>
+        <div class="trend-legend">
+          ${TREND_SERIES.map((series) => `
+            <span class="legend-item">
+              <span class="legend-swatch" style="background:${series.color}"></span>
+              ${series.label}
+            </span>
+          `).join("")}
+        </div>
+      `;
+    }
+
+    function buildHistoryPanel(history) {
+      if (!history || history.length === 0) {
+        return "";
+      }
+
+      const current = history[history.length - 1];
+      const previous = history.length > 1 ? history[history.length - 2] : null;
+      const deltas = TREND_SERIES.map((series) => {
+        const currentMetric = current.metric_summary?.[series.key] || {};
+        const previousMetric = previous?.metric_summary?.[series.key] || {};
+        const absoluteDelta =
+          previous == null ? null : (currentMetric.project ?? 0) - (previousMetric.project ?? 0);
+        const percentDelta =
+          previous == null ? null : (currentMetric.percent_of_target ?? 0) - (previousMetric.percent_of_target ?? 0);
+        return `
+          <div class="delta-card">
+            <span class="delta-label">${series.label} delta</span>
+            <div class="delta-value ${deltaClass(absoluteDelta)}">${formatSignedDelta(absoluteDelta)}</div>
+            <div class="history-subtitle ${deltaClass(percentDelta)}">${formatSignedPercentDelta(percentDelta)}</div>
+          </div>
+        `;
+      }).join("");
+
+      const lastRunText = previous
+        ? `Latest run ${dateFormatter.format(new Date(current.timestamp))}. Delta is versus ${dateFormatter.format(new Date(previous.timestamp))}.`
+        : `Latest run ${dateFormatter.format(new Date(current.timestamp))}. Run again to see deltas over time.`;
+
+      return `
+        <section class="history-panel">
+          <div class="history-header">
+            <div>
+              <h3 class="history-title">Run History</h3>
+              <p class="history-subtitle">${lastRunText}</p>
+            </div>
+          </div>
+          <div class="delta-grid">
+            ${deltas}
+          </div>
+          ${buildTrendSvg(history)}
+        </section>
+      `;
+    }
+
     function buildPlots(run) {
       return IMAGE_CAPTIONS.map((image) => `
         <figure>
@@ -291,7 +537,7 @@
       `).join("");
     }
 
-    function buildRunCard(run, results) {
+    function buildRunCard(run, results, history) {
       const summary = results.metric_summary || {};
       const carbon = summary.carbon || {};
       const energy = summary.energy || {};
@@ -316,6 +562,7 @@
             ${metricCard("Project energy", formatMetric(energy.project))}
             ${metricCard("Project water", formatMetric(water.project))}
           </div>
+          ${buildHistoryPanel(history)}
           <div class="gallery">
             ${buildPlots(run)}
           </div>
@@ -331,13 +578,21 @@
       return response.json();
     }
 
+    async function loadHistory(run) {
+      const response = await fetch(`outputs/${run.id}/history.json`, { cache: "no-store" });
+      if (!response.ok) {
+        return [];
+      }
+      return response.json();
+    }
+
     async function render() {
       const cards = [];
 
       for (const run of RUNS) {
         try {
-          const results = await loadRun(run);
-          cards.push(buildRunCard(run, results));
+          const [results, history] = await Promise.all([loadRun(run), loadHistory(run)]);
+          cards.push(buildRunCard(run, results, history));
         } catch (error) {
           console.warn(error);
         }
