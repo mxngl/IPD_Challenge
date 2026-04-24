@@ -1,48 +1,48 @@
 [
   {
-    "timestamp": "2026-03-30T15:33:10.342043+00:00",
+    "timestamp": "2026-02-25T09:26:38+00:00",
     "team": "Island",
     "lifetime_years": 50,
     "metric_summary": {
       "carbon": {
         "target": 7396873.8437,
-        "project": 1502595.13442305,
-        "percent_of_target": 0.20313921342633512
+        "project": 1539280.3084890016,
+        "percent_of_target": 0.20809876456119686
       },
       "energy": {
         "target": 155969076.592,
-        "project": 18933447.026243974,
-        "percent_of_target": 0.12139231339922615
+        "project": 19611940.75797764,
+        "percent_of_target": 0.1257424945156313
       },
       "water": {
         "target": 271387397.260274,
-        "project": 17624623.92417771,
-        "percent_of_target": 0.06494267641792821
+        "project": 18038872.860520497,
+        "percent_of_target": 0.06646908825769945
       },
       "ozone": {
         "target": 0.0,
-        "project": 0.04656519119410088,
+        "project": 0.05220067999775265,
         "percent_of_target": null
       }
     },
     "breakdown": {
       "embodied_materials": {
-        "carbon": 671900.1356194316,
-        "energy": 7204788.947262574,
-        "water": 6654599.803862248,
-        "ozone": 0.03993214829325223
+        "carbon": 709048.5570023421,
+        "energy": 7887687.968832089,
+        "water": 6936609.040955504,
+        "ozone": 0.045317933402083864
       },
       "embodied_transport": {
-        "carbon": 41669.62164929339,
-        "energy": 641972.9500443841,
-        "water": 148611.50289018228,
-        "ozone": 0.006600815433147812
+        "carbon": 43234.884557777514,
+        "energy": 666070.7713824492,
+        "water": 154197.17370999313,
+        "ozone": 0.0068506029163035624
       },
       "embodied_construction": {
-        "carbon": 789025.377154325,
-        "energy": 11086685.128937015,
-        "water": 10821412.61742528,
-        "ozone": 3.222746770083943e-05
+        "carbon": 786996.866928882,
+        "energy": 11058182.0177631,
+        "water": 10948066.645855,
+        "ozone": 3.214367936522289e-05
       },
       "use_electricity": {
         "carbon": 0.0,
@@ -63,10 +63,10 @@
         "ozone": 0.0
       },
       "embodied": {
-        "carbon": 1502595.13442305,
-        "energy": 18933447.026243974,
-        "water": 17624623.92417771,
-        "ozone": 0.04656519119410088
+        "carbon": 1539280.3084890016,
+        "energy": 19611940.75797764,
+        "water": 18038872.860520497,
+        "ozone": 0.05220067999775265
       },
       "use_phase": {
         "carbon": 0.0,
@@ -75,57 +75,59 @@
         "ozone": 0.0
       },
       "life_cycle": {
-        "carbon": 1502595.13442305,
-        "energy": 18933447.026243974,
-        "water": 17624623.92417771,
-        "ozone": 0.04656519119410088
+        "carbon": 1539280.3084890016,
+        "energy": 19611940.75797764,
+        "water": 18038872.860520497,
+        "ozone": 0.05220067999775265
       }
-    }
+    },
+    "source_file": "04_Island_ARCH_Concept2_V7_2026-02-25_09-26-38am_detached_Architecture_TakeOff.csv",
+    "source_path": "revit_schedules\\Arch\\04_Island_ARCH_Concept2_V7_2026-02-25_09-26-38am_detached_Architecture_TakeOff.csv"
   },
   {
-    "timestamp": "2026-04-01T15:17:32.301613+00:00",
+    "timestamp": "2026-03-06T10:51:12+00:00",
     "team": "Island",
     "lifetime_years": 50,
     "metric_summary": {
       "carbon": {
         "target": 7396873.8437,
-        "project": 1502595.13442305,
-        "percent_of_target": 0.20313921342633512
+        "project": 1491327.793374173,
+        "percent_of_target": 0.2016159562656802
       },
       "energy": {
         "target": 155969076.592,
-        "project": 18933447.026243974,
-        "percent_of_target": 0.12139231339922615
+        "project": 18763728.378074333,
+        "percent_of_target": 0.12030415764503388
       },
       "water": {
         "target": 271387397.260274,
-        "project": 17624623.92417771,
-        "percent_of_target": 0.06494267641792821
+        "project": 17518303.419746086,
+        "percent_of_target": 0.06455090986758373
       },
       "ozone": {
         "target": 0.0,
-        "project": 0.04656519119410088,
+        "project": 0.04619500889299247,
         "percent_of_target": null
       }
     },
     "breakdown": {
       "embodied_materials": {
-        "carbon": 671900.1356194316,
-        "energy": 7204788.947262574,
-        "water": 6654599.803862248,
-        "ozone": 0.03993214829325223
+        "carbon": 668645.0583246319,
+        "energy": 7148228.301001038,
+        "water": 6625461.117675917,
+        "ozone": 0.03963013516618333
       },
       "embodied_transport": {
-        "carbon": 41669.62164929339,
-        "energy": 641972.9500443841,
-        "water": 148611.50289018228,
-        "ozone": 0.006600815433147812
+        "carbon": 41240.94002866029,
+        "energy": 635372.7193410302,
+        "water": 147080.22239120916,
+        "ozone": 0.006532955856243478
       },
       "embodied_construction": {
-        "carbon": 789025.377154325,
-        "energy": 11086685.128937015,
-        "water": 10821412.61742528,
-        "ozone": 3.222746770083943e-05
+        "carbon": 781441.7950208809,
+        "energy": 10980127.357732264,
+        "water": 10745762.07967896,
+        "ozone": 3.191787056566026e-05
       },
       "use_electricity": {
         "carbon": 0.0,
@@ -146,10 +148,10 @@
         "ozone": 0.0
       },
       "embodied": {
-        "carbon": 1502595.13442305,
-        "energy": 18933447.026243974,
-        "water": 17624623.92417771,
-        "ozone": 0.04656519119410088
+        "carbon": 1491327.793374173,
+        "energy": 18763728.378074333,
+        "water": 17518303.419746086,
+        "ozone": 0.04619500889299247
       },
       "use_phase": {
         "carbon": 0.0,
@@ -158,11 +160,183 @@
         "ozone": 0.0
       },
       "life_cycle": {
-        "carbon": 1502595.13442305,
-        "energy": 18933447.026243974,
-        "water": 17624623.92417771,
-        "ozone": 0.04656519119410088
+        "carbon": 1491327.793374173,
+        "energy": 18763728.378074333,
+        "water": 17518303.419746086,
+        "ozone": 0.04619500889299247
       }
-    }
+    },
+    "source_file": "04_Island_ARCH_Concept2_V11_2026-03-06_10-51-12am_detached_Architecture_TakeOff.csv",
+    "source_path": "revit_schedules\\Arch\\04_Island_ARCH_Concept2_V11_2026-03-06_10-51-12am_detached_Architecture_TakeOff.csv"
+  },
+  {
+    "timestamp": "2026-04-08T09:48:00+00:00",
+    "team": "Island",
+    "lifetime_years": 50,
+    "metric_summary": {
+      "carbon": {
+        "target": 7396873.8437,
+        "project": 1556377.1408917864,
+        "percent_of_target": 0.21041012376023827
+      },
+      "energy": {
+        "target": 155969076.592,
+        "project": 19663692.405543342,
+        "percent_of_target": 0.12607430161929892
+      },
+      "water": {
+        "target": 271387397.260274,
+        "project": 18232992.220300898,
+        "percent_of_target": 0.06718437335103868
+      },
+      "ozone": {
+        "target": 0.0,
+        "project": 0.04838257964657181,
+        "percent_of_target": null
+      }
+    },
+    "breakdown": {
+      "embodied_materials": {
+        "carbon": 692575.3545258384,
+        "energy": 7468220.507059896,
+        "water": 6838364.31909905,
+        "ozone": 0.0415573633633226
+      },
+      "embodied_transport": {
+        "carbon": 42875.03861525319,
+        "energy": 660537.0285186957,
+        "water": 152914.50948728752,
+        "ozone": 0.006791686112504867
+      },
+      "embodied_construction": {
+        "carbon": 820926.7477506949,
+        "energy": 11534934.869964752,
+        "water": 11241713.39171456,
+        "ozone": 3.3530170744344884e-05
+      },
+      "use_electricity": {
+        "carbon": 0.0,
+        "energy": 0.0,
+        "water": 0.0,
+        "ozone": 0.0
+      },
+      "use_heating": {
+        "carbon": 0.0,
+        "energy": 0.0,
+        "water": 0.0,
+        "ozone": 0.0
+      },
+      "use_water": {
+        "carbon": 0.0,
+        "energy": 0.0,
+        "water": 0.0,
+        "ozone": 0.0
+      },
+      "embodied": {
+        "carbon": 1556377.1408917864,
+        "energy": 19663692.405543342,
+        "water": 18232992.220300898,
+        "ozone": 0.04838257964657181
+      },
+      "use_phase": {
+        "carbon": 0.0,
+        "energy": 0.0,
+        "water": 0.0,
+        "ozone": 0.0
+      },
+      "life_cycle": {
+        "carbon": 1556377.1408917864,
+        "energy": 19663692.405543342,
+        "water": 18232992.220300898,
+        "ozone": 0.04838257964657181
+      }
+    },
+    "source_file": "04_Island_ARCH_Concept2_V13_2026-04-08_09-48-00am_detached_Architecture_TakeOff.csv",
+    "source_path": "revit_schedules\\Arch\\04_Island_ARCH_Concept2_V13_2026-04-08_09-48-00am_detached_Architecture_TakeOff.csv"
+  },
+  {
+    "timestamp": "2026-04-23T16:35:08+00:00",
+    "team": "Island",
+    "lifetime_years": 50,
+    "metric_summary": {
+      "carbon": {
+        "target": 7396873.8437,
+        "project": 1524996.7867148519,
+        "percent_of_target": 0.20616774314918304
+      },
+      "energy": {
+        "target": 155969076.592,
+        "project": 19706189.466868155,
+        "percent_of_target": 0.12634677269018932
+      },
+      "water": {
+        "target": 271387397.260274,
+        "project": 17918074.26372085,
+        "percent_of_target": 0.06602397327439832
+      },
+      "ozone": {
+        "target": 0.0,
+        "project": 0.047722877066172564,
+        "percent_of_target": null
+      }
+    },
+    "breakdown": {
+      "embodied_materials": {
+        "carbon": 670255.7197971685,
+        "energy": 7634246.6861972185,
+        "water": 6532045.311161587,
+        "ozone": 0.040446969915885846
+      },
+      "embodied_transport": {
+        "carbon": 45723.66527857986,
+        "energy": 704347.4016535452,
+        "water": 163124.8666120241,
+        "ozone": 0.0072428635002768586
+      },
+      "embodied_construction": {
+        "carbon": 809017.4016391037,
+        "energy": 11367595.37901739,
+        "water": 11222904.085947242,
+        "ozone": 3.304365000986171e-05
+      },
+      "use_electricity": {
+        "carbon": 0.0,
+        "energy": 0.0,
+        "water": 0.0,
+        "ozone": 0.0
+      },
+      "use_heating": {
+        "carbon": 0.0,
+        "energy": 0.0,
+        "water": 0.0,
+        "ozone": 0.0
+      },
+      "use_water": {
+        "carbon": 0.0,
+        "energy": 0.0,
+        "water": 0.0,
+        "ozone": 0.0
+      },
+      "embodied": {
+        "carbon": 1524996.7867148519,
+        "energy": 19706189.466868155,
+        "water": 17918074.26372085,
+        "ozone": 0.047722877066172564
+      },
+      "use_phase": {
+        "carbon": 0.0,
+        "energy": 0.0,
+        "water": 0.0,
+        "ozone": 0.0
+      },
+      "life_cycle": {
+        "carbon": 1524996.7867148519,
+        "energy": 19706189.466868155,
+        "water": 17918074.26372085,
+        "ozone": 0.047722877066172564
+      }
+    },
+    "source_file": "04_Island_ARCH_Concept2_V24_2026-04-23_04-35-08pm_detached_Architecture_TakeOff.csv",
+    "source_path": "revit_schedules\\Arch\\04_Island_ARCH_Concept2_V24_2026-04-23_04-35-08pm_detached_Architecture_TakeOff.csv"
   }
 ]
