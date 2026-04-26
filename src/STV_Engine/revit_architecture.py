@@ -4,6 +4,7 @@ import csv
 from collections import defaultdict
 from dataclasses import dataclass
 from pathlib import Path
+import re
 
 from .models import ConstructionItem
 
@@ -226,8 +227,19 @@ def _parse_measurement(raw_value: str) -> float:
     text = (raw_value or "").strip()
     if not text:
         return 0.0
-    token = text.split()[0].replace(",", "")
-    return float(token)
+    cleaned = text.replace(",", "")
+    token = cleaned.split()[0].strip("'\"")
+    if token:
+        try:
+            return float(token)
+        except ValueError:
+            pass
+
+    match = re.search(r"-?\d+(?:\.\d+)?", cleaned)
+    if match:
+        return float(match.group(0))
+
+    return 0.0
 
 
 def _parse_length_feet(raw_value: str | None) -> float:

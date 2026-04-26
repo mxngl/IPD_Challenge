@@ -1,0 +1,25 @@
+task_id,task_name,start_date,end_date,crew_type,equipment_type
+A1070,Install Construction Fencing,2029-10-01T09:00,2029-10-03T17:00,site_setup_crew,
+A1080,Install Site Office & Welfare Units,2029-10-04T09:00,2029-10-09T17:00,site_setup_crew,
+A1090,Temporary Water Installation,2029-10-04T09:00,2029-10-08T17:00,site_setup_crew,
+A1100,Temporary Power Installation,2029-10-04T09:00,2029-10-09T17:00,site_setup_crew,
+A1110,Tree Removal & Clearing,2029-10-04T09:00,2029-10-10T17:00,tree_removal_clearing_crew,
+A1120,Bleacher Demolition,2029-10-04T09:00,2029-10-12T17:00,demolition_crew_bleachers_crew,
+A1140,Crane Pad Construction,2029-10-11T09:00,2029-10-17T17:00,site_setup_crew,
+A1150,Laydown Area Preparation,2029-10-11T09:00,2029-10-11T09:00,site_setup_crew,
+A1170,Full Basement Excavation,2029-10-01T09:00,2029-10-09T17:00,earthwork_crew_excavation_crew,excavator
+A1180,Shoring / Stabilization,2029-10-10T09:00,2029-10-16T17:00,shoring_stabilization_crew,
+A1190,Subgrade Preparation,2029-10-10T09:00,2029-10-15T17:00,earthwork_crew_excavation_crew,compactor_roller
+A1200,Footings – Form/Rebar/Pour,2029-10-16T09:00,2029-10-29T17:00,concrete_crew,concrete_pump
+A1210,Grade Beams,2029-11-08T09:00,2029-11-16T17:00,concrete_crew,
+A1220,Basement Retaining Walls,2029-11-19T09:00,2029-11-21T17:00,concrete_crew,concrete_pump
+A1230,Waterproofing & Drainage,2029-11-22T09:00,2029-11-28T17:00,earthwork_crew_excavation_crew,
+A1240,Basement Slab on Grade,2029-12-17T09:00,2029-12-25T17:00,concrete_crew,
+A1250,Underground Utilities,2029-11-29T09:00,2029-12-07T17:00,underground_utilities_crew,
+A1260,Backfill & Compaction,2029-12-10T09:00,2029-12-14T17:00,earthwork_crew_excavation_crew|exc_crew,compactor_roller
+A1270,Foundational Columns,2029-10-30T09:00,2029-11-07T17:00,concrete_crew,
+A1330,Frame: Columns,2030-01-08T09:00,2030-01-15T17:00,structural_crew,mobile_crane
+A1340,Floor,2030-01-03T09:00,2030-01-07T17:00,structural_crew,mobile_crane
+A1350,Frame: Beams,2029-12-26T09:00,2030-01-02T17:00,,
+A1420,Roof,2030-01-16T09:00,2030-01-21T17:00,structural_crew,mobile_crane
+A1590,Facade Install + Glazing,2030-01-22T09:00,2030-03-06T17:00,facade_install_crew,mobile_crane

@@ -4,6 +4,7 @@ import argparse
 from datetime import datetime, timezone
 import json
 from pathlib import Path
+import re
 
 from .engine import STVEngine
 from .revit_architecture import load_architecture_schedule
@@ -12,6 +13,33 @@ from .revit_mep import load_mep_schedule
 from .reference import DEFAULT_TEMPLATE_PATH, STVReferenceData
 from .revit_structural import load_structural_schedule
 from .visualization import export_visualizations
+
+
+ARCHITECTURE_HISTORY_TIMESTAMP_RE = re.compile(
+    r"_(\d{4}-\d{2}-\d{2})_(\d{2})-(\d{2})-(\d{2})(am|pm)_",
+    re.IGNORECASE,
+)
+
+
+def _history_entry(
+    results: STVResults,
+    *,
+    timestamp: str,
+    source_file: str | None = None,
+    source_path: str | None = None,
+) -> dict[str, object]:
+    entry: dict[str, object] = {
+        "timestamp": timestamp,
+        "team": results.team,
+        "lifetime_years": results.lifetime_years,
+        "metric_summary": results.metric_summary(),
+        "breakdown": results.breakdown.to_dict(),
+    }
+    if source_file is not None:
+        entry["source_file"] = source_file
+    if source_path is not None:
+        entry["source_path"] = source_path
+    return entry
 
 
 def append_results_history(
@@ -27,28 +55,121 @@ def append_results_history(
     else:
         history = []
         if previous_results is not None:
-            history.append(
-                {
-                    "timestamp": previous_timestamp or datetime.now(timezone.utc).isoformat(),
-                    "team": previous_results.team,
-                    "lifetime_years": previous_results.lifetime_years,
-                    "metric_summary": previous_results.metric_summary(),
-                    "breakdown": previous_results.breakdown.to_dict(),
-                }
-            )
+            history.append(_history_entry(
+                previous_results,
+                timestamp=previous_timestamp or datetime.now(timezone.utc).isoformat(),
+            ))
 
-    summary = results.metric_summary()
-    history.append(
-        {
-            "timestamp": datetime.now(timezone.utc).isoformat(),
-            "team": results.team,
-            "lifetime_years": results.lifetime_years,
-            "metric_summary": summary,
-            "breakdown": results.breakdown.to_dict(),
-        }
-    )
+    history.append(_history_entry(results, timestamp=datetime.now(timezone.utc).isoformat()))
     history_path.write_text(json.dumps(history, indent=2), encoding="utf-8")
     return history_path
+
+
+def _parse_schedule_timestamp(schedule_path: Path) -> datetime:
+    match = ARCHITECTURE_HISTORY_TIMESTAMP_RE.search(schedule_path.name)
+    if match:
+        date_part, hour_text, minute_text, second_text, meridiem = match.groups()
+        hour = int(hour_text)
+        if meridiem.lower() == "am":
+            hour = 0 if hour == 12 else hour
+        else:
+            hour = 12 if hour == 12 else hour + 12
+
+        parsed = datetime.fromisoformat(
+            f"{date_part}T{hour:02d}:{minute_text}:{second_text}"
+        )
+        return parsed.replace(tzinfo=timezone.utc)
+
+    return datetime.fromtimestamp(schedule_path.stat().st_mtime, tz=timezone.utc)
+
+
+def _run_stv(
+    payload: dict[str, object],
+    *,
+    team: str,
+    template_path: str,
+) -> STVResults:
+    payload["team"] = team
+    inputs = STVInputs.from_dict(payload)
+    reference_data = STVReferenceData.from_workbook(template_path)
+    engine = STVEngine(reference_data)
+    return engine.calculate(inputs)
+
+
+def _run_architecture_history(
+    schedule_dir: Path,
+    *,
+    team: str,
+    output_dir: Path,
+    template_path: str,
+) -> dict[str, object]:
+    schedule_paths = sorted(
+        schedule_dir.glob("*.csv"),
+        key=_parse_schedule_timestamp,
+    )
+    if not schedule_paths:
+        raise ValueError(f"No architecture schedule CSVs found in {schedule_dir}.")
+
+    history: list[dict[str, object]] = []
+    latest_report = None
+    latest_results = None
+    latest_schedule_path = None
+
+    for schedule_path in schedule_paths:
+        report = load_architecture_schedule(schedule_path)
+        payload = {
+            "construction_items": [
+                {
+                    "assembly": item.assembly,
+                    "material_type": item.material_type,
+                    "amount": item.amount,
+                }
+                for item in report.construction_items
+            ]
+        }
+        results = _run_stv(payload, team=team, template_path=template_path)
+        timestamp = _parse_schedule_timestamp(schedule_path).isoformat()
+        history.append(
+            _history_entry(
+                results,
+                timestamp=timestamp,
+                source_file=schedule_path.name,
+                source_path=str(schedule_path),
+            )
+        )
+        latest_report = report
+        latest_results = results
+        latest_schedule_path = schedule_path
+
+    assert latest_report is not None
+    assert latest_results is not None
+    assert latest_schedule_path is not None
+
+    results_path = output_dir / "stv_results.json"
+    results_path.write_text(
+        json.dumps(latest_results.to_dict(), indent=2),
+        encoding="utf-8",
+    )
+
+    architecture_report_path = output_dir / "architecture_schedule_items.json"
+    architecture_report_path.write_text(
+        json.dumps(latest_report.to_dict(), indent=2),
+        encoding="utf-8",
+    )
+
+    history_path = output_dir / "history.json"
+    history_path.write_text(json.dumps(history, indent=2), encoding="utf-8")
+
+    image_paths = export_visualizations(latest_results, output_dir)
+    return {
+        "results_json": str(results_path),
+        "charts": {key: str(path) for key, path in image_paths.items()},
+        "history_json": str(history_path),
+        "architecture_schedule_items": str(architecture_report_path),
+        "history_source_dir": str(schedule_dir),
+        "history_source_files": [str(path) for path in schedule_paths],
+        "latest_schedule": str(latest_schedule_path),
+    }
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -71,6 +192,10 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--architecture-schedule",
         help="Path to a Revit architecture takeoff CSV to convert into embodied STV inputs.",
+    )
+    parser.add_argument(
+        "--architecture-history-dir",
+        help="Directory of Revit architecture takeoff CSVs to batch into a time-history STV run.",
     )
     parser.add_argument(
         "--output-dir",
@@ -127,6 +252,19 @@ def main() -> None:
             "combined_from": [str(path) for path in result_paths],
             "history_json": str(history_path),
         }
+        print(json.dumps(response, indent=2))
+        return
+
+    if args.architecture_history_dir:
+        team = args.team
+        if not team:
+            parser.error("Provide a team with --team when using --architecture-history-dir.")
+        response = _run_architecture_history(
+            Path(args.architecture_history_dir),
+            team=team,
+            output_dir=output_dir,
+            template_path=args.template,
+        )
         print(json.dumps(response, indent=2))
         return
 
@@ -192,12 +330,7 @@ def main() -> None:
     team = args.team or payload.get("team")
     if not team:
         parser.error("Provide a team with --team or in the input JSON.")
-    payload["team"] = team
-
-    inputs = STVInputs.from_dict(payload)
-    reference_data = STVReferenceData.from_workbook(args.template)
-    engine = STVEngine(reference_data)
-    results = engine.calculate(inputs)
+    results = _run_stv(payload, team=team, template_path=args.template)
 
     results_path.write_text(
         json.dumps(results.to_dict(), indent=2),

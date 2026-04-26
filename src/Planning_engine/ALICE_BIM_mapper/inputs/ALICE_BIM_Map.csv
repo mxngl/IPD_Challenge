@@ -1,0 +1,25 @@
+ALICE_task,BIM_map, productivity, unit, productivity_dependency
+Install Construction Fencing,,,
+Install Site Office & Welfare Units,,,
+Temporary Water Installation,,,
+Temporary Power Installation,,,
+Tree Removal & Clearing,,,
+Bleacher Demolition,,,
+Crane Pad Construction,,,
+Laydown Area Preparation,,,
+Full Basement Excavation,,,
+Shoring / Stabilization,,,
+Subgrade Preparation,,,
+Footings - Form/Rebar/Pour,"Category:Structural Foundations, Family:Footing-Rectangular | Category:Structural Foundations, Type:Bearing Footing - 36"" x 12""",150,cf,equipment
+Grade Beams,"Category:Structural Framing, Family:Concrete-Rectangular Beam",150,cf,equipment
+Waterproofing & Drainage,,,
+Basement Slab on Grade,"Category:Structural Foundations, Type:6"" Foundation Slab",150,cf,equipment
+Underground Utilities,,,
+Backfill & Compaction,,,
+Foundational Columns,"Category:Structural Columns, Family:Concrete-Rectangular-Column",150,cf,equipment
+Frame: Columns,"Category:Structural Columns, Family:Timber-Column",3,count,equipment
+Frame: Beams,"Category:Structural Framing, Family:Glulam-Western Species | Category:Structural Framing, Family:TJL Wood Open Web Joist",3,count,equipment
+Floor,"Category:Floors, Level:L 1 | Category:Floors, Level:L 0",1,count,equipment
+Roof,"Category:Floors, Level:Roof",1,count,equipment
+Facade Install + Glazing,"Category:Curtain Panels",3,count,crew
+Basement Retaining Walls,"Category:Walls, Type:Retaining - 6"" Concrete",150,cf,equipment

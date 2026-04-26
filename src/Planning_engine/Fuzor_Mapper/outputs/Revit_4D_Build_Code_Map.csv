@@ -1,0 +1,521 @@
+element_id,build_code,task_id,task_name,level,element_key,element_start,element_end
+A1070,Install Construction Fencing | Basement / Site | A1070,A1070,Install Construction Fencing | Basement / Site | A1070,Basement / Site,Non-BIM:A1070,2029-10-01T09:00:00,2029-10-01T09:01:00
+A1080,Install Site Office & Welfare Units | Basement / Site | A1080,A1080,Install Site Office & Welfare Units | Basement / Site | A1080,Basement / Site,Non-BIM:A1080,2029-10-01T09:02:00,2029-10-01T09:03:00
+A1090,Temporary Water Installation | Basement / Site | A1090,A1090,Temporary Water Installation | Basement / Site | A1090,Basement / Site,Non-BIM:A1090,2029-10-01T09:03:00,2029-10-01T09:04:00
+A1100,Temporary Power Installation | Basement / Site | A1100,A1100,Temporary Power Installation | Basement / Site | A1100,Basement / Site,Non-BIM:A1100,2029-10-01T09:04:00,2029-10-01T09:05:00
+A1110,Tree Removal & Clearing | Basement / Site | A1110,A1110,Tree Removal & Clearing | Basement / Site | A1110,Basement / Site,Non-BIM:A1110,2029-10-01T09:05:00,2029-10-01T09:06:00
+A1120,Bleacher Demolition | Basement / Site | A1120,A1120,Bleacher Demolition | Basement / Site | A1120,Basement / Site,Non-BIM:A1120,2029-10-01T09:06:00,2029-10-01T09:07:00
+A1140,Crane Pad Construction | Basement / Site | A1140,A1140,Crane Pad Construction | Basement / Site | A1140,Basement / Site,Non-BIM:A1140,2029-10-01T09:09:00,2029-10-01T09:10:00
+A1150,Laydown Area Preparation | Basement / Site | A1150,A1150,Laydown Area Preparation | Basement / Site | A1150,Basement / Site,Non-BIM:A1150,2029-10-01T09:10:00,2029-10-01T09:11:00
+A1170,Full Basement Excavation | Basement / Site | A1170,A1170,Full Basement Excavation | Basement / Site | A1170,Basement / Site,Non-BIM:A1170,2029-10-01T09:01:00,2029-10-01T09:02:00
+A1180,Shoring / Stabilization | Basement / Site | A1180,A1180,Shoring / Stabilization | Basement / Site | A1180,Basement / Site,Non-BIM:A1180,2029-10-01T09:07:00,2029-10-01T09:08:00
+A1190,Subgrade Preparation | Basement / Site | A1190,A1190,Subgrade Preparation | Basement / Site | A1190,Basement / Site,Non-BIM:A1190,2029-10-01T09:08:00,2029-10-01T09:09:00
+591553,Footings - Form/Rebar/Pour | L -1 | 591553,A1200,Footings - Form/Rebar/Pour | L -1 | 591553,L -1,Structural_Schedule.csv:591553,2029-10-01T09:11:00,2029-10-01T09:17:24
+624539,Footings - Form/Rebar/Pour | L -1 | 624539,A1200,Footings - Form/Rebar/Pour | L -1 | 624539,L -1,Structural_Schedule.csv:624539,2029-10-01T09:17:24,2029-10-01T09:23:48
+638123,Footings - Form/Rebar/Pour | L -1 | 638123,A1200,Footings - Form/Rebar/Pour | L -1 | 638123,L -1,Structural_Schedule.csv:638123,2029-10-01T09:23:48,2029-10-01T09:30:12
+624760,Footings - Form/Rebar/Pour | L -1 | 624760,A1200,Footings - Form/Rebar/Pour | L -1 | 624760,L -1,Structural_Schedule.csv:624760,2029-10-01T09:30:12,2029-10-01T09:36:36
+591551,Footings - Form/Rebar/Pour | L -1 | 591551,A1200,Footings - Form/Rebar/Pour | L -1 | 591551,L -1,Structural_Schedule.csv:591551,2029-10-01T09:36:36,2029-10-01T09:43:00
+624849,Footings - Form/Rebar/Pour | L -1 | 624849,A1200,Footings - Form/Rebar/Pour | L -1 | 624849,L -1,Structural_Schedule.csv:624849,2029-10-01T09:43:00,2029-10-01T09:49:24
+591550,Footings - Form/Rebar/Pour | L -1 | 591550,A1200,Footings - Form/Rebar/Pour | L -1 | 591550,L -1,Structural_Schedule.csv:591550,2029-10-01T09:49:24,2029-10-01T09:55:48
+624938,Footings - Form/Rebar/Pour | L -1 | 624938,A1200,Footings - Form/Rebar/Pour | L -1 | 624938,L -1,Structural_Schedule.csv:624938,2029-10-01T09:55:48,2029-10-01T10:02:12
+591549,Footings - Form/Rebar/Pour | L -1 | 591549,A1200,Footings - Form/Rebar/Pour | L -1 | 591549,L -1,Structural_Schedule.csv:591549,2029-10-01T10:02:12,2029-10-01T10:08:36
+633768,Footings - Form/Rebar/Pour | L -1 | 633768,A1200,Footings - Form/Rebar/Pour | L -1 | 633768,L -1,Structural_Schedule.csv:633768,2029-10-01T10:08:36,2029-10-01T10:15:00
+591548,Footings - Form/Rebar/Pour | L -1 | 591548,A1200,Footings - Form/Rebar/Pour | L -1 | 591548,L -1,Structural_Schedule.csv:591548,2029-10-01T10:15:00,2029-10-01T10:21:24
+635246,Footings - Form/Rebar/Pour | L -1 | 635246,A1200,Footings - Form/Rebar/Pour | L -1 | 635246,L -1,Structural_Schedule.csv:635246,2029-10-01T10:21:24,2029-10-01T10:27:48
+625595,Footings - Form/Rebar/Pour | L -1 | 625595,A1200,Footings - Form/Rebar/Pour | L -1 | 625595,L -1,Structural_Schedule.csv:625595,2029-10-01T10:27:48,2029-10-01T10:34:12
+591546,Footings - Form/Rebar/Pour | L -1 | 591546,A1200,Footings - Form/Rebar/Pour | L -1 | 591546,L -1,Structural_Schedule.csv:591546,2029-10-01T10:34:12,2029-10-01T10:40:36
+623957,Footings - Form/Rebar/Pour | L -1 | 623957,A1200,Footings - Form/Rebar/Pour | L -1 | 623957,L -1,Structural_Schedule.csv:623957,2029-10-01T10:40:36,2029-10-01T10:47:00
+591545,Footings - Form/Rebar/Pour | L -1 | 591545,A1200,Footings - Form/Rebar/Pour | L -1 | 591545,L -1,Structural_Schedule.csv:591545,2029-10-01T10:47:00,2029-10-01T10:53:24
+624038,Footings - Form/Rebar/Pour | L -1 | 624038,A1200,Footings - Form/Rebar/Pour | L -1 | 624038,L -1,Structural_Schedule.csv:624038,2029-10-01T10:53:24,2029-10-01T10:59:48
+591544,Footings - Form/Rebar/Pour | L -1 | 591544,A1200,Footings - Form/Rebar/Pour | L -1 | 591544,L -1,Structural_Schedule.csv:591544,2029-10-01T10:59:48,2029-10-01T11:06:12
+625307,Footings - Form/Rebar/Pour | L -1 | 625307,A1200,Footings - Form/Rebar/Pour | L -1 | 625307,L -1,Structural_Schedule.csv:625307,2029-10-01T11:06:12,2029-10-01T11:12:36
+633719,Footings - Form/Rebar/Pour | L -1 | 633719,A1200,Footings - Form/Rebar/Pour | L -1 | 633719,L -1,Structural_Schedule.csv:633719,2029-10-01T11:12:36,2029-10-01T11:19:00
+591543,Footings - Form/Rebar/Pour | L -1 | 591543,A1200,Footings - Form/Rebar/Pour | L -1 | 591543,L -1,Structural_Schedule.csv:591543,2029-10-01T11:19:00,2029-10-01T11:25:24
+624304,Footings - Form/Rebar/Pour | L -1 | 624304,A1200,Footings - Form/Rebar/Pour | L -1 | 624304,L -1,Structural_Schedule.csv:624304,2029-10-01T11:25:24,2029-10-01T11:31:48
+591542,Footings - Form/Rebar/Pour | L -1 | 591542,A1200,Footings - Form/Rebar/Pour | L -1 | 591542,L -1,Structural_Schedule.csv:591542,2029-10-01T11:31:48,2029-10-01T11:38:12
+624107,Footings - Form/Rebar/Pour | L -1 | 624107,A1200,Footings - Form/Rebar/Pour | L -1 | 624107,L -1,Structural_Schedule.csv:624107,2029-10-01T11:38:12,2029-10-01T11:44:36
+625298,Footings - Form/Rebar/Pour | L -1 | 625298,A1200,Footings - Form/Rebar/Pour | L -1 | 625298,L -1,Structural_Schedule.csv:625298,2029-10-01T11:44:36,2029-10-01T11:51:00
+624371,Footings - Form/Rebar/Pour | L -1 | 624371,A1200,Footings - Form/Rebar/Pour | L -1 | 624371,L -1,Structural_Schedule.csv:624371,2029-10-01T11:51:00,2029-10-01T11:57:24
+625295,Footings - Form/Rebar/Pour | L -1 | 625295,A1200,Footings - Form/Rebar/Pour | L -1 | 625295,L -1,Structural_Schedule.csv:625295,2029-10-01T11:57:24,2029-10-01T12:03:48
+624492,Footings - Form/Rebar/Pour | L -1 | 624492,A1200,Footings - Form/Rebar/Pour | L -1 | 624492,L -1,Structural_Schedule.csv:624492,2029-10-01T12:03:48,2029-10-01T12:10:12
+625308,Footings - Form/Rebar/Pour | L -1 | 625308,A1200,Footings - Form/Rebar/Pour | L -1 | 625308,L -1,Structural_Schedule.csv:625308,2029-10-01T12:10:12,2029-10-01T12:16:36
+591538,Footings - Form/Rebar/Pour | L 0 | 591538,A1200,Footings - Form/Rebar/Pour | L 0 | 591538,L 0,Structural_Schedule.csv:591538,2029-10-01T12:16:36,2029-10-01T12:23:00
+591537,Footings - Form/Rebar/Pour | L 0 | 591537,A1200,Footings - Form/Rebar/Pour | L 0 | 591537,L 0,Structural_Schedule.csv:591537,2029-10-01T12:23:00,2029-10-01T12:29:24
+591535,Footings - Form/Rebar/Pour | L 0 | 591535,A1200,Footings - Form/Rebar/Pour | L 0 | 591535,L 0,Structural_Schedule.csv:591535,2029-10-01T12:29:24,2029-10-01T12:35:48
+594845,Footings - Form/Rebar/Pour | L 0 | 594845,A1200,Footings - Form/Rebar/Pour | L 0 | 594845,L 0,Structural_Schedule.csv:594845,2029-10-01T12:35:48,2029-10-01T12:42:12
+591536,Footings - Form/Rebar/Pour | L 0 | 591536,A1200,Footings - Form/Rebar/Pour | L 0 | 591536,L 0,Structural_Schedule.csv:591536,2029-10-01T12:42:12,2029-10-01T12:48:36
+618153,Footings - Form/Rebar/Pour | Unassigned | 618153,A1200,Footings - Form/Rebar/Pour | Unassigned | 618153,Unassigned,Structural_Schedule.csv:618153,2029-10-01T12:48:36,2029-10-01T13:48:36
+591742,Grade Beams | L -1 | 591742,A1210,Grade Beams | L -1 | 591742,L -1,Structural_Schedule.csv:591742,2029-10-01T14:54:03.600000,2029-10-01T15:14:01.920000
+591743,Grade Beams | L -1 | 591743,A1210,Grade Beams | L -1 | 591743,L -1,Structural_Schedule.csv:591743,2029-10-01T15:14:01.920000,2029-10-01T15:33:35.280000
+591744,Grade Beams | L -1 | 591744,A1210,Grade Beams | L -1 | 591744,L -1,Structural_Schedule.csv:591744,2029-10-01T15:33:35.280000,2029-10-01T15:53:08.640000
+591745,Grade Beams | L -1 | 591745,A1210,Grade Beams | L -1 | 591745,L -1,Structural_Schedule.csv:591745,2029-10-01T15:53:08.640000,2029-10-01T16:12:42
+591755,Grade Beams | L -1 | 591755,A1210,Grade Beams | L -1 | 591755,L -1,Structural_Schedule.csv:591755,2029-10-01T16:12:42,2029-10-01T16:32:22.560000
+591766,Grade Beams | L -1 | 591766,A1210,Grade Beams | L -1 | 591766,L -1,Structural_Schedule.csv:591766,2029-10-01T16:32:22.560000,2029-10-01T16:52:03.120000
+591759,Grade Beams | L -1 | 591759,A1210,Grade Beams | L -1 | 591759,L -1,Structural_Schedule.csv:591759,2029-10-02T09:00:00,2029-10-02T09:19:40.560000
+591761,Grade Beams | L -1 | 591761,A1210,Grade Beams | L -1 | 591761,L -1,Structural_Schedule.csv:591761,2029-10-02T09:19:40.560000,2029-10-02T09:39:21.120000
+591751,Grade Beams | L -1 | 591751,A1210,Grade Beams | L -1 | 591751,L -1,Structural_Schedule.csv:591751,2029-10-02T09:39:21.120000,2029-10-02T09:59:01.680000
+591738,Grade Beams | L -1 | 591738,A1210,Grade Beams | L -1 | 591738,L -1,Structural_Schedule.csv:591738,2029-10-02T09:59:01.680000,2029-10-02T10:19:31.920000
+635522,Grade Beams | L -1 | 635522,A1210,Grade Beams | L -1 | 635522,L -1,Structural_Schedule.csv:635522,2029-10-02T10:19:31.920000,2029-10-02T10:57:48.720000
+635545,Grade Beams | L -1 | 635545,A1210,Grade Beams | L -1 | 635545,L -1,Structural_Schedule.csv:635545,2029-10-02T10:57:48.720000,2029-10-02T11:37:09.600000
+591739,Grade Beams | L -1 | 591739,A1210,Grade Beams | L -1 | 591739,L -1,Structural_Schedule.csv:591739,2029-10-02T11:37:09.600000,2029-10-02T11:56:42.960000
+635572,Grade Beams | L -1 | 635572,A1210,Grade Beams | L -1 | 635572,L -1,Structural_Schedule.csv:635572,2029-10-02T11:56:42.960000,2029-10-02T12:36:03.840000
+591740,Grade Beams | L -1 | 591740,A1210,Grade Beams | L -1 | 591740,L -1,Structural_Schedule.csv:591740,2029-10-02T12:36:03.840000,2029-10-02T12:55:37.200000
+635605,Grade Beams | L -1 | 635605,A1210,Grade Beams | L -1 | 635605,L -1,Structural_Schedule.csv:635605,2029-10-02T12:55:37.200000,2029-10-02T13:34:58.080000
+591741,Grade Beams | L -1 | 591741,A1210,Grade Beams | L -1 | 591741,L -1,Structural_Schedule.csv:591741,2029-10-02T13:34:58.080000,2029-10-02T13:54:31.440000
+591765,Grade Beams | L -1 | 591765,A1210,Grade Beams | L -1 | 591765,L -1,Structural_Schedule.csv:591765,2029-10-02T13:54:31.440000,2029-10-02T14:14:18.960000
+591758,Grade Beams | L -1 | 591758,A1210,Grade Beams | L -1 | 591758,L -1,Structural_Schedule.csv:591758,2029-10-02T14:14:18.960000,2029-10-02T14:33:59.520000
+591760,Grade Beams | L -1 | 591760,A1210,Grade Beams | L -1 | 591760,L -1,Structural_Schedule.csv:591760,2029-10-02T14:33:59.520000,2029-10-02T14:53:07.920000
+635633,Grade Beams | L -1 | 635633,A1210,Grade Beams | L -1 | 635633,L -1,Structural_Schedule.csv:635633,2029-10-02T14:53:07.920000,2029-10-02T15:02:29.759999999
+591750,Grade Beams | L -1 | 591750,A1210,Grade Beams | L -1 | 591750,L -1,Structural_Schedule.csv:591750,2029-10-02T15:02:29.759999999,2029-10-02T15:22:10.319999999
+591754,Grade Beams | L -1 | 591754,A1210,Grade Beams | L -1 | 591754,L -1,Structural_Schedule.csv:591754,2029-10-02T15:22:10.319999999,2029-10-02T15:42:03.119999999
+618215,Grade Beams | L -1 | 618215,A1210,Grade Beams | L -1 | 618215,L -1,Structural_Schedule.csv:618215,2029-10-02T15:42:03.119999999,2029-10-02T16:01:44.879999999
+594720,Grade Beams | L -1 | 594720,A1210,Grade Beams | L -1 | 594720,L -1,Structural_Schedule.csv:594720,2029-10-02T16:01:44.879999999,2029-10-02T16:02:44.879999999
+591748,Grade Beams | L -1 | 591748,A1210,Grade Beams | L -1 | 591748,L -1,Structural_Schedule.csv:591748,2029-10-02T16:02:44.879999999,2029-10-02T16:22:05.759999999
+591747,Grade Beams | L -1 | 591747,A1210,Grade Beams | L -1 | 591747,L -1,Structural_Schedule.csv:591747,2029-10-02T16:22:05.759999999,2029-10-02T16:41:39.119999999
+591746,Grade Beams | L -1 | 591746,A1210,Grade Beams | L -1 | 591746,L -1,Structural_Schedule.csv:591746,2029-10-03T09:00:00,2029-10-03T09:19:58.320000
+638012,Grade Beams | L -1 | 638012,A1210,Grade Beams | L -1 | 638012,L -1,Structural_Schedule.csv:638012,2029-10-03T09:19:58.320000,2029-10-03T09:40:01.440000
+638002,Grade Beams | L -1 | 638002,A1210,Grade Beams | L -1 | 638002,L -1,Structural_Schedule.csv:638002,2029-10-03T09:40:01.440000,2029-10-03T09:59:58.079999999
+637859,Grade Beams | L -1 | 637859,A1210,Grade Beams | L -1 | 637859,L -1,Structural_Schedule.csv:637859,2029-10-03T09:59:58.079999999,2029-10-03T10:20:06.959999999
+620300,Grade Beams | L 0 | 620300,A1210,Grade Beams | L 0 | 620300,L 0,Structural_Schedule.csv:620300,2029-10-03T10:20:06.959999999,2029-10-03T11:00:38.159999999
+637562,Grade Beams | L 0 | 637562,A1210,Grade Beams | L 0 | 637562,L 0,Structural_Schedule.csv:637562,2029-10-03T11:00:38.159999999,2029-10-03T11:20:50.879999999
+637357,Grade Beams | L 0 | 637357,A1210,Grade Beams | L 0 | 637357,L 0,Structural_Schedule.csv:637357,2029-10-03T11:20:50.879999999,2029-10-03T11:40:58.559999999
+637572,Grade Beams | L 0 | 637572,A1210,Grade Beams | L 0 | 637572,L 0,Structural_Schedule.csv:637572,2029-10-03T11:40:58.559999999,2029-10-03T12:01:11.279999999
+620265,Grade Beams | L 0 | 620265,A1210,Grade Beams | L 0 | 620265,L 0,Structural_Schedule.csv:620265,2029-10-03T12:01:11.279999999,2029-10-03T12:40:58.799999999
+617799,Basement Retaining Walls | L -1 | 617799,A1220,Basement Retaining Walls | L -1 | 617799,L -1,Architecture_TakeOff.csv:617799,2029-10-03T12:40:58.799999999,2029-10-03T16:21:22.799999999
+A1230,Waterproofing & Drainage | Basement / Site | A1230,A1230,Waterproofing & Drainage | Basement / Site | A1230,Basement / Site,Non-BIM:A1230,2029-10-03T16:21:22.799999999,2029-10-03T16:22:22.799999999
+611089,Basement Slab on Grade | L 0 | 611089,A1240,Basement Slab on Grade | L 0 | 611089,L 0,Structural_Schedule.csv:611089,2029-10-03T16:24:22.799999999,2029-10-05T11:43:27.839999999
+A1250,Underground Utilities | Basement / Site | A1250,A1250,Underground Utilities | Basement / Site | A1250,Basement / Site,Non-BIM:A1250,2029-10-03T16:22:22.799999999,2029-10-03T16:23:22.799999999
+A1260,Backfill & Compaction | Basement / Site | A1260,A1260,Backfill & Compaction | Basement / Site | A1260,Basement / Site,Non-BIM:A1260,2029-10-03T16:23:22.799999999,2029-10-03T16:24:22.799999999
+622214,Foundational Columns | L -1 | 622214,A1270,Foundational Columns | L -1 | 622214,L -1,Structural_Schedule.csv:622214,2029-10-01T13:48:36,2029-10-01T13:50:12
+622212,Foundational Columns | L -1 | 622212,A1270,Foundational Columns | L -1 | 622212,L -1,Structural_Schedule.csv:622212,2029-10-01T13:50:12,2029-10-01T13:51:48
+638122,Foundational Columns | L -1 | 638122,A1270,Foundational Columns | L -1 | 638122,L -1,Structural_Schedule.csv:638122,2029-10-01T13:51:48,2029-10-01T13:53:24
+622209,Foundational Columns | L -1 | 622209,A1270,Foundational Columns | L -1 | 622209,L -1,Structural_Schedule.csv:622209,2029-10-01T13:53:24,2029-10-01T13:55:00
+622206,Foundational Columns | L -1 | 622206,A1270,Foundational Columns | L -1 | 622206,L -1,Structural_Schedule.csv:622206,2029-10-01T13:55:00,2029-10-01T13:56:36
+622203,Foundational Columns | L -1 | 622203,A1270,Foundational Columns | L -1 | 622203,L -1,Structural_Schedule.csv:622203,2029-10-01T13:56:36,2029-10-01T13:58:12
+622200,Foundational Columns | L -1 | 622200,A1270,Foundational Columns | L -1 | 622200,L -1,Structural_Schedule.csv:622200,2029-10-01T13:58:12,2029-10-01T13:59:48
+622197,Foundational Columns | L -1 | 622197,A1270,Foundational Columns | L -1 | 622197,L -1,Structural_Schedule.csv:622197,2029-10-01T13:59:48,2029-10-01T14:01:24
+622194,Foundational Columns | L -1 | 622194,A1270,Foundational Columns | L -1 | 622194,L -1,Structural_Schedule.csv:622194,2029-10-01T14:01:24,2029-10-01T14:03:00
+634191,Foundational Columns | L -1 | 634191,A1270,Foundational Columns | L -1 | 634191,L -1,Structural_Schedule.csv:634191,2029-10-01T14:03:00,2029-10-01T14:04:36
+622213,Foundational Columns | L -1 | 622213,A1270,Foundational Columns | L -1 | 622213,L -1,Structural_Schedule.csv:622213,2029-10-01T14:04:36,2029-10-01T14:06:12
+634794,Foundational Columns | L -1 | 634794,A1270,Foundational Columns | L -1 | 634794,L -1,Structural_Schedule.csv:634794,2029-10-01T14:06:12,2029-10-01T14:07:48
+622208,Foundational Columns | L -1 | 622208,A1270,Foundational Columns | L -1 | 622208,L -1,Structural_Schedule.csv:622208,2029-10-01T14:07:48,2029-10-01T14:09:24
+622205,Foundational Columns | L -1 | 622205,A1270,Foundational Columns | L -1 | 622205,L -1,Structural_Schedule.csv:622205,2029-10-01T14:09:24,2029-10-01T14:11:00
+622202,Foundational Columns | L -1 | 622202,A1270,Foundational Columns | L -1 | 622202,L -1,Structural_Schedule.csv:622202,2029-10-01T14:11:00,2029-10-01T14:12:36
+622199,Foundational Columns | L -1 | 622199,A1270,Foundational Columns | L -1 | 622199,L -1,Structural_Schedule.csv:622199,2029-10-01T14:12:36,2029-10-01T14:14:12
+622196,Foundational Columns | L -1 | 622196,A1270,Foundational Columns | L -1 | 622196,L -1,Structural_Schedule.csv:622196,2029-10-01T14:14:12,2029-10-01T14:15:48
+622193,Foundational Columns | L -1 | 622193,A1270,Foundational Columns | L -1 | 622193,L -1,Structural_Schedule.csv:622193,2029-10-01T14:15:48,2029-10-01T14:17:24
+622918,Foundational Columns | L -1 | 622918,A1270,Foundational Columns | L -1 | 622918,L -1,Structural_Schedule.csv:622918,2029-10-01T14:17:24,2029-10-01T14:19:00
+634277,Foundational Columns | L -1 | 634277,A1270,Foundational Columns | L -1 | 634277,L -1,Structural_Schedule.csv:634277,2029-10-01T14:19:00,2029-10-01T14:20:36
+621063,Foundational Columns | L -1 | 621063,A1270,Foundational Columns | L -1 | 621063,L -1,Structural_Schedule.csv:621063,2029-10-01T14:20:36,2029-10-01T14:22:12
+622210,Foundational Columns | L -1 | 622210,A1270,Foundational Columns | L -1 | 622210,L -1,Structural_Schedule.csv:622210,2029-10-01T14:22:12,2029-10-01T14:23:48
+621150,Foundational Columns | L -1 | 621150,A1270,Foundational Columns | L -1 | 621150,L -1,Structural_Schedule.csv:621150,2029-10-01T14:23:48,2029-10-01T14:25:24
+622207,Foundational Columns | L -1 | 622207,A1270,Foundational Columns | L -1 | 622207,L -1,Structural_Schedule.csv:622207,2029-10-01T14:25:24,2029-10-01T14:27:00
+622204,Foundational Columns | L -1 | 622204,A1270,Foundational Columns | L -1 | 622204,L -1,Structural_Schedule.csv:622204,2029-10-01T14:27:00,2029-10-01T14:28:36
+622201,Foundational Columns | L -1 | 622201,A1270,Foundational Columns | L -1 | 622201,L -1,Structural_Schedule.csv:622201,2029-10-01T14:28:36,2029-10-01T14:30:12
+622198,Foundational Columns | L -1 | 622198,A1270,Foundational Columns | L -1 | 622198,L -1,Structural_Schedule.csv:622198,2029-10-01T14:30:12,2029-10-01T14:31:48
+622195,Foundational Columns | L -1 | 622195,A1270,Foundational Columns | L -1 | 622195,L -1,Structural_Schedule.csv:622195,2029-10-01T14:31:48,2029-10-01T14:33:24
+622192,Foundational Columns | L -1 | 622192,A1270,Foundational Columns | L -1 | 622192,L -1,Structural_Schedule.csv:622192,2029-10-01T14:33:24,2029-10-01T14:35:00
+612945,Foundational Columns | L -1 | 612945,A1270,Foundational Columns | L -1 | 612945,L -1,Structural_Schedule.csv:612945,2029-10-01T14:35:00,2029-10-01T14:40:26.640000
+612178,Foundational Columns | L -1 | 612178,A1270,Foundational Columns | L -1 | 612178,L -1,Structural_Schedule.csv:612178,2029-10-01T14:40:26.640000,2029-10-01T14:45:53.280000
+611709,Foundational Columns | L -1 | 611709,A1270,Foundational Columns | L -1 | 611709,L -1,Structural_Schedule.csv:611709,2029-10-01T14:45:53.280000,2029-10-01T14:48:36.720000
+611833,Foundational Columns | L -1 | 611833,A1270,Foundational Columns | L -1 | 611833,L -1,Structural_Schedule.csv:611833,2029-10-01T14:48:36.720000,2029-10-01T14:51:20.160000
+611868,Foundational Columns | L -1 | 611868,A1270,Foundational Columns | L -1 | 611868,L -1,Structural_Schedule.csv:611868,2029-10-01T14:51:20.160000,2029-10-01T14:54:03.600000
+602808,Frame: Columns | L -1 | 602808,A1330,Frame: Columns | L -1 | 602808,L -1,Structural_Schedule.csv:602808,2029-10-08T15:00:00,2029-10-08T15:20:00
+602805,Frame: Columns | L -1 | 602805,A1330,Frame: Columns | L -1 | 602805,L -1,Structural_Schedule.csv:602805,2029-10-08T15:20:00,2029-10-08T15:40:00
+602802,Frame: Columns | L -1 | 602802,A1330,Frame: Columns | L -1 | 602802,L -1,Structural_Schedule.csv:602802,2029-10-08T15:40:00,2029-10-08T16:00:00
+602799,Frame: Columns | L -1 | 602799,A1330,Frame: Columns | L -1 | 602799,L -1,Structural_Schedule.csv:602799,2029-10-08T16:00:00,2029-10-08T16:20:00
+602796,Frame: Columns | L -1 | 602796,A1330,Frame: Columns | L -1 | 602796,L -1,Structural_Schedule.csv:602796,2029-10-08T16:20:00,2029-10-08T16:40:00
+602793,Frame: Columns | L -1 | 602793,A1330,Frame: Columns | L -1 | 602793,L -1,Structural_Schedule.csv:602793,2029-10-08T16:40:00,2029-10-08T17:00:00
+602790,Frame: Columns | L -1 | 602790,A1330,Frame: Columns | L -1 | 602790,L -1,Structural_Schedule.csv:602790,2029-10-09T09:00:00,2029-10-09T09:20:00
+602787,Frame: Columns | L -1 | 602787,A1330,Frame: Columns | L -1 | 602787,L -1,Structural_Schedule.csv:602787,2029-10-09T09:20:00,2029-10-09T09:40:00
+602784,Frame: Columns | L -1 | 602784,A1330,Frame: Columns | L -1 | 602784,L -1,Structural_Schedule.csv:602784,2029-10-09T09:40:00,2029-10-09T10:00:00
+602804,Frame: Columns | L -1 | 602804,A1330,Frame: Columns | L -1 | 602804,L -1,Structural_Schedule.csv:602804,2029-10-09T10:00:00,2029-10-09T10:20:00
+602807,Frame: Columns | L -1 | 602807,A1330,Frame: Columns | L -1 | 602807,L -1,Structural_Schedule.csv:602807,2029-10-09T10:20:00,2029-10-09T10:40:00
+602798,Frame: Columns | L -1 | 602798,A1330,Frame: Columns | L -1 | 602798,L -1,Structural_Schedule.csv:602798,2029-10-09T10:40:00,2029-10-09T11:00:00
+602795,Frame: Columns | L -1 | 602795,A1330,Frame: Columns | L -1 | 602795,L -1,Structural_Schedule.csv:602795,2029-10-09T11:00:00,2029-10-09T11:20:00
+602792,Frame: Columns | L -1 | 602792,A1330,Frame: Columns | L -1 | 602792,L -1,Structural_Schedule.csv:602792,2029-10-09T11:20:00,2029-10-09T11:40:00
+602789,Frame: Columns | L -1 | 602789,A1330,Frame: Columns | L -1 | 602789,L -1,Structural_Schedule.csv:602789,2029-10-09T11:40:00,2029-10-09T12:00:00
+602786,Frame: Columns | L -1 | 602786,A1330,Frame: Columns | L -1 | 602786,L -1,Structural_Schedule.csv:602786,2029-10-09T12:00:00,2029-10-09T12:20:00
+602783,Frame: Columns | L -1 | 602783,A1330,Frame: Columns | L -1 | 602783,L -1,Structural_Schedule.csv:602783,2029-10-09T12:20:00,2029-10-09T12:40:00
+603849,Frame: Columns | L -1 | 603849,A1330,Frame: Columns | L -1 | 603849,L -1,Structural_Schedule.csv:603849,2029-10-09T12:40:00,2029-10-09T13:00:00
+644661,Frame: Columns | L -1 | 644661,A1330,Frame: Columns | L -1 | 644661,L -1,Structural_Schedule.csv:644661,2029-10-09T13:00:00,2029-10-09T13:20:00
+657746,Frame: Columns | L -1 | 657746,A1330,Frame: Columns | L -1 | 657746,L -1,Structural_Schedule.csv:657746,2029-10-09T13:20:00,2029-10-09T13:40:00
+657251,Frame: Columns | L -1 | 657251,A1330,Frame: Columns | L -1 | 657251,L -1,Structural_Schedule.csv:657251,2029-10-09T13:40:00,2029-10-09T14:00:00
+656461,Frame: Columns | L -1 | 656461,A1330,Frame: Columns | L -1 | 656461,L -1,Structural_Schedule.csv:656461,2029-10-09T14:00:00,2029-10-09T14:20:00
+656462,Frame: Columns | L -1 | 656462,A1330,Frame: Columns | L -1 | 656462,L -1,Structural_Schedule.csv:656462,2029-10-09T14:20:00,2029-10-09T14:40:00
+602794,Frame: Columns | L -1 | 602794,A1330,Frame: Columns | L -1 | 602794,L -1,Structural_Schedule.csv:602794,2029-10-09T14:40:00,2029-10-09T15:00:00
+602797,Frame: Columns | L -1 | 602797,A1330,Frame: Columns | L -1 | 602797,L -1,Structural_Schedule.csv:602797,2029-10-09T15:00:00,2029-10-09T15:20:00
+602800,Frame: Columns | L -1 | 602800,A1330,Frame: Columns | L -1 | 602800,L -1,Structural_Schedule.csv:602800,2029-10-09T15:20:00,2029-10-09T15:40:00
+602803,Frame: Columns | L -1 | 602803,A1330,Frame: Columns | L -1 | 602803,L -1,Structural_Schedule.csv:602803,2029-10-09T15:40:00,2029-10-09T16:00:00
+602806,Frame: Columns | L -1 | 602806,A1330,Frame: Columns | L -1 | 602806,L -1,Structural_Schedule.csv:602806,2029-10-09T16:00:00,2029-10-09T16:20:00
+604409,Frame: Columns | L 0 | 604409,A1330,Frame: Columns | L 0 | 604409,L 0,Structural_Schedule.csv:604409,2029-10-09T16:20:00,2029-10-09T16:40:00
+604408,Frame: Columns | L 0 | 604408,A1330,Frame: Columns | L 0 | 604408,L 0,Structural_Schedule.csv:604408,2029-10-09T16:40:00,2029-10-09T17:00:00
+604359,Frame: Columns | L 0 | 604359,A1330,Frame: Columns | L 0 | 604359,L 0,Structural_Schedule.csv:604359,2029-10-10T09:00:00,2029-10-10T09:20:00
+604357,Frame: Columns | L 0 | 604357,A1330,Frame: Columns | L 0 | 604357,L 0,Structural_Schedule.csv:604357,2029-10-10T09:20:00,2029-10-10T09:40:00
+604407,Frame: Columns | L 0 | 604407,A1330,Frame: Columns | L 0 | 604407,L 0,Structural_Schedule.csv:604407,2029-10-10T09:40:00,2029-10-10T10:00:00
+604406,Frame: Columns | L 0 | 604406,A1330,Frame: Columns | L 0 | 604406,L 0,Structural_Schedule.csv:604406,2029-10-10T10:00:00,2029-10-10T10:20:00
+604350,Frame: Columns | L 0 | 604350,A1330,Frame: Columns | L 0 | 604350,L 0,Structural_Schedule.csv:604350,2029-10-10T10:20:00,2029-10-10T10:40:00
+604405,Frame: Columns | L 0 | 604405,A1330,Frame: Columns | L 0 | 604405,L 0,Structural_Schedule.csv:604405,2029-10-10T10:40:00,2029-10-10T11:00:00
+604404,Frame: Columns | L 0 | 604404,A1330,Frame: Columns | L 0 | 604404,L 0,Structural_Schedule.csv:604404,2029-10-10T11:00:00,2029-10-10T11:20:00
+604361,Frame: Columns | L 0 | 604361,A1330,Frame: Columns | L 0 | 604361,L 0,Structural_Schedule.csv:604361,2029-10-10T11:20:00,2029-10-10T11:40:00
+604363,Frame: Columns | L 0 | 604363,A1330,Frame: Columns | L 0 | 604363,L 0,Structural_Schedule.csv:604363,2029-10-10T11:40:00,2029-10-10T12:00:00
+632386,Frame: Columns | L 0 | 632386,A1330,Frame: Columns | L 0 | 632386,L 0,Structural_Schedule.csv:632386,2029-10-10T12:00:00,2029-10-10T12:20:00
+604356,Frame: Columns | L 0 | 604356,A1330,Frame: Columns | L 0 | 604356,L 0,Structural_Schedule.csv:604356,2029-10-10T12:20:00,2029-10-10T12:40:00
+604354,Frame: Columns | L 0 | 604354,A1330,Frame: Columns | L 0 | 604354,L 0,Structural_Schedule.csv:604354,2029-10-10T12:40:00,2029-10-10T13:00:00
+604352,Frame: Columns | L 0 | 604352,A1330,Frame: Columns | L 0 | 604352,L 0,Structural_Schedule.csv:604352,2029-10-10T13:00:00,2029-10-10T13:20:00
+604349,Frame: Columns | L 0 | 604349,A1330,Frame: Columns | L 0 | 604349,L 0,Structural_Schedule.csv:604349,2029-10-10T13:20:00,2029-10-10T13:40:00
+604347,Frame: Columns | L 0 | 604347,A1330,Frame: Columns | L 0 | 604347,L 0,Structural_Schedule.csv:604347,2029-10-10T13:40:00,2029-10-10T14:00:00
+604345,Frame: Columns | L 0 | 604345,A1330,Frame: Columns | L 0 | 604345,L 0,Structural_Schedule.csv:604345,2029-10-10T14:00:00,2029-10-10T14:20:00
+629229,Frame: Columns | L 0 | 629229,A1330,Frame: Columns | L 0 | 629229,L 0,Structural_Schedule.csv:629229,2029-10-10T14:20:00,2029-10-10T14:40:00
+643885,Frame: Columns | L 0 | 643885,A1330,Frame: Columns | L 0 | 643885,L 0,Structural_Schedule.csv:643885,2029-10-10T14:40:00,2029-10-10T15:00:00
+657294,Frame: Columns | L 0 | 657294,A1330,Frame: Columns | L 0 | 657294,L 0,Structural_Schedule.csv:657294,2029-10-10T15:00:00,2029-10-10T15:20:00
+656645,Frame: Columns | L 0 | 656645,A1330,Frame: Columns | L 0 | 656645,L 0,Structural_Schedule.csv:656645,2029-10-10T15:20:00,2029-10-10T15:40:00
+655943,Frame: Columns | L 0 | 655943,A1330,Frame: Columns | L 0 | 655943,L 0,Structural_Schedule.csv:655943,2029-10-10T15:40:00,2029-10-10T16:00:00
+656062,Frame: Columns | L 0 | 656062,A1330,Frame: Columns | L 0 | 656062,L 0,Structural_Schedule.csv:656062,2029-10-10T16:00:00,2029-10-10T16:20:00
+604353,Frame: Columns | L 0 | 604353,A1330,Frame: Columns | L 0 | 604353,L 0,Structural_Schedule.csv:604353,2029-10-10T16:20:00,2029-10-10T16:40:00
+604355,Frame: Columns | L 0 | 604355,A1330,Frame: Columns | L 0 | 604355,L 0,Structural_Schedule.csv:604355,2029-10-10T16:40:00,2029-10-10T17:00:00
+604358,Frame: Columns | L 0 | 604358,A1330,Frame: Columns | L 0 | 604358,L 0,Structural_Schedule.csv:604358,2029-10-11T09:00:00,2029-10-11T09:20:00
+604360,Frame: Columns | L 0 | 604360,A1330,Frame: Columns | L 0 | 604360,L 0,Structural_Schedule.csv:604360,2029-10-11T09:20:00,2029-10-11T09:40:00
+604362,Frame: Columns | L 0 | 604362,A1330,Frame: Columns | L 0 | 604362,L 0,Structural_Schedule.csv:604362,2029-10-11T09:40:00,2029-10-11T10:00:00
+614285,Frame: Columns | L 0 | 614285,A1330,Frame: Columns | L 0 | 614285,L 0,Structural_Schedule.csv:614285,2029-10-11T10:00:00,2029-10-11T10:20:00
+614376,Frame: Columns | L 0 | 614376,A1330,Frame: Columns | L 0 | 614376,L 0,Structural_Schedule.csv:614376,2029-10-11T10:20:00,2029-10-11T10:40:00
+613589,Frame: Columns | L 0 | 613589,A1330,Frame: Columns | L 0 | 613589,L 0,Structural_Schedule.csv:613589,2029-10-11T10:40:00,2029-10-11T11:00:00
+614073,Frame: Columns | L 0 | 614073,A1330,Frame: Columns | L 0 | 614073,L 0,Structural_Schedule.csv:614073,2029-10-11T11:00:00,2029-10-11T11:20:00
+614174,Frame: Columns | L 0 | 614174,A1330,Frame: Columns | L 0 | 614174,L 0,Structural_Schedule.csv:614174,2029-10-11T11:20:00,2029-10-11T11:40:00
+604419,Frame: Columns | L 1 | 604419,A1330,Frame: Columns | L 1 | 604419,L 1,Structural_Schedule.csv:604419,2029-10-11T11:40:00,2029-10-11T12:00:00
+604418,Frame: Columns | L 1 | 604418,A1330,Frame: Columns | L 1 | 604418,L 1,Structural_Schedule.csv:604418,2029-10-11T12:00:00,2029-10-11T12:20:00
+604385,Frame: Columns | L 1 | 604385,A1330,Frame: Columns | L 1 | 604385,L 1,Structural_Schedule.csv:604385,2029-10-11T12:20:00,2029-10-11T12:40:00
+604383,Frame: Columns | L 1 | 604383,A1330,Frame: Columns | L 1 | 604383,L 1,Structural_Schedule.csv:604383,2029-10-11T12:40:00,2029-10-11T13:00:00
+604417,Frame: Columns | L 1 | 604417,A1330,Frame: Columns | L 1 | 604417,L 1,Structural_Schedule.csv:604417,2029-10-11T13:00:00,2029-10-11T13:20:00
+604416,Frame: Columns | L 1 | 604416,A1330,Frame: Columns | L 1 | 604416,L 1,Structural_Schedule.csv:604416,2029-10-11T13:20:00,2029-10-11T13:40:00
+604376,Frame: Columns | L 1 | 604376,A1330,Frame: Columns | L 1 | 604376,L 1,Structural_Schedule.csv:604376,2029-10-11T13:40:00,2029-10-11T14:00:00
+604415,Frame: Columns | L 1 | 604415,A1330,Frame: Columns | L 1 | 604415,L 1,Structural_Schedule.csv:604415,2029-10-11T14:00:00,2029-10-11T14:20:00
+604414,Frame: Columns | L 1 | 604414,A1330,Frame: Columns | L 1 | 604414,L 1,Structural_Schedule.csv:604414,2029-10-11T14:20:00,2029-10-11T14:40:00
+604387,Frame: Columns | L 1 | 604387,A1330,Frame: Columns | L 1 | 604387,L 1,Structural_Schedule.csv:604387,2029-10-11T14:40:00,2029-10-11T15:00:00
+604389,Frame: Columns | L 1 | 604389,A1330,Frame: Columns | L 1 | 604389,L 1,Structural_Schedule.csv:604389,2029-10-11T15:00:00,2029-10-11T15:20:00
+604390,Frame: Columns | L 1 | 604390,A1330,Frame: Columns | L 1 | 604390,L 1,Structural_Schedule.csv:604390,2029-10-11T15:20:00,2029-10-11T15:40:00
+604382,Frame: Columns | L 1 | 604382,A1330,Frame: Columns | L 1 | 604382,L 1,Structural_Schedule.csv:604382,2029-10-11T15:40:00,2029-10-11T16:00:00
+604380,Frame: Columns | L 1 | 604380,A1330,Frame: Columns | L 1 | 604380,L 1,Structural_Schedule.csv:604380,2029-10-11T16:00:00,2029-10-11T16:20:00
+604378,Frame: Columns | L 1 | 604378,A1330,Frame: Columns | L 1 | 604378,L 1,Structural_Schedule.csv:604378,2029-10-11T16:20:00,2029-10-11T16:40:00
+604375,Frame: Columns | L 1 | 604375,A1330,Frame: Columns | L 1 | 604375,L 1,Structural_Schedule.csv:604375,2029-10-11T16:40:00,2029-10-11T17:00:00
+604373,Frame: Columns | L 1 | 604373,A1330,Frame: Columns | L 1 | 604373,L 1,Structural_Schedule.csv:604373,2029-10-12T09:00:00,2029-10-12T09:20:00
+604371,Frame: Columns | L 1 | 604371,A1330,Frame: Columns | L 1 | 604371,L 1,Structural_Schedule.csv:604371,2029-10-12T09:20:00,2029-10-12T09:40:00
+604391,Frame: Columns | L 1 | 604391,A1330,Frame: Columns | L 1 | 604391,L 1,Structural_Schedule.csv:604391,2029-10-12T09:40:00,2029-10-12T10:00:00
+628948,Frame: Columns | L 1 | 628948,A1330,Frame: Columns | L 1 | 628948,L 1,Structural_Schedule.csv:628948,2029-10-12T10:00:00,2029-10-12T10:20:00
+644665,Frame: Columns | L 1 | 644665,A1330,Frame: Columns | L 1 | 644665,L 1,Structural_Schedule.csv:644665,2029-10-12T10:20:00,2029-10-12T10:40:00
+657750,Frame: Columns | L 1 | 657750,A1330,Frame: Columns | L 1 | 657750,L 1,Structural_Schedule.csv:657750,2029-10-12T10:40:00,2029-10-12T11:00:00
+657238,Frame: Columns | L 1 | 657238,A1330,Frame: Columns | L 1 | 657238,L 1,Structural_Schedule.csv:657238,2029-10-12T11:00:00,2029-10-12T11:20:00
+656466,Frame: Columns | L 1 | 656466,A1330,Frame: Columns | L 1 | 656466,L 1,Structural_Schedule.csv:656466,2029-10-12T11:20:00,2029-10-12T11:40:00
+656467,Frame: Columns | L 1 | 656467,A1330,Frame: Columns | L 1 | 656467,L 1,Structural_Schedule.csv:656467,2029-10-12T11:40:00,2029-10-12T12:00:00
+604379,Frame: Columns | L 1 | 604379,A1330,Frame: Columns | L 1 | 604379,L 1,Structural_Schedule.csv:604379,2029-10-12T12:00:00,2029-10-12T12:20:00
+604381,Frame: Columns | L 1 | 604381,A1330,Frame: Columns | L 1 | 604381,L 1,Structural_Schedule.csv:604381,2029-10-12T12:20:00,2029-10-12T12:40:00
+604384,Frame: Columns | L 1 | 604384,A1330,Frame: Columns | L 1 | 604384,L 1,Structural_Schedule.csv:604384,2029-10-12T12:40:00,2029-10-12T13:00:00
+604386,Frame: Columns | L 1 | 604386,A1330,Frame: Columns | L 1 | 604386,L 1,Structural_Schedule.csv:604386,2029-10-12T13:00:00,2029-10-12T13:20:00
+604388,Frame: Columns | L 1 | 604388,A1330,Frame: Columns | L 1 | 604388,L 1,Structural_Schedule.csv:604388,2029-10-12T13:20:00,2029-10-12T13:40:00
+615162,Frame: Columns | L 1 | 615162,A1330,Frame: Columns | L 1 | 615162,L 1,Structural_Schedule.csv:615162,2029-10-12T13:40:00,2029-10-12T14:00:00
+615289,Frame: Columns | L 1 | 615289,A1330,Frame: Columns | L 1 | 615289,L 1,Structural_Schedule.csv:615289,2029-10-12T14:00:00,2029-10-12T14:20:00
+615093,Frame: Columns | L 1 | 615093,A1330,Frame: Columns | L 1 | 615093,L 1,Structural_Schedule.csv:615093,2029-10-12T14:20:00,2029-10-12T14:40:00
+615012,Frame: Columns | L 1 | 615012,A1330,Frame: Columns | L 1 | 615012,L 1,Structural_Schedule.csv:615012,2029-10-12T14:40:00,2029-10-12T15:00:00
+614870,Frame: Columns | L 1 | 614870,A1330,Frame: Columns | L 1 | 614870,L 1,Structural_Schedule.csv:614870,2029-10-12T15:00:00,2029-10-12T15:20:00
+629697,Frame: Columns | Roof | 629697,A1330,Frame: Columns | Roof | 629697,Roof,Structural_Schedule.csv:629697,2029-10-12T15:20:00,2029-10-12T15:40:00
+646504,Floor | L 0 | 646504,A1340,Floor | L 0 | 646504,L 0,Architecture_TakeOff.csv:646504,2029-10-08T09:00:00,2029-10-08T10:00:00
+1241717,Floor | L 0 | 1241717,A1340,Floor | L 0 | 1241717,L 0,Architecture_TakeOff.csv:1241717,2029-10-08T10:00:00,2029-10-08T11:00:00
+1789623,Floor | L 0 | 1789623,A1340,Floor | L 0 | 1789623,L 0,Architecture_TakeOff.csv:1789623,2029-10-08T11:00:00,2029-10-08T12:00:00
+1502300,Floor | L 0 | 1502300,A1340,Floor | L 0 | 1502300,L 0,Architecture_TakeOff.csv:1502300,2029-10-08T12:00:00,2029-10-08T13:00:00
+646198,Floor | L 1 | 646198,A1340,Floor | L 1 | 646198,L 1,Architecture_TakeOff.csv:646198,2029-10-08T13:00:00,2029-10-08T14:00:00
+1241762,Floor | L 1 | 1241762,A1340,Floor | L 1 | 1241762,L 1,Architecture_TakeOff.csv:1241762,2029-10-08T14:00:00,2029-10-08T15:00:00
+665471,Frame: Beams | L 0 | 665471,A1350,Frame: Beams | L 0 | 665471,L 0,Structural_Schedule.csv:665471,2029-10-05T11:43:27.839999999,2029-10-05T12:03:27.839999999
+664493,Frame: Beams | L 0 | 664493,A1350,Frame: Beams | L 0 | 664493,L 0,Structural_Schedule.csv:664493,2029-10-05T12:03:27.839999999,2029-10-05T12:23:27.839999999
+607366,Frame: Beams | L 0 | 607366,A1350,Frame: Beams | L 0 | 607366,L 0,Structural_Schedule.csv:607366,2029-10-05T12:23:27.839999999,2029-10-05T12:43:27.839999999
+607586,Frame: Beams | L 0 | 607586,A1350,Frame: Beams | L 0 | 607586,L 0,Structural_Schedule.csv:607586,2029-10-05T12:43:27.839999999,2029-10-05T13:03:27.839999999
+607550,Frame: Beams | L 0 | 607550,A1350,Frame: Beams | L 0 | 607550,L 0,Structural_Schedule.csv:607550,2029-10-05T13:03:27.839999999,2029-10-05T13:23:27.839999999
+607516,Frame: Beams | L 0 | 607516,A1350,Frame: Beams | L 0 | 607516,L 0,Structural_Schedule.csv:607516,2029-10-05T13:23:27.839999999,2029-10-05T13:43:27.839999999
+607483,Frame: Beams | L 0 | 607483,A1350,Frame: Beams | L 0 | 607483,L 0,Structural_Schedule.csv:607483,2029-10-05T13:43:27.839999999,2029-10-05T14:03:27.839999999
+607445,Frame: Beams | L 0 | 607445,A1350,Frame: Beams | L 0 | 607445,L 0,Structural_Schedule.csv:607445,2029-10-05T14:03:27.839999999,2029-10-05T14:23:27.839999999
+607246,Frame: Beams | L 0 | 607246,A1350,Frame: Beams | L 0 | 607246,L 0,Structural_Schedule.csv:607246,2029-10-05T14:23:27.839999999,2029-10-05T14:43:27.839999999
+607409,Frame: Beams | L 0 | 607409,A1350,Frame: Beams | L 0 | 607409,L 0,Structural_Schedule.csv:607409,2029-10-05T14:43:27.839999999,2029-10-05T15:03:27.839999999
+665010,Frame: Beams | L 0 | 665010,A1350,Frame: Beams | L 0 | 665010,L 0,Structural_Schedule.csv:665010,2029-10-05T15:03:27.839999999,2029-10-05T15:23:27.839999999
+607325,Frame: Beams | L 0 | 607325,A1350,Frame: Beams | L 0 | 607325,L 0,Structural_Schedule.csv:607325,2029-10-05T15:23:27.839999999,2029-10-05T15:43:27.839999999
+661767,Frame: Beams | L 1 | 661767,A1350,Frame: Beams | L 1 | 661767,L 1,Structural_Schedule.csv:661767,2029-10-05T15:43:27.839999999,2029-10-05T16:03:27.839999999
+661766,Frame: Beams | L 1 | 661766,A1350,Frame: Beams | L 1 | 661766,L 1,Structural_Schedule.csv:661766,2029-10-05T16:03:27.839999999,2029-10-05T16:23:27.839999999
+661765,Frame: Beams | L 1 | 661765,A1350,Frame: Beams | L 1 | 661765,L 1,Structural_Schedule.csv:661765,2029-10-05T16:23:27.839999999,2029-10-05T16:43:27.839999999
+661764,Frame: Beams | L 1 | 661764,A1350,Frame: Beams | L 1 | 661764,L 1,Structural_Schedule.csv:661764,2029-10-05T16:43:27.839999999,2029-10-05T17:03:27.839999999
+661763,Frame: Beams | L 1 | 661763,A1350,Frame: Beams | L 1 | 661763,L 1,Structural_Schedule.csv:661763,2029-10-05T17:03:27.839999999,2029-10-05T17:23:27.839999999
+661762,Frame: Beams | L 1 | 661762,A1350,Frame: Beams | L 1 | 661762,L 1,Structural_Schedule.csv:661762,2029-10-05T17:23:27.839999999,2029-10-05T17:43:27.839999999
+661761,Frame: Beams | L 1 | 661761,A1350,Frame: Beams | L 1 | 661761,L 1,Structural_Schedule.csv:661761,2029-10-05T17:43:27.839999999,2029-10-05T18:03:27.839999999
+661759,Frame: Beams | L 1 | 661759,A1350,Frame: Beams | L 1 | 661759,L 1,Structural_Schedule.csv:661759,2029-10-05T18:03:27.839999999,2029-10-05T18:23:27.839999999
+661760,Frame: Beams | L 1 | 661760,A1350,Frame: Beams | L 1 | 661760,L 1,Structural_Schedule.csv:661760,2029-10-05T18:23:27.839999999,2029-10-05T18:43:27.839999999
+661768,Frame: Beams | L 1 | 661768,A1350,Frame: Beams | L 1 | 661768,L 1,Structural_Schedule.csv:661768,2029-10-05T18:43:27.839999999,2029-10-05T19:03:27.839999999
+662335,Frame: Beams | L 1 | 662335,A1350,Frame: Beams | L 1 | 662335,L 1,Structural_Schedule.csv:662335,2029-10-05T19:03:27.839999999,2029-10-05T19:23:27.839999999
+607671,Frame: Beams | L 1 | 607671,A1350,Frame: Beams | L 1 | 607671,L 1,Structural_Schedule.csv:607671,2029-10-05T19:23:27.839999999,2029-10-05T19:43:27.839999999
+607673,Frame: Beams | L 1 | 607673,A1350,Frame: Beams | L 1 | 607673,L 1,Structural_Schedule.csv:607673,2029-10-05T19:43:27.839999999,2029-10-05T20:03:27.839999999
+607679,Frame: Beams | L 1 | 607679,A1350,Frame: Beams | L 1 | 607679,L 1,Structural_Schedule.csv:607679,2029-10-05T20:03:27.839999999,2029-10-05T20:23:27.839999999
+607678,Frame: Beams | L 1 | 607678,A1350,Frame: Beams | L 1 | 607678,L 1,Structural_Schedule.csv:607678,2029-10-05T20:23:27.839999999,2029-10-05T20:43:27.839999999
+662336,Frame: Beams | L 1 | 662336,A1350,Frame: Beams | L 1 | 662336,L 1,Structural_Schedule.csv:662336,2029-10-05T20:43:27.839999999,2029-10-05T21:03:27.839999999
+607670,Frame: Beams | L 1 | 607670,A1350,Frame: Beams | L 1 | 607670,L 1,Structural_Schedule.csv:607670,2029-10-05T21:03:27.839999999,2029-10-05T21:23:27.839999999
+607674,Frame: Beams | L 1 | 607674,A1350,Frame: Beams | L 1 | 607674,L 1,Structural_Schedule.csv:607674,2029-10-05T21:23:27.839999999,2029-10-05T21:43:27.839999999
+607675,Frame: Beams | L 1 | 607675,A1350,Frame: Beams | L 1 | 607675,L 1,Structural_Schedule.csv:607675,2029-10-05T21:43:27.839999999,2029-10-05T22:03:27.839999999
+607676,Frame: Beams | L 1 | 607676,A1350,Frame: Beams | L 1 | 607676,L 1,Structural_Schedule.csv:607676,2029-10-05T22:03:27.839999999,2029-10-05T22:23:27.839999999
+607677,Frame: Beams | L 1 | 607677,A1350,Frame: Beams | L 1 | 607677,L 1,Structural_Schedule.csv:607677,2029-10-05T22:23:27.839999999,2029-10-05T22:43:27.839999999
+661758,Frame: Beams | L 1 | 661758,A1350,Frame: Beams | L 1 | 661758,L 1,Structural_Schedule.csv:661758,2029-10-05T22:43:27.839999999,2029-10-05T23:03:27.839999999
+607672,Frame: Beams | L 1 | 607672,A1350,Frame: Beams | L 1 | 607672,L 1,Structural_Schedule.csv:607672,2029-10-05T23:03:27.839999999,2029-10-05T23:23:27.839999999
+630128,Frame: Beams | L 1 | 630128,A1350,Frame: Beams | L 1 | 630128,L 1,Structural_Schedule.csv:630128,2029-10-05T23:23:27.839999999,2029-10-05T23:43:27.839999999
+661960,Frame: Beams | L 1 | 661960,A1350,Frame: Beams | L 1 | 661960,L 1,Structural_Schedule.csv:661960,2029-10-05T23:43:27.839999999,2029-10-06T00:03:27.839999999
+662337,Frame: Beams | L 1 | 662337,A1350,Frame: Beams | L 1 | 662337,L 1,Structural_Schedule.csv:662337,2029-10-06T00:03:27.839999999,2029-10-06T00:23:27.839999999
+662669,Frame: Beams | L 1 | 662669,A1350,Frame: Beams | L 1 | 662669,L 1,Structural_Schedule.csv:662669,2029-10-06T00:23:27.839999999,2029-10-06T00:43:27.839999999
+662670,Frame: Beams | L 1 | 662670,A1350,Frame: Beams | L 1 | 662670,L 1,Structural_Schedule.csv:662670,2029-10-06T00:43:27.839999999,2029-10-06T01:03:27.839999999
+662671,Frame: Beams | L 1 | 662671,A1350,Frame: Beams | L 1 | 662671,L 1,Structural_Schedule.csv:662671,2029-10-06T01:03:27.839999999,2029-10-06T01:23:27.839999999
+662672,Frame: Beams | L 1 | 662672,A1350,Frame: Beams | L 1 | 662672,L 1,Structural_Schedule.csv:662672,2029-10-06T01:23:27.839999999,2029-10-06T01:43:27.839999999
+660895,Frame: Beams | Roof | 660895,A1350,Frame: Beams | Roof | 660895,Roof,Structural_Schedule.csv:660895,2029-10-06T01:43:27.839999999,2029-10-06T02:03:27.839999999
+660863,Frame: Beams | Roof | 660863,A1350,Frame: Beams | Roof | 660863,Roof,Structural_Schedule.csv:660863,2029-10-06T02:03:27.839999999,2029-10-06T02:23:27.839999999
+660835,Frame: Beams | Roof | 660835,A1350,Frame: Beams | Roof | 660835,Roof,Structural_Schedule.csv:660835,2029-10-06T02:23:27.839999999,2029-10-06T02:43:27.839999999
+660803,Frame: Beams | Roof | 660803,A1350,Frame: Beams | Roof | 660803,Roof,Structural_Schedule.csv:660803,2029-10-06T02:43:27.839999999,2029-10-06T03:03:27.839999999
+660771,Frame: Beams | Roof | 660771,A1350,Frame: Beams | Roof | 660771,Roof,Structural_Schedule.csv:660771,2029-10-06T03:03:27.839999999,2029-10-06T03:23:27.839999999
+660739,Frame: Beams | Roof | 660739,A1350,Frame: Beams | Roof | 660739,Roof,Structural_Schedule.csv:660739,2029-10-06T03:23:27.839999999,2029-10-06T03:43:27.839999999
+660706,Frame: Beams | Roof | 660706,A1350,Frame: Beams | Roof | 660706,Roof,Structural_Schedule.csv:660706,2029-10-06T03:43:27.839999999,2029-10-06T04:03:27.839999999
+660641,Frame: Beams | Roof | 660641,A1350,Frame: Beams | Roof | 660641,Roof,Structural_Schedule.csv:660641,2029-10-06T04:03:27.839999999,2029-10-06T04:23:27.839999999
+660669,Frame: Beams | Roof | 660669,A1350,Frame: Beams | Roof | 660669,Roof,Structural_Schedule.csv:660669,2029-10-06T04:23:27.839999999,2029-10-06T04:43:27.839999999
+661390,Frame: Beams | Roof | 661390,A1350,Frame: Beams | Roof | 661390,Roof,Structural_Schedule.csv:661390,2029-10-06T04:43:27.839999999,2029-10-06T05:03:27.839999999
+650141,Frame: Beams | Roof | 650141,A1350,Frame: Beams | Roof | 650141,Roof,Structural_Schedule.csv:650141,2029-10-06T05:03:27.839999999,2029-10-06T05:23:27.839999999
+629989,Frame: Beams | Roof | 629989,A1350,Frame: Beams | Roof | 629989,Roof,Structural_Schedule.csv:629989,2029-10-06T05:23:27.839999999,2029-10-06T05:43:27.839999999
+607687,Frame: Beams | Roof | 607687,A1350,Frame: Beams | Roof | 607687,Roof,Structural_Schedule.csv:607687,2029-10-06T05:43:27.839999999,2029-10-06T06:03:27.839999999
+607693,Frame: Beams | Roof | 607693,A1350,Frame: Beams | Roof | 607693,Roof,Structural_Schedule.csv:607693,2029-10-06T06:03:27.839999999,2029-10-06T06:23:27.839999999
+659596,Frame: Beams | Roof | 659596,A1350,Frame: Beams | Roof | 659596,Roof,Structural_Schedule.csv:659596,2029-10-06T06:23:27.839999999,2029-10-06T06:43:27.839999999
+607692,Frame: Beams | Roof | 607692,A1350,Frame: Beams | Roof | 607692,Roof,Structural_Schedule.csv:607692,2029-10-06T06:43:27.839999999,2029-10-06T07:03:27.839999999
+607691,Frame: Beams | Roof | 607691,A1350,Frame: Beams | Roof | 607691,Roof,Structural_Schedule.csv:607691,2029-10-06T07:03:27.839999999,2029-10-06T07:23:27.839999999
+607690,Frame: Beams | Roof | 607690,A1350,Frame: Beams | Roof | 607690,Roof,Structural_Schedule.csv:607690,2029-10-06T07:23:27.839999999,2029-10-06T07:43:27.839999999
+607689,Frame: Beams | Roof | 607689,A1350,Frame: Beams | Roof | 607689,Roof,Structural_Schedule.csv:607689,2029-10-06T07:43:27.839999999,2029-10-06T08:03:27.839999999
+607688,Frame: Beams | Roof | 607688,A1350,Frame: Beams | Roof | 607688,Roof,Structural_Schedule.csv:607688,2029-10-06T08:03:27.839999999,2029-10-06T08:23:27.839999999
+607684,Frame: Beams | Roof | 607684,A1350,Frame: Beams | Roof | 607684,Roof,Structural_Schedule.csv:607684,2029-10-06T08:23:27.839999999,2029-10-06T08:43:27.839999999
+659039,Frame: Beams | Roof | 659039,A1350,Frame: Beams | Roof | 659039,Roof,Structural_Schedule.csv:659039,2029-10-06T08:43:27.839999999,2029-10-06T09:03:27.839999999
+633194,Frame: Beams | Roof | 633194,A1350,Frame: Beams | Roof | 633194,Roof,Structural_Schedule.csv:633194,2029-10-06T09:03:27.839999999,2029-10-06T09:23:27.839999999
+607685,Frame: Beams | Roof | 607685,A1350,Frame: Beams | Roof | 607685,Roof,Structural_Schedule.csv:607685,2029-10-06T09:23:27.839999999,2029-10-06T09:43:27.839999999
+607686,Frame: Beams | Roof | 607686,A1350,Frame: Beams | Roof | 607686,Roof,Structural_Schedule.csv:607686,2029-10-06T09:43:27.839999999,2029-10-06T10:03:27.839999999
+650432,Frame: Beams | Roof | 650432,A1350,Frame: Beams | Roof | 650432,Roof,Structural_Schedule.csv:650432,2029-10-06T10:03:27.839999999,2029-10-06T10:23:27.839999999
+659040,Frame: Beams | Roof | 659040,A1350,Frame: Beams | Roof | 659040,Roof,Structural_Schedule.csv:659040,2029-10-06T10:23:27.839999999,2029-10-06T10:43:27.839999999
+662462,Frame: Beams | Roof | 662462,A1350,Frame: Beams | Roof | 662462,Roof,Structural_Schedule.csv:662462,2029-10-06T10:43:27.839999999,2029-10-06T11:03:27.839999999
+662491,Frame: Beams | Roof | 662491,A1350,Frame: Beams | Roof | 662491,Roof,Structural_Schedule.csv:662491,2029-10-06T11:03:27.839999999,2029-10-06T11:23:27.839999999
+662530,Frame: Beams | Roof | 662530,A1350,Frame: Beams | Roof | 662530,Roof,Structural_Schedule.csv:662530,2029-10-06T11:23:27.839999999,2029-10-06T11:43:27.839999999
+662560,Frame: Beams | Roof | 662560,A1350,Frame: Beams | Roof | 662560,Roof,Structural_Schedule.csv:662560,2029-10-06T11:43:27.839999999,2029-10-06T12:03:27.839999999
+647342,Frame: Beams | Roof | 647342,A1350,Frame: Beams | Roof | 647342,Roof,Structural_Schedule.csv:647342,2029-10-06T12:03:27.839999999,2029-10-06T12:23:27.839999999
+647379,Frame: Beams | Roof | 647379,A1350,Frame: Beams | Roof | 647379,Roof,Structural_Schedule.csv:647379,2029-10-06T12:23:27.839999999,2029-10-06T12:43:27.839999999
+648366,Frame: Beams | Roof | 648366,A1350,Frame: Beams | Roof | 648366,Roof,Structural_Schedule.csv:648366,2029-10-06T12:43:27.839999999,2029-10-06T13:03:27.839999999
+648230,Frame: Beams | Roof | 648230,A1350,Frame: Beams | Roof | 648230,Roof,Structural_Schedule.csv:648230,2029-10-06T13:03:27.839999999,2029-10-06T13:23:27.839999999
+647424,Frame: Beams | Roof | 647424,A1350,Frame: Beams | Roof | 647424,Roof,Structural_Schedule.csv:647424,2029-10-06T13:23:27.839999999,2029-10-06T13:43:27.839999999
+647454,Frame: Beams | Roof | 647454,A1350,Frame: Beams | Roof | 647454,Roof,Structural_Schedule.csv:647454,2029-10-06T13:43:27.839999999,2029-10-06T14:03:27.839999999
+631022,Roof | Roof | 631022,A1420,Roof | Roof | 631022,Roof,Architecture_TakeOff.csv:631022,2029-10-12T15:40:00,2029-10-12T16:40:00
+1945118,Facade Install + Glazing | L -1 | 1945118,A1590,Facade Install + Glazing | L -1 | 1945118,L -1,Architecture_TakeOff.csv:1945118,2029-10-12T16:40:00,2029-10-12T17:00:00
+1945120,Facade Install + Glazing | L -1 | 1945120,A1590,Facade Install + Glazing | L -1 | 1945120,L -1,Architecture_TakeOff.csv:1945120,2029-10-15T09:00:00,2029-10-15T09:20:00
+1945122,Facade Install + Glazing | L -1 | 1945122,A1590,Facade Install + Glazing | L -1 | 1945122,L -1,Architecture_TakeOff.csv:1945122,2029-10-15T09:20:00,2029-10-15T09:40:00
+1945337,Facade Install + Glazing | L -1 | 1945337,A1590,Facade Install + Glazing | L -1 | 1945337,L -1,Architecture_TakeOff.csv:1945337,2029-10-15T09:40:00,2029-10-15T10:00:00
+1945339,Facade Install + Glazing | L -1 | 1945339,A1590,Facade Install + Glazing | L -1 | 1945339,L -1,Architecture_TakeOff.csv:1945339,2029-10-15T10:00:00,2029-10-15T10:20:00
+1945028,Facade Install + Glazing | L -1 | 1945028,A1590,Facade Install + Glazing | L -1 | 1945028,L -1,Architecture_TakeOff.csv:1945028,2029-10-15T10:20:00,2029-10-15T10:40:00
+1945030,Facade Install + Glazing | L -1 | 1945030,A1590,Facade Install + Glazing | L -1 | 1945030,L -1,Architecture_TakeOff.csv:1945030,2029-10-15T10:40:00,2029-10-15T11:00:00
+1944946,Facade Install + Glazing | L -1 | 1944946,A1590,Facade Install + Glazing | L -1 | 1944946,L -1,Architecture_TakeOff.csv:1944946,2029-10-15T11:00:00,2029-10-15T11:20:00
+1944948,Facade Install + Glazing | L -1 | 1944948,A1590,Facade Install + Glazing | L -1 | 1944948,L -1,Architecture_TakeOff.csv:1944948,2029-10-15T11:20:00,2029-10-15T11:40:00
+1945645,Facade Install + Glazing | L -1 | 1945645,A1590,Facade Install + Glazing | L -1 | 1945645,L -1,Architecture_TakeOff.csv:1945645,2029-10-15T11:40:00,2029-10-15T12:00:00
+1945647,Facade Install + Glazing | L -1 | 1945647,A1590,Facade Install + Glazing | L -1 | 1945647,L -1,Architecture_TakeOff.csv:1945647,2029-10-15T12:00:00,2029-10-15T12:20:00
+1944467,Facade Install + Glazing | L -1 | 1944467,A1590,Facade Install + Glazing | L -1 | 1944467,L -1,Architecture_TakeOff.csv:1944467,2029-10-15T12:20:00,2029-10-15T12:40:00
+1944471,Facade Install + Glazing | L -1 | 1944471,A1590,Facade Install + Glazing | L -1 | 1944471,L -1,Architecture_TakeOff.csv:1944471,2029-10-15T12:40:00,2029-10-15T13:00:00
+1944473,Facade Install + Glazing | L -1 | 1944473,A1590,Facade Install + Glazing | L -1 | 1944473,L -1,Architecture_TakeOff.csv:1944473,2029-10-15T13:00:00,2029-10-15T13:20:00
+1946441,Facade Install + Glazing | L -1 | 1946441,A1590,Facade Install + Glazing | L -1 | 1946441,L -1,Architecture_TakeOff.csv:1946441,2029-10-15T13:20:00,2029-10-15T13:40:00
+1946443,Facade Install + Glazing | L -1 | 1946443,A1590,Facade Install + Glazing | L -1 | 1946443,L -1,Architecture_TakeOff.csv:1946443,2029-10-15T13:40:00,2029-10-15T14:00:00
+1946445,Facade Install + Glazing | L -1 | 1946445,A1590,Facade Install + Glazing | L -1 | 1946445,L -1,Architecture_TakeOff.csv:1946445,2029-10-15T14:00:00,2029-10-15T14:20:00
+1778130,Facade Install + Glazing | L 0 | 1778130,A1590,Facade Install + Glazing | L 0 | 1778130,L 0,Architecture_TakeOff.csv:1778130,2029-10-15T14:20:00,2029-10-15T14:40:00
+1778134,Facade Install + Glazing | L 0 | 1778134,A1590,Facade Install + Glazing | L 0 | 1778134,L 0,Architecture_TakeOff.csv:1778134,2029-10-15T14:40:00,2029-10-15T15:00:00
+1778128,Facade Install + Glazing | L 0 | 1778128,A1590,Facade Install + Glazing | L 0 | 1778128,L 0,Architecture_TakeOff.csv:1778128,2029-10-15T15:00:00,2029-10-15T15:20:00
+1778133,Facade Install + Glazing | L 0 | 1778133,A1590,Facade Install + Glazing | L 0 | 1778133,L 0,Architecture_TakeOff.csv:1778133,2029-10-15T15:20:00,2029-10-15T15:40:00
+1778123,Facade Install + Glazing | L 0 | 1778123,A1590,Facade Install + Glazing | L 0 | 1778123,L 0,Architecture_TakeOff.csv:1778123,2029-10-15T15:40:00,2029-10-15T16:00:00
+1778132,Facade Install + Glazing | L 0 | 1778132,A1590,Facade Install + Glazing | L 0 | 1778132,L 0,Architecture_TakeOff.csv:1778132,2029-10-15T16:00:00,2029-10-15T16:20:00
+1937484,Facade Install + Glazing | L 0 | 1937484,A1590,Facade Install + Glazing | L 0 | 1937484,L 0,Architecture_TakeOff.csv:1937484,2029-10-15T16:20:00,2029-10-15T16:40:00
+1937488,Facade Install + Glazing | L 0 | 1937488,A1590,Facade Install + Glazing | L 0 | 1937488,L 0,Architecture_TakeOff.csv:1937488,2029-10-15T16:40:00,2029-10-15T17:00:00
+1937482,Facade Install + Glazing | L 0 | 1937482,A1590,Facade Install + Glazing | L 0 | 1937482,L 0,Architecture_TakeOff.csv:1937482,2029-10-16T09:00:00,2029-10-16T09:20:00
+1937487,Facade Install + Glazing | L 0 | 1937487,A1590,Facade Install + Glazing | L 0 | 1937487,L 0,Architecture_TakeOff.csv:1937487,2029-10-16T09:20:00,2029-10-16T09:40:00
+1937480,Facade Install + Glazing | L 0 | 1937480,A1590,Facade Install + Glazing | L 0 | 1937480,L 0,Architecture_TakeOff.csv:1937480,2029-10-16T09:40:00,2029-10-16T10:00:00
+1937486,Facade Install + Glazing | L 0 | 1937486,A1590,Facade Install + Glazing | L 0 | 1937486,L 0,Architecture_TakeOff.csv:1937486,2029-10-16T10:00:00,2029-10-16T10:20:00
+1937727,Facade Install + Glazing | L 0 | 1937727,A1590,Facade Install + Glazing | L 0 | 1937727,L 0,Architecture_TakeOff.csv:1937727,2029-10-16T10:20:00,2029-10-16T10:40:00
+1937731,Facade Install + Glazing | L 0 | 1937731,A1590,Facade Install + Glazing | L 0 | 1937731,L 0,Architecture_TakeOff.csv:1937731,2029-10-16T10:40:00,2029-10-16T11:00:00
+1937725,Facade Install + Glazing | L 0 | 1937725,A1590,Facade Install + Glazing | L 0 | 1937725,L 0,Architecture_TakeOff.csv:1937725,2029-10-16T11:00:00,2029-10-16T11:20:00
+1937730,Facade Install + Glazing | L 0 | 1937730,A1590,Facade Install + Glazing | L 0 | 1937730,L 0,Architecture_TakeOff.csv:1937730,2029-10-16T11:20:00,2029-10-16T11:40:00
+1937723,Facade Install + Glazing | L 0 | 1937723,A1590,Facade Install + Glazing | L 0 | 1937723,L 0,Architecture_TakeOff.csv:1937723,2029-10-16T11:40:00,2029-10-16T12:00:00
+1937729,Facade Install + Glazing | L 0 | 1937729,A1590,Facade Install + Glazing | L 0 | 1937729,L 0,Architecture_TakeOff.csv:1937729,2029-10-16T12:00:00,2029-10-16T12:20:00
+1937896,Facade Install + Glazing | L 0 | 1937896,A1590,Facade Install + Glazing | L 0 | 1937896,L 0,Architecture_TakeOff.csv:1937896,2029-10-16T12:20:00,2029-10-16T12:40:00
+1937900,Facade Install + Glazing | L 0 | 1937900,A1590,Facade Install + Glazing | L 0 | 1937900,L 0,Architecture_TakeOff.csv:1937900,2029-10-16T12:40:00,2029-10-16T13:00:00
+1937894,Facade Install + Glazing | L 0 | 1937894,A1590,Facade Install + Glazing | L 0 | 1937894,L 0,Architecture_TakeOff.csv:1937894,2029-10-16T13:00:00,2029-10-16T13:20:00
+1937899,Facade Install + Glazing | L 0 | 1937899,A1590,Facade Install + Glazing | L 0 | 1937899,L 0,Architecture_TakeOff.csv:1937899,2029-10-16T13:20:00,2029-10-16T13:40:00
+1937892,Facade Install + Glazing | L 0 | 1937892,A1590,Facade Install + Glazing | L 0 | 1937892,L 0,Architecture_TakeOff.csv:1937892,2029-10-16T13:40:00,2029-10-16T14:00:00
+1937898,Facade Install + Glazing | L 0 | 1937898,A1590,Facade Install + Glazing | L 0 | 1937898,L 0,Architecture_TakeOff.csv:1937898,2029-10-16T14:00:00,2029-10-16T14:20:00
+1938067,Facade Install + Glazing | L 0 | 1938067,A1590,Facade Install + Glazing | L 0 | 1938067,L 0,Architecture_TakeOff.csv:1938067,2029-10-16T14:20:00,2029-10-16T14:40:00
+1938071,Facade Install + Glazing | L 0 | 1938071,A1590,Facade Install + Glazing | L 0 | 1938071,L 0,Architecture_TakeOff.csv:1938071,2029-10-16T14:40:00,2029-10-16T15:00:00
+1938065,Facade Install + Glazing | L 0 | 1938065,A1590,Facade Install + Glazing | L 0 | 1938065,L 0,Architecture_TakeOff.csv:1938065,2029-10-16T15:00:00,2029-10-16T15:20:00
+1938070,Facade Install + Glazing | L 0 | 1938070,A1590,Facade Install + Glazing | L 0 | 1938070,L 0,Architecture_TakeOff.csv:1938070,2029-10-16T15:20:00,2029-10-16T15:40:00
+1938063,Facade Install + Glazing | L 0 | 1938063,A1590,Facade Install + Glazing | L 0 | 1938063,L 0,Architecture_TakeOff.csv:1938063,2029-10-16T15:40:00,2029-10-16T16:00:00
+1938069,Facade Install + Glazing | L 0 | 1938069,A1590,Facade Install + Glazing | L 0 | 1938069,L 0,Architecture_TakeOff.csv:1938069,2029-10-16T16:00:00,2029-10-16T16:20:00
+1949441,Facade Install + Glazing | L 0 | 1949441,A1590,Facade Install + Glazing | L 0 | 1949441,L 0,Architecture_TakeOff.csv:1949441,2029-10-16T16:20:00,2029-10-16T16:40:00
+1949442,Facade Install + Glazing | L 0 | 1949442,A1590,Facade Install + Glazing | L 0 | 1949442,L 0,Architecture_TakeOff.csv:1949442,2029-10-16T16:40:00,2029-10-16T17:00:00
+1938173,Facade Install + Glazing | L 0 | 1938173,A1590,Facade Install + Glazing | L 0 | 1938173,L 0,Architecture_TakeOff.csv:1938173,2029-10-17T09:00:00,2029-10-17T09:20:00
+1938177,Facade Install + Glazing | L 0 | 1938177,A1590,Facade Install + Glazing | L 0 | 1938177,L 0,Architecture_TakeOff.csv:1938177,2029-10-17T09:20:00,2029-10-17T09:40:00
+1949438,Facade Install + Glazing | L 0 | 1949438,A1590,Facade Install + Glazing | L 0 | 1949438,L 0,Architecture_TakeOff.csv:1949438,2029-10-17T09:40:00,2029-10-17T10:00:00
+1949439,Facade Install + Glazing | L 0 | 1949439,A1590,Facade Install + Glazing | L 0 | 1949439,L 0,Architecture_TakeOff.csv:1949439,2029-10-17T10:00:00,2029-10-17T10:20:00
+1938171,Facade Install + Glazing | L 0 | 1938171,A1590,Facade Install + Glazing | L 0 | 1938171,L 0,Architecture_TakeOff.csv:1938171,2029-10-17T10:20:00,2029-10-17T10:40:00
+1938176,Facade Install + Glazing | L 0 | 1938176,A1590,Facade Install + Glazing | L 0 | 1938176,L 0,Architecture_TakeOff.csv:1938176,2029-10-17T10:40:00,2029-10-17T11:00:00
+1949151,Facade Install + Glazing | L 0 | 1949151,A1590,Facade Install + Glazing | L 0 | 1949151,L 0,Architecture_TakeOff.csv:1949151,2029-10-17T11:00:00,2029-10-17T11:20:00
+1949155,Facade Install + Glazing | L 0 | 1949155,A1590,Facade Install + Glazing | L 0 | 1949155,L 0,Architecture_TakeOff.csv:1949155,2029-10-17T11:20:00,2029-10-17T11:40:00
+1938169,Facade Install + Glazing | L 0 | 1938169,A1590,Facade Install + Glazing | L 0 | 1938169,L 0,Architecture_TakeOff.csv:1938169,2029-10-17T11:40:00,2029-10-17T12:00:00
+1938175,Facade Install + Glazing | L 0 | 1938175,A1590,Facade Install + Glazing | L 0 | 1938175,L 0,Architecture_TakeOff.csv:1938175,2029-10-17T12:00:00,2029-10-17T12:20:00
+1949149,Facade Install + Glazing | L 0 | 1949149,A1590,Facade Install + Glazing | L 0 | 1949149,L 0,Architecture_TakeOff.csv:1949149,2029-10-17T12:20:00,2029-10-17T12:40:00
+1949154,Facade Install + Glazing | L 0 | 1949154,A1590,Facade Install + Glazing | L 0 | 1949154,L 0,Architecture_TakeOff.csv:1949154,2029-10-17T12:40:00,2029-10-17T13:00:00
+1949147,Facade Install + Glazing | L 0 | 1949147,A1590,Facade Install + Glazing | L 0 | 1949147,L 0,Architecture_TakeOff.csv:1949147,2029-10-17T13:00:00,2029-10-17T13:20:00
+1949153,Facade Install + Glazing | L 0 | 1949153,A1590,Facade Install + Glazing | L 0 | 1949153,L 0,Architecture_TakeOff.csv:1949153,2029-10-17T13:20:00,2029-10-17T13:40:00
+1789372,Facade Install + Glazing | L 0 | 1789372,A1590,Facade Install + Glazing | L 0 | 1789372,L 0,Architecture_TakeOff.csv:1789372,2029-10-17T13:40:00,2029-10-17T14:00:00
+1789377,Facade Install + Glazing | L 0 | 1789377,A1590,Facade Install + Glazing | L 0 | 1789377,L 0,Architecture_TakeOff.csv:1789377,2029-10-17T14:00:00,2029-10-17T14:20:00
+1947649,Facade Install + Glazing | L 0 | 1947649,A1590,Facade Install + Glazing | L 0 | 1947649,L 0,Architecture_TakeOff.csv:1947649,2029-10-17T14:20:00,2029-10-17T14:40:00
+1953540,Facade Install + Glazing | L 0 | 1953540,A1590,Facade Install + Glazing | L 0 | 1953540,L 0,Architecture_TakeOff.csv:1953540,2029-10-17T14:40:00,2029-10-17T15:00:00
+1953542,Facade Install + Glazing | L 0 | 1953542,A1590,Facade Install + Glazing | L 0 | 1953542,L 0,Architecture_TakeOff.csv:1953542,2029-10-17T15:00:00,2029-10-17T15:20:00
+1947647,Facade Install + Glazing | L 0 | 1947647,A1590,Facade Install + Glazing | L 0 | 1947647,L 0,Architecture_TakeOff.csv:1947647,2029-10-17T15:20:00,2029-10-17T15:40:00
+1947267,Facade Install + Glazing | L 0 | 1947267,A1590,Facade Install + Glazing | L 0 | 1947267,L 0,Architecture_TakeOff.csv:1947267,2029-10-17T15:40:00,2029-10-17T16:00:00
+1952949,Facade Install + Glazing | L 0 | 1952949,A1590,Facade Install + Glazing | L 0 | 1952949,L 0,Architecture_TakeOff.csv:1952949,2029-10-17T16:00:00,2029-10-17T16:20:00
+1952951,Facade Install + Glazing | L 0 | 1952951,A1590,Facade Install + Glazing | L 0 | 1952951,L 0,Architecture_TakeOff.csv:1952951,2029-10-17T16:20:00,2029-10-17T16:40:00
+1947263,Facade Install + Glazing | L 0 | 1947263,A1590,Facade Install + Glazing | L 0 | 1947263,L 0,Architecture_TakeOff.csv:1947263,2029-10-17T16:40:00,2029-10-17T17:00:00
+1789250,Facade Install + Glazing | L 0 | 1789250,A1590,Facade Install + Glazing | L 0 | 1789250,L 0,Architecture_TakeOff.csv:1789250,2029-10-18T09:00:00,2029-10-18T09:20:00
+1789255,Facade Install + Glazing | L 0 | 1789255,A1590,Facade Install + Glazing | L 0 | 1789255,L 0,Architecture_TakeOff.csv:1789255,2029-10-18T09:20:00,2029-10-18T09:40:00
+1721571,Facade Install + Glazing | L 0 | 1721571,A1590,Facade Install + Glazing | L 0 | 1721571,L 0,Architecture_TakeOff.csv:1721571,2029-10-18T09:40:00,2029-10-18T10:00:00
+1721584,Facade Install + Glazing | L 0 | 1721584,A1590,Facade Install + Glazing | L 0 | 1721584,L 0,Architecture_TakeOff.csv:1721584,2029-10-18T10:00:00,2029-10-18T10:20:00
+1926892,Facade Install + Glazing | L 0 | 1926892,A1590,Facade Install + Glazing | L 0 | 1926892,L 0,Architecture_TakeOff.csv:1926892,2029-10-18T10:20:00,2029-10-18T10:40:00
+1721569,Facade Install + Glazing | L 0 | 1721569,A1590,Facade Install + Glazing | L 0 | 1721569,L 0,Architecture_TakeOff.csv:1721569,2029-10-18T10:40:00,2029-10-18T11:00:00
+1721583,Facade Install + Glazing | L 0 | 1721583,A1590,Facade Install + Glazing | L 0 | 1721583,L 0,Architecture_TakeOff.csv:1721583,2029-10-18T11:00:00,2029-10-18T11:20:00
+1926891,Facade Install + Glazing | L 0 | 1926891,A1590,Facade Install + Glazing | L 0 | 1926891,L 0,Architecture_TakeOff.csv:1926891,2029-10-18T11:20:00,2029-10-18T11:40:00
+1721567,Facade Install + Glazing | L 0 | 1721567,A1590,Facade Install + Glazing | L 0 | 1721567,L 0,Architecture_TakeOff.csv:1721567,2029-10-18T11:40:00,2029-10-18T12:00:00
+1721582,Facade Install + Glazing | L 0 | 1721582,A1590,Facade Install + Glazing | L 0 | 1721582,L 0,Architecture_TakeOff.csv:1721582,2029-10-18T12:00:00,2029-10-18T12:20:00
+1926890,Facade Install + Glazing | L 0 | 1926890,A1590,Facade Install + Glazing | L 0 | 1926890,L 0,Architecture_TakeOff.csv:1926890,2029-10-18T12:20:00,2029-10-18T12:40:00
+1721556,Facade Install + Glazing | L 0 | 1721556,A1590,Facade Install + Glazing | L 0 | 1721556,L 0,Architecture_TakeOff.csv:1721556,2029-10-18T12:40:00,2029-10-18T13:00:00
+1721581,Facade Install + Glazing | L 0 | 1721581,A1590,Facade Install + Glazing | L 0 | 1721581,L 0,Architecture_TakeOff.csv:1721581,2029-10-18T13:00:00,2029-10-18T13:20:00
+1926889,Facade Install + Glazing | L 0 | 1926889,A1590,Facade Install + Glazing | L 0 | 1926889,L 0,Architecture_TakeOff.csv:1926889,2029-10-18T13:20:00,2029-10-18T13:40:00
+1787152,Facade Install + Glazing | L 0 | 1787152,A1590,Facade Install + Glazing | L 0 | 1787152,L 0,Architecture_TakeOff.csv:1787152,2029-10-18T13:40:00,2029-10-18T14:00:00
+1787163,Facade Install + Glazing | L 0 | 1787163,A1590,Facade Install + Glazing | L 0 | 1787163,L 0,Architecture_TakeOff.csv:1787163,2029-10-18T14:00:00,2029-10-18T14:20:00
+1918001,Facade Install + Glazing | L 0 | 1918001,A1590,Facade Install + Glazing | L 0 | 1918001,L 0,Architecture_TakeOff.csv:1918001,2029-10-18T14:20:00,2029-10-18T14:40:00
+1787157,Facade Install + Glazing | L 0 | 1787157,A1590,Facade Install + Glazing | L 0 | 1787157,L 0,Architecture_TakeOff.csv:1787157,2029-10-18T14:40:00,2029-10-18T15:00:00
+1787164,Facade Install + Glazing | L 0 | 1787164,A1590,Facade Install + Glazing | L 0 | 1787164,L 0,Architecture_TakeOff.csv:1787164,2029-10-18T15:00:00,2029-10-18T15:20:00
+1918002,Facade Install + Glazing | L 0 | 1918002,A1590,Facade Install + Glazing | L 0 | 1918002,L 0,Architecture_TakeOff.csv:1918002,2029-10-18T15:20:00,2029-10-18T15:40:00
+1787159,Facade Install + Glazing | L 0 | 1787159,A1590,Facade Install + Glazing | L 0 | 1787159,L 0,Architecture_TakeOff.csv:1787159,2029-10-18T15:40:00,2029-10-18T16:00:00
+1787165,Facade Install + Glazing | L 0 | 1787165,A1590,Facade Install + Glazing | L 0 | 1787165,L 0,Architecture_TakeOff.csv:1787165,2029-10-18T16:00:00,2029-10-18T16:20:00
+1918003,Facade Install + Glazing | L 0 | 1918003,A1590,Facade Install + Glazing | L 0 | 1918003,L 0,Architecture_TakeOff.csv:1918003,2029-10-18T16:20:00,2029-10-18T16:40:00
+1787161,Facade Install + Glazing | L 0 | 1787161,A1590,Facade Install + Glazing | L 0 | 1787161,L 0,Architecture_TakeOff.csv:1787161,2029-10-18T16:40:00,2029-10-18T17:00:00
+1787166,Facade Install + Glazing | L 0 | 1787166,A1590,Facade Install + Glazing | L 0 | 1787166,L 0,Architecture_TakeOff.csv:1787166,2029-10-19T09:00:00,2029-10-19T09:20:00
+1918004,Facade Install + Glazing | L 0 | 1918004,A1590,Facade Install + Glazing | L 0 | 1918004,L 0,Architecture_TakeOff.csv:1918004,2029-10-19T09:20:00,2029-10-19T09:40:00
+1722053,Facade Install + Glazing | L 1 | 1722053,A1590,Facade Install + Glazing | L 1 | 1722053,L 1,Architecture_TakeOff.csv:1722053,2029-10-19T09:40:00,2029-10-19T10:00:00
+1935601,Facade Install + Glazing | L 1 | 1935601,A1590,Facade Install + Glazing | L 1 | 1935601,L 1,Architecture_TakeOff.csv:1935601,2029-10-19T10:00:00,2029-10-19T10:20:00
+1935599,Facade Install + Glazing | L 1 | 1935599,A1590,Facade Install + Glazing | L 1 | 1935599,L 1,Architecture_TakeOff.csv:1935599,2029-10-19T10:20:00,2029-10-19T10:40:00
+1935492,Facade Install + Glazing | L 1 | 1935492,A1590,Facade Install + Glazing | L 1 | 1935492,L 1,Architecture_TakeOff.csv:1935492,2029-10-19T10:40:00,2029-10-19T11:00:00
+1935490,Facade Install + Glazing | L 1 | 1935490,A1590,Facade Install + Glazing | L 1 | 1935490,L 1,Architecture_TakeOff.csv:1935490,2029-10-19T11:00:00,2029-10-19T11:20:00
+1935424,Facade Install + Glazing | L 1 | 1935424,A1590,Facade Install + Glazing | L 1 | 1935424,L 1,Architecture_TakeOff.csv:1935424,2029-10-19T11:20:00,2029-10-19T11:40:00
+1935422,Facade Install + Glazing | L 1 | 1935422,A1590,Facade Install + Glazing | L 1 | 1935422,L 1,Architecture_TakeOff.csv:1935422,2029-10-19T11:40:00,2029-10-19T12:00:00
+1935356,Facade Install + Glazing | L 1 | 1935356,A1590,Facade Install + Glazing | L 1 | 1935356,L 1,Architecture_TakeOff.csv:1935356,2029-10-19T12:00:00,2029-10-19T12:20:00
+1935354,Facade Install + Glazing | L 1 | 1935354,A1590,Facade Install + Glazing | L 1 | 1935354,L 1,Architecture_TakeOff.csv:1935354,2029-10-19T12:20:00,2029-10-19T12:40:00
+1935288,Facade Install + Glazing | L 1 | 1935288,A1590,Facade Install + Glazing | L 1 | 1935288,L 1,Architecture_TakeOff.csv:1935288,2029-10-19T12:40:00,2029-10-19T13:00:00
+1935286,Facade Install + Glazing | L 1 | 1935286,A1590,Facade Install + Glazing | L 1 | 1935286,L 1,Architecture_TakeOff.csv:1935286,2029-10-19T13:00:00,2029-10-19T13:20:00
+1935220,Facade Install + Glazing | L 1 | 1935220,A1590,Facade Install + Glazing | L 1 | 1935220,L 1,Architecture_TakeOff.csv:1935220,2029-10-19T13:20:00,2029-10-19T13:40:00
+1935218,Facade Install + Glazing | L 1 | 1935218,A1590,Facade Install + Glazing | L 1 | 1935218,L 1,Architecture_TakeOff.csv:1935218,2029-10-19T13:40:00,2029-10-19T14:00:00
+1935152,Facade Install + Glazing | L 1 | 1935152,A1590,Facade Install + Glazing | L 1 | 1935152,L 1,Architecture_TakeOff.csv:1935152,2029-10-19T14:00:00,2029-10-19T14:20:00
+1935150,Facade Install + Glazing | L 1 | 1935150,A1590,Facade Install + Glazing | L 1 | 1935150,L 1,Architecture_TakeOff.csv:1935150,2029-10-19T14:20:00,2029-10-19T14:40:00
+1935084,Facade Install + Glazing | L 1 | 1935084,A1590,Facade Install + Glazing | L 1 | 1935084,L 1,Architecture_TakeOff.csv:1935084,2029-10-19T14:40:00,2029-10-19T15:00:00
+1935082,Facade Install + Glazing | L 1 | 1935082,A1590,Facade Install + Glazing | L 1 | 1935082,L 1,Architecture_TakeOff.csv:1935082,2029-10-19T15:00:00,2029-10-19T15:20:00
+1935010,Facade Install + Glazing | L 1 | 1935010,A1590,Facade Install + Glazing | L 1 | 1935010,L 1,Architecture_TakeOff.csv:1935010,2029-10-19T15:20:00,2029-10-19T15:40:00
+1935008,Facade Install + Glazing | L 1 | 1935008,A1590,Facade Install + Glazing | L 1 | 1935008,L 1,Architecture_TakeOff.csv:1935008,2029-10-19T15:40:00,2029-10-19T16:00:00
+1934942,Facade Install + Glazing | L 1 | 1934942,A1590,Facade Install + Glazing | L 1 | 1934942,L 1,Architecture_TakeOff.csv:1934942,2029-10-19T16:00:00,2029-10-19T16:20:00
+1934940,Facade Install + Glazing | L 1 | 1934940,A1590,Facade Install + Glazing | L 1 | 1934940,L 1,Architecture_TakeOff.csv:1934940,2029-10-19T16:20:00,2029-10-19T16:40:00
+1934815,Facade Install + Glazing | L 1 | 1934815,A1590,Facade Install + Glazing | L 1 | 1934815,L 1,Architecture_TakeOff.csv:1934815,2029-10-19T16:40:00,2029-10-19T17:00:00
+1934813,Facade Install + Glazing | L 1 | 1934813,A1590,Facade Install + Glazing | L 1 | 1934813,L 1,Architecture_TakeOff.csv:1934813,2029-10-22T09:00:00,2029-10-22T09:20:00
+1934745,Facade Install + Glazing | L 1 | 1934745,A1590,Facade Install + Glazing | L 1 | 1934745,L 1,Architecture_TakeOff.csv:1934745,2029-10-22T09:20:00,2029-10-22T09:40:00
+1934743,Facade Install + Glazing | L 1 | 1934743,A1590,Facade Install + Glazing | L 1 | 1934743,L 1,Architecture_TakeOff.csv:1934743,2029-10-22T09:40:00,2029-10-22T10:00:00
+1934571,Facade Install + Glazing | L 1 | 1934571,A1590,Facade Install + Glazing | L 1 | 1934571,L 1,Architecture_TakeOff.csv:1934571,2029-10-22T10:00:00,2029-10-22T10:20:00
+1934569,Facade Install + Glazing | L 1 | 1934569,A1590,Facade Install + Glazing | L 1 | 1934569,L 1,Architecture_TakeOff.csv:1934569,2029-10-22T10:20:00,2029-10-22T10:40:00
+1931353,Facade Install + Glazing | L 1 | 1931353,A1590,Facade Install + Glazing | L 1 | 1931353,L 1,Architecture_TakeOff.csv:1931353,2029-10-22T10:40:00,2029-10-22T11:00:00
+1931298,Facade Install + Glazing | L 1 | 1931298,A1590,Facade Install + Glazing | L 1 | 1931298,L 1,Architecture_TakeOff.csv:1931298,2029-10-22T11:00:00,2029-10-22T11:20:00
+1938803,Facade Install + Glazing | L 1 | 1938803,A1590,Facade Install + Glazing | L 1 | 1938803,L 1,Architecture_TakeOff.csv:1938803,2029-10-22T11:20:00,2029-10-22T11:40:00
+1938615,Facade Install + Glazing | L 1 | 1938615,A1590,Facade Install + Glazing | L 1 | 1938615,L 1,Architecture_TakeOff.csv:1938615,2029-10-22T11:40:00,2029-10-22T12:00:00
+1938617,Facade Install + Glazing | L 1 | 1938617,A1590,Facade Install + Glazing | L 1 | 1938617,L 1,Architecture_TakeOff.csv:1938617,2029-10-22T12:00:00,2029-10-22T12:20:00
+1938801,Facade Install + Glazing | L 1 | 1938801,A1590,Facade Install + Glazing | L 1 | 1938801,L 1,Architecture_TakeOff.csv:1938801,2029-10-22T12:20:00,2029-10-22T12:40:00
+1622167,Facade Install + Glazing | L 1 | 1622167,A1590,Facade Install + Glazing | L 1 | 1622167,L 1,Architecture_TakeOff.csv:1622167,2029-10-22T12:40:00,2029-10-22T13:00:00
+1622178,Facade Install + Glazing | L 1 | 1622178,A1590,Facade Install + Glazing | L 1 | 1622178,L 1,Architecture_TakeOff.csv:1622178,2029-10-22T13:00:00,2029-10-22T13:20:00
+1622174,Facade Install + Glazing | L 1 | 1622174,A1590,Facade Install + Glazing | L 1 | 1622174,L 1,Architecture_TakeOff.csv:1622174,2029-10-22T13:20:00,2029-10-22T13:40:00
+1622179,Facade Install + Glazing | L 1 | 1622179,A1590,Facade Install + Glazing | L 1 | 1622179,L 1,Architecture_TakeOff.csv:1622179,2029-10-22T13:40:00,2029-10-22T14:00:00
+1622180,Facade Install + Glazing | L 1 | 1622180,A1590,Facade Install + Glazing | L 1 | 1622180,L 1,Architecture_TakeOff.csv:1622180,2029-10-22T14:00:00,2029-10-22T14:20:00
+1722302,Facade Install + Glazing | L 1 | 1722302,A1590,Facade Install + Glazing | L 1 | 1722302,L 1,Architecture_TakeOff.csv:1722302,2029-10-22T14:20:00,2029-10-22T14:40:00
+1722313,Facade Install + Glazing | L 1 | 1722313,A1590,Facade Install + Glazing | L 1 | 1722313,L 1,Architecture_TakeOff.csv:1722313,2029-10-22T14:40:00,2029-10-22T15:00:00
+1939376,Facade Install + Glazing | L 1 | 1939376,A1590,Facade Install + Glazing | L 1 | 1939376,L 1,Architecture_TakeOff.csv:1939376,2029-10-22T15:00:00,2029-10-22T15:20:00
+1722309,Facade Install + Glazing | L 1 | 1722309,A1590,Facade Install + Glazing | L 1 | 1722309,L 1,Architecture_TakeOff.csv:1722309,2029-10-22T15:20:00,2029-10-22T15:40:00
+1722314,Facade Install + Glazing | L 1 | 1722314,A1590,Facade Install + Glazing | L 1 | 1722314,L 1,Architecture_TakeOff.csv:1722314,2029-10-22T15:40:00,2029-10-22T16:00:00
+1939374,Facade Install + Glazing | L 1 | 1939374,A1590,Facade Install + Glazing | L 1 | 1939374,L 1,Architecture_TakeOff.csv:1939374,2029-10-22T16:00:00,2029-10-22T16:20:00
+1929067,Facade Install + Glazing | L 1 | 1929067,A1590,Facade Install + Glazing | L 1 | 1929067,L 1,Architecture_TakeOff.csv:1929067,2029-10-22T16:20:00,2029-10-22T16:40:00
+1929077,Facade Install + Glazing | L 1 | 1929077,A1590,Facade Install + Glazing | L 1 | 1929077,L 1,Architecture_TakeOff.csv:1929077,2029-10-22T16:40:00,2029-10-22T17:00:00
+1929073,Facade Install + Glazing | L 1 | 1929073,A1590,Facade Install + Glazing | L 1 | 1929073,L 1,Architecture_TakeOff.csv:1929073,2029-10-23T09:00:00,2029-10-23T09:20:00
+1929078,Facade Install + Glazing | L 1 | 1929078,A1590,Facade Install + Glazing | L 1 | 1929078,L 1,Architecture_TakeOff.csv:1929078,2029-10-23T09:20:00,2029-10-23T09:40:00
+1929075,Facade Install + Glazing | L 1 | 1929075,A1590,Facade Install + Glazing | L 1 | 1929075,L 1,Architecture_TakeOff.csv:1929075,2029-10-23T09:40:00,2029-10-23T10:00:00
+1929079,Facade Install + Glazing | L 1 | 1929079,A1590,Facade Install + Glazing | L 1 | 1929079,L 1,Architecture_TakeOff.csv:1929079,2029-10-23T10:00:00,2029-10-23T10:20:00
+1928976,Facade Install + Glazing | L 1 | 1928976,A1590,Facade Install + Glazing | L 1 | 1928976,L 1,Architecture_TakeOff.csv:1928976,2029-10-23T10:20:00,2029-10-23T10:40:00
+1928986,Facade Install + Glazing | L 1 | 1928986,A1590,Facade Install + Glazing | L 1 | 1928986,L 1,Architecture_TakeOff.csv:1928986,2029-10-23T10:40:00,2029-10-23T11:00:00
+1928982,Facade Install + Glazing | L 1 | 1928982,A1590,Facade Install + Glazing | L 1 | 1928982,L 1,Architecture_TakeOff.csv:1928982,2029-10-23T11:00:00,2029-10-23T11:20:00
+1928987,Facade Install + Glazing | L 1 | 1928987,A1590,Facade Install + Glazing | L 1 | 1928987,L 1,Architecture_TakeOff.csv:1928987,2029-10-23T11:20:00,2029-10-23T11:40:00
+1928984,Facade Install + Glazing | L 1 | 1928984,A1590,Facade Install + Glazing | L 1 | 1928984,L 1,Architecture_TakeOff.csv:1928984,2029-10-23T11:40:00,2029-10-23T12:00:00
+1928988,Facade Install + Glazing | L 1 | 1928988,A1590,Facade Install + Glazing | L 1 | 1928988,L 1,Architecture_TakeOff.csv:1928988,2029-10-23T12:00:00,2029-10-23T12:20:00
+1928883,Facade Install + Glazing | L 1 | 1928883,A1590,Facade Install + Glazing | L 1 | 1928883,L 1,Architecture_TakeOff.csv:1928883,2029-10-23T12:20:00,2029-10-23T12:40:00
+1928893,Facade Install + Glazing | L 1 | 1928893,A1590,Facade Install + Glazing | L 1 | 1928893,L 1,Architecture_TakeOff.csv:1928893,2029-10-23T12:40:00,2029-10-23T13:00:00
+1928889,Facade Install + Glazing | L 1 | 1928889,A1590,Facade Install + Glazing | L 1 | 1928889,L 1,Architecture_TakeOff.csv:1928889,2029-10-23T13:00:00,2029-10-23T13:20:00
+1928894,Facade Install + Glazing | L 1 | 1928894,A1590,Facade Install + Glazing | L 1 | 1928894,L 1,Architecture_TakeOff.csv:1928894,2029-10-23T13:20:00,2029-10-23T13:40:00
+1928891,Facade Install + Glazing | L 1 | 1928891,A1590,Facade Install + Glazing | L 1 | 1928891,L 1,Architecture_TakeOff.csv:1928891,2029-10-23T13:40:00,2029-10-23T14:00:00
+1928895,Facade Install + Glazing | L 1 | 1928895,A1590,Facade Install + Glazing | L 1 | 1928895,L 1,Architecture_TakeOff.csv:1928895,2029-10-23T14:00:00,2029-10-23T14:20:00
+1928769,Facade Install + Glazing | L 1 | 1928769,A1590,Facade Install + Glazing | L 1 | 1928769,L 1,Architecture_TakeOff.csv:1928769,2029-10-23T14:20:00,2029-10-23T14:40:00
+1928779,Facade Install + Glazing | L 1 | 1928779,A1590,Facade Install + Glazing | L 1 | 1928779,L 1,Architecture_TakeOff.csv:1928779,2029-10-23T14:40:00,2029-10-23T15:00:00
+1928775,Facade Install + Glazing | L 1 | 1928775,A1590,Facade Install + Glazing | L 1 | 1928775,L 1,Architecture_TakeOff.csv:1928775,2029-10-23T15:00:00,2029-10-23T15:20:00
+1928780,Facade Install + Glazing | L 1 | 1928780,A1590,Facade Install + Glazing | L 1 | 1928780,L 1,Architecture_TakeOff.csv:1928780,2029-10-23T15:20:00,2029-10-23T15:40:00
+1928777,Facade Install + Glazing | L 1 | 1928777,A1590,Facade Install + Glazing | L 1 | 1928777,L 1,Architecture_TakeOff.csv:1928777,2029-10-23T15:40:00,2029-10-23T16:00:00
+1928781,Facade Install + Glazing | L 1 | 1928781,A1590,Facade Install + Glazing | L 1 | 1928781,L 1,Architecture_TakeOff.csv:1928781,2029-10-23T16:00:00,2029-10-23T16:20:00
+1383903,Facade Install + Glazing | L 1 | 1383903,A1590,Facade Install + Glazing | L 1 | 1383903,L 1,Architecture_TakeOff.csv:1383903,2029-10-23T16:20:00,2029-10-23T16:40:00
+1383938,Facade Install + Glazing | L 1 | 1383938,A1590,Facade Install + Glazing | L 1 | 1383938,L 1,Architecture_TakeOff.csv:1383938,2029-10-23T16:40:00,2029-10-23T17:00:00
+1383910,Facade Install + Glazing | L 1 | 1383910,A1590,Facade Install + Glazing | L 1 | 1383910,L 1,Architecture_TakeOff.csv:1383910,2029-10-24T09:00:00,2029-10-24T09:20:00
+1383939,Facade Install + Glazing | L 1 | 1383939,A1590,Facade Install + Glazing | L 1 | 1383939,L 1,Architecture_TakeOff.csv:1383939,2029-10-24T09:20:00,2029-10-24T09:40:00
+1383912,Facade Install + Glazing | L 1 | 1383912,A1590,Facade Install + Glazing | L 1 | 1383912,L 1,Architecture_TakeOff.csv:1383912,2029-10-24T09:40:00,2029-10-24T10:00:00
+1383940,Facade Install + Glazing | L 1 | 1383940,A1590,Facade Install + Glazing | L 1 | 1383940,L 1,Architecture_TakeOff.csv:1383940,2029-10-24T10:00:00,2029-10-24T10:20:00
+1722315,Facade Install + Glazing | L 1 | 1722315,A1590,Facade Install + Glazing | L 1 | 1722315,L 1,Architecture_TakeOff.csv:1722315,2029-10-24T10:20:00,2029-10-24T10:40:00
+1939986,Facade Install + Glazing | L 1 | 1939986,A1590,Facade Install + Glazing | L 1 | 1939986,L 1,Architecture_TakeOff.csv:1939986,2029-10-24T10:40:00,2029-10-24T11:00:00
+1939484,Facade Install + Glazing | L 1 | 1939484,A1590,Facade Install + Glazing | L 1 | 1939484,L 1,Architecture_TakeOff.csv:1939484,2029-10-24T11:00:00,2029-10-24T11:20:00
+1722039,Facade Install + Glazing | L 1 | 1722039,A1590,Facade Install + Glazing | L 1 | 1722039,L 1,Architecture_TakeOff.csv:1722039,2029-10-24T11:20:00,2029-10-24T11:40:00
+1722052,Facade Install + Glazing | L 1 | 1722052,A1590,Facade Install + Glazing | L 1 | 1722052,L 1,Architecture_TakeOff.csv:1722052,2029-10-24T11:40:00,2029-10-24T12:00:00
+1939482,Facade Install + Glazing | L 1 | 1939482,A1590,Facade Install + Glazing | L 1 | 1939482,L 1,Architecture_TakeOff.csv:1939482,2029-10-24T12:00:00,2029-10-24T12:20:00
+1722143,Facade Install + Glazing | L 1 | 1722143,A1590,Facade Install + Glazing | L 1 | 1722143,L 1,Architecture_TakeOff.csv:1722143,2029-10-24T12:20:00,2029-10-24T12:40:00
+1722150,Facade Install + Glazing | L 1 | 1722150,A1590,Facade Install + Glazing | L 1 | 1722150,L 1,Architecture_TakeOff.csv:1722150,2029-10-24T12:40:00,2029-10-24T13:00:00
+1940423,Facade Install + Glazing | L 1 | 1940423,A1590,Facade Install + Glazing | L 1 | 1940423,L 1,Architecture_TakeOff.csv:1940423,2029-10-24T13:00:00,2029-10-24T13:20:00
+2008777,Facade Install + Glazing | L 1 | 2008777,A1590,Facade Install + Glazing | L 1 | 2008777,L 1,Architecture_TakeOff.csv:2008777,2029-10-24T13:20:00,2029-10-24T13:40:00
+2008771,Facade Install + Glazing | L 1 | 2008771,A1590,Facade Install + Glazing | L 1 | 2008771,L 1,Architecture_TakeOff.csv:2008771,2029-10-24T13:40:00,2029-10-24T14:00:00
+2008776,Facade Install + Glazing | L 1 | 2008776,A1590,Facade Install + Glazing | L 1 | 2008776,L 1,Architecture_TakeOff.csv:2008776,2029-10-24T14:00:00,2029-10-24T14:20:00
+2008767,Facade Install + Glazing | L 1 | 2008767,A1590,Facade Install + Glazing | L 1 | 2008767,L 1,Architecture_TakeOff.csv:2008767,2029-10-24T14:20:00,2029-10-24T14:40:00
+2008775,Facade Install + Glazing | L 1 | 2008775,A1590,Facade Install + Glazing | L 1 | 2008775,L 1,Architecture_TakeOff.csv:2008775,2029-10-24T14:40:00,2029-10-24T15:00:00
+1940421,Facade Install + Glazing | L 1 | 1940421,A1590,Facade Install + Glazing | L 1 | 1940421,L 1,Architecture_TakeOff.csv:1940421,2029-10-24T15:00:00,2029-10-24T15:20:00
+1526333,Facade Install + Glazing | L 1 | 1526333,A1590,Facade Install + Glazing | L 1 | 1526333,L 1,Architecture_TakeOff.csv:1526333,2029-10-24T15:20:00,2029-10-24T15:40:00
+1526339,Facade Install + Glazing | L 1 | 1526339,A1590,Facade Install + Glazing | L 1 | 1526339,L 1,Architecture_TakeOff.csv:1526339,2029-10-24T15:40:00,2029-10-24T16:00:00
+1941767,Facade Install + Glazing | L 1 | 1941767,A1590,Facade Install + Glazing | L 1 | 1941767,L 1,Architecture_TakeOff.csv:1941767,2029-10-24T16:00:00,2029-10-24T16:20:00
+1526331,Facade Install + Glazing | L 1 | 1526331,A1590,Facade Install + Glazing | L 1 | 1526331,L 1,Architecture_TakeOff.csv:1526331,2029-10-24T16:20:00,2029-10-24T16:40:00
+1526338,Facade Install + Glazing | L 1 | 1526338,A1590,Facade Install + Glazing | L 1 | 1526338,L 1,Architecture_TakeOff.csv:1526338,2029-10-24T16:40:00,2029-10-24T17:00:00
+1941854,Facade Install + Glazing | L 1 | 1941854,A1590,Facade Install + Glazing | L 1 | 1941854,L 1,Architecture_TakeOff.csv:1941854,2029-10-25T09:00:00,2029-10-25T09:20:00
+1526322,Facade Install + Glazing | L 1 | 1526322,A1590,Facade Install + Glazing | L 1 | 1526322,L 1,Architecture_TakeOff.csv:1526322,2029-10-25T09:20:00,2029-10-25T09:40:00
+1526337,Facade Install + Glazing | L 1 | 1526337,A1590,Facade Install + Glazing | L 1 | 1526337,L 1,Architecture_TakeOff.csv:1526337,2029-10-25T09:40:00,2029-10-25T10:00:00
+1941769,Facade Install + Glazing | L 1 | 1941769,A1590,Facade Install + Glazing | L 1 | 1941769,L 1,Architecture_TakeOff.csv:1941769,2029-10-25T10:00:00,2029-10-25T10:20:00
+1941884,Facade Install + Glazing | L 1 | 1941884,A1590,Facade Install + Glazing | L 1 | 1941884,L 1,Architecture_TakeOff.csv:1941884,2029-10-25T10:20:00,2029-10-25T10:40:00
+1941886,Facade Install + Glazing | L 1 | 1941886,A1590,Facade Install + Glazing | L 1 | 1941886,L 1,Architecture_TakeOff.csv:1941886,2029-10-25T10:40:00,2029-10-25T11:00:00
+1940671,Facade Install + Glazing | L 1 | 1940671,A1590,Facade Install + Glazing | L 1 | 1940671,L 1,Architecture_TakeOff.csv:1940671,2029-10-25T11:00:00,2029-10-25T11:20:00
+1940669,Facade Install + Glazing | L 1 | 1940669,A1590,Facade Install + Glazing | L 1 | 1940669,L 1,Architecture_TakeOff.csv:1940669,2029-10-25T11:20:00,2029-10-25T11:40:00
+1940763,Facade Install + Glazing | L 1 | 1940763,A1590,Facade Install + Glazing | L 1 | 1940763,L 1,Architecture_TakeOff.csv:1940763,2029-10-25T11:40:00,2029-10-25T12:00:00
+1940761,Facade Install + Glazing | L 1 | 1940761,A1590,Facade Install + Glazing | L 1 | 1940761,L 1,Architecture_TakeOff.csv:1940761,2029-10-25T12:00:00,2029-10-25T12:20:00
+1941096,Facade Install + Glazing | L 1 | 1941096,A1590,Facade Install + Glazing | L 1 | 1941096,L 1,Architecture_TakeOff.csv:1941096,2029-10-25T12:20:00,2029-10-25T12:40:00
+1941094,Facade Install + Glazing | L 1 | 1941094,A1590,Facade Install + Glazing | L 1 | 1941094,L 1,Architecture_TakeOff.csv:1941094,2029-10-25T12:40:00,2029-10-25T13:00:00
+1941155,Facade Install + Glazing | L 1 | 1941155,A1590,Facade Install + Glazing | L 1 | 1941155,L 1,Architecture_TakeOff.csv:1941155,2029-10-25T13:00:00,2029-10-25T13:20:00
+1941153,Facade Install + Glazing | L 1 | 1941153,A1590,Facade Install + Glazing | L 1 | 1941153,L 1,Architecture_TakeOff.csv:1941153,2029-10-25T13:20:00,2029-10-25T13:40:00
+1941345,Facade Install + Glazing | L 1 | 1941345,A1590,Facade Install + Glazing | L 1 | 1941345,L 1,Architecture_TakeOff.csv:1941345,2029-10-25T13:40:00,2029-10-25T14:00:00
+1941343,Facade Install + Glazing | L 1 | 1941343,A1590,Facade Install + Glazing | L 1 | 1941343,L 1,Architecture_TakeOff.csv:1941343,2029-10-25T14:00:00,2029-10-25T14:20:00
+1941404,Facade Install + Glazing | L 1 | 1941404,A1590,Facade Install + Glazing | L 1 | 1941404,L 1,Architecture_TakeOff.csv:1941404,2029-10-25T14:20:00,2029-10-25T14:40:00
+1941402,Facade Install + Glazing | L 1 | 1941402,A1590,Facade Install + Glazing | L 1 | 1941402,L 1,Architecture_TakeOff.csv:1941402,2029-10-25T14:40:00,2029-10-25T15:00:00
+1941463,Facade Install + Glazing | L 1 | 1941463,A1590,Facade Install + Glazing | L 1 | 1941463,L 1,Architecture_TakeOff.csv:1941463,2029-10-25T15:00:00,2029-10-25T15:20:00
+1941461,Facade Install + Glazing | L 1 | 1941461,A1590,Facade Install + Glazing | L 1 | 1941461,L 1,Architecture_TakeOff.csv:1941461,2029-10-25T15:20:00,2029-10-25T15:40:00
+1941520,Facade Install + Glazing | L 1 | 1941520,A1590,Facade Install + Glazing | L 1 | 1941520,L 1,Architecture_TakeOff.csv:1941520,2029-10-25T15:40:00,2029-10-25T16:00:00
+1941518,Facade Install + Glazing | L 1 | 1941518,A1590,Facade Install + Glazing | L 1 | 1941518,L 1,Architecture_TakeOff.csv:1941518,2029-10-25T16:00:00,2029-10-25T16:20:00

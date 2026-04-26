@@ -1,0 +1,25 @@
+task_name,crew_type,crew_num_req,equipment_type
+Install Construction Fencing,site_setup_crew,1,
+Install Site Office & Welfare Units,site_setup_crew,1,
+Temporary Water Installation,site_setup_crew,1,
+Temporary Power Installation,site_setup_crew,1,
+Tree Removal & Clearing,tree_removal_clearing_crew,1,
+Bleacher Demolition,demolition_crew_bleachers_crew,1,
+Crane Pad Construction,site_setup_crew,1,
+Laydown Area Preparation,site_setup_crew,1,
+Full Basement Excavation,earthwork_crew_excavation_crew,1,excavator
+Shoring / Stabilization,shoring_stabilization_crew,1,
+Subgrade Preparation,earthwork_crew_excavation_crew,1,compactor_roller
+Footings – Form/Rebar/Pour,concrete_crew,1,concrete_pump
+Grade Beams,concrete_crew,1,
+Basement Retaining Walls,concrete_crew,1,concrete_pump
+Waterproofing & Drainage,earthwork_crew_excavation_crew,1,
+Basement Slab on Grade,concrete_crew,1,
+Underground Utilities,underground_utilities_crew,1,
+Backfill & Compaction,earthwork_crew_excavation_crew|exc_crew,1,compactor_roller
+Foundational Columns,concrete_crew,1,
+Frame: Columns,structural_crew,1,mobile_crane
+Floor,structural_crew,1,mobile_crane
+Frame: Beams,,,
+Roof,structural_crew,1,mobile_crane
+Facade Install + Glazing,facade_install_crew,1,mobile_crane
