@@ -23,3 +23,9 @@ Floor,"Category:Floors, Level:L 1 | Category:Floors, Level:L 0",1,count,equipmen
 Roof,"Category:Floors, Level:Roof",1,count,equipment
 Facade Install + Glazing,"Category:Curtain Panels",3,count,crew
 Basement Retaining Walls,"Category:Walls, Type:Retaining - 6"" Concrete",150,cf,equipment
+Exterior Wall Install,"Category:Walls, Type:Generic - 8"" - EXTERIOR | Category:Walls, Type:Storefront - EXTERIOR ISLAND | Category:Walls, Type:Generic - 8"" - BASEMENT | Category:Curtain Walls, Type:Storefront - EXTERIOR ISLAND",2,count,equipment
+Glass Install + Glazing,"Category:Curtain Panels | Category:Curtain Wall Mullions",4,count,equipment
+Interior Walls,"Category:Walls, Type:Generic - 8"" - INTERIOR | Category:Walls, Type:Storefront - INTERIOR ISLAND | Family:Folding_Wall_-_One_Side_-_Single_Panel_2349 | Category:Furniture"
+Mesh Install,"Family:MESH WITH FRAME",2,count,crew
+Ceiling Installation,"Category:Ceilings",2,count,crew
+Roof,"Category:Roofs",2,count,crew

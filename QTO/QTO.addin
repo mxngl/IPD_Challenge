@@ -26,5 +26,14 @@
     <ClientId>91C6F6B7-8D8B-43D5-8A49-1FA88A51A2D4</ClientId>
     <VendorId>QTO</VendorId>
     <VendorDescription>QTO Architecture Export</VendorDescription>
-  </AddIn></RevitAddIns>
-
+  </AddIn>
+  <AddIn Type="Command">
+    <Text>Push 4D Build Code</Text>
+    <Description>Pushes build_code from src\Planning_engine\Fuzor_Mapper\outputs\Revit_4D_Build_Code_Map.csv into the 4D_Build_Code parameter.</Description>
+    <Assembly>C:\Ashmitha\Stanford\Quarter 2\PBL\IPD Challenge\QTO\bin\Debug\net8.0\QTO.dll</Assembly>
+    <FullClassName>QTO.Push_TaskName_To_Revit</FullClassName>
+    <ClientId>13C7B638-24A3-4CDE-9C31-5B1D0A9C95E1</ClientId>
+    <VendorId>QTO</VendorId>
+    <VendorDescription>QTO 4D Build Code Push</VendorDescription>
+  </AddIn>
+</RevitAddIns>

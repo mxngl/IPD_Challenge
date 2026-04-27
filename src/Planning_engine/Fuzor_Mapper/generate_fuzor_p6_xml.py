@@ -42,7 +42,7 @@ def format_dt(value: object) -> str:
     return ts.isoformat(timespec="seconds")
 
 
-def safe_activity_id(task_id: str, level: str, element_id: str) -> str:
+def safe_activity_id(task_id: str, level: str, element_id: str, start_time: object) -> str:
     level_token = (
         str(level)
         .replace(" ", "")
@@ -50,7 +50,20 @@ def safe_activity_id(task_id: str, level: str, element_id: str) -> str:
         .replace("+", "P")
         .replace("/", "_")
     )
-    return f"{task_id}_{level_token}_{element_id}"
+    start_token = (
+        format_dt(start_time)
+        .replace("-", "")
+        .replace(":", "")
+        .replace("T", "_")
+    )
+    return f"{task_id}_{level_token}_{element_id}_{start_token}"
+
+
+def clean_text(value: object) -> str:
+    if pd.isna(value):
+        return ""
+    text = str(value).strip()
+    return "" if text.lower() == "nan" else text
 
 
 def normalize_level(value: object, task_name: object = "") -> str:
@@ -74,6 +87,20 @@ def normalize_element_id(value: object, task_id: object) -> str:
     return text
 
 
+def schedule_group_token(row: pd.Series) -> str:
+    prefab_group_id = clean_text(row.get("prefab_group_id"))
+    if prefab_group_id:
+        return prefab_group_id
+    return normalize_element_id(row.get("element_id"), row.get("task_id"))
+
+
+def schedule_group_key(row: pd.Series) -> str:
+    prefab_group_id = clean_text(row.get("prefab_group_id"))
+    if prefab_group_id:
+        return f"prefab:{prefab_group_id}"
+    return f"element:{clean_text(row.get('element_key'))}"
+
+
 def level_sort_key(level: object) -> tuple[float, str]:
     text = str(level).strip()
     if not text:
@@ -93,10 +120,14 @@ def level_sort_key(level: object) -> tuple[float, str]:
 
 def build_activity_table() -> pd.DataFrame:
     df = pd.read_csv(MICRO_SCHEDULE_PATH)
+    if "prefab_group_id" not in df.columns:
+        df["prefab_group_id"] = ""
+    df["schedule_group_key"] = df.apply(schedule_group_key, axis=1)
+    df["schedule_group_token"] = df.apply(schedule_group_token, axis=1)
     activities = (
-        df.drop_duplicates(["task_id", "element_key", "element_start", "element_end"])
+        df.drop_duplicates(["task_id", "schedule_group_key", "element_start", "element_end"])
         .copy()
-        .sort_values(["element_start", "task_id", "order_in_task", "element_key"])
+        .sort_values(["element_start", "task_id", "order_in_task", "schedule_group_key"])
         .reset_index(drop=True)
     )
     activities["level"] = activities.apply(
@@ -109,11 +140,16 @@ def build_activity_table() -> pd.DataFrame:
     )
     activities["level_sort"] = activities["level"].apply(level_sort_key)
     activities["activity_id"] = activities.apply(
-        lambda row: safe_activity_id(str(row["task_id"]), str(row["level"]), str(row["element_id"])),
+        lambda row: safe_activity_id(
+            str(row["task_id"]),
+            str(row["level"]),
+            str(row["schedule_group_token"]),
+            row["element_start"],
+        ),
         axis=1,
     )
     activities["export_task_name"] = activities.apply(
-        lambda row: f"{row['task_name']} | {row['level']} | {row['element_id']}",
+        lambda row: f"{row['task_name']} | {row['level']} | {row['schedule_group_token']}",
         axis=1,
     )
     return activities
@@ -247,7 +283,7 @@ def build_xml() -> ET.ElementTree:
     next_activity_object_id = 1000
 
     for _, row in activities.iterrows():
-        activity_id = safe_activity_id(str(row["task_id"]), str(row["level"]), str(row["element_id"]))
+        activity_id = str(row["activity_id"])
         activity_object_id_map[activity_id] = next_activity_object_id
 
         activity = ET.SubElement(project, qname("Activity"))
@@ -319,6 +355,7 @@ def build_xml() -> ET.ElementTree:
                     "family": str(row["family"]),
                     "type": str(row["type"]),
                     "sourceModel": str(row["source_model"]),
+                    "prefabGroupId": clean_text(row.get("prefab_group_id")),
                     "coordXft": float(row["coord_x_ft"]),
                     "coordYft": float(row["coord_y_ft"]),
                     "coordZft": float(row["coord_z_ft"]),
@@ -333,7 +370,7 @@ def build_xml() -> ET.ElementTree:
 
     relationship_object_id = 5000
     ordered_activities = activities.sort_values(
-        ["element_start", "task_id", "order_in_task", "element_key"]
+        ["element_start", "task_id", "order_in_task", "schedule_group_key"]
     ).reset_index(drop=True)
     previous_activity_id: str | None = None
 
@@ -379,13 +416,40 @@ def build_xml() -> ET.ElementTree:
 
 
 def write_revit_build_code_map(activities: pd.DataFrame) -> None:
-    pushback_rows = activities[activities["element_key"].notna() & activities["source_model"].notna()]
+    micro_df = pd.read_csv(MICRO_SCHEDULE_PATH)
+    if "prefab_group_id" not in micro_df.columns:
+        micro_df["prefab_group_id"] = ""
+    micro_df["schedule_group_key"] = micro_df.apply(schedule_group_key, axis=1)
+
+    build_code_lookup = activities.loc[
+        :,
+        [
+            "task_id",
+            "level",
+            "element_start",
+            "element_end",
+            "schedule_group_key",
+            "export_task_name",
+        ],
+    ].rename(columns={"export_task_name": "build_code"})
+
+    pushback_rows = micro_df[micro_df["element_key"].notna() & micro_df["source_model"].notna()].copy()
+    pushback_rows["level"] = pushback_rows.apply(
+        lambda row: normalize_level(row["level"], row["task_name"]),
+        axis=1,
+    )
+
     pushback_map = (
-        pushback_rows.loc[
+        pushback_rows.merge(
+            build_code_lookup,
+            on=["task_id", "level", "element_start", "element_end", "schedule_group_key"],
+            how="left",
+        )
+        .loc[
             :,
             [
                 "element_id",
-                "export_task_name",
+                "build_code",
                 "task_id",
                 "task_name",
                 "level",
@@ -394,9 +458,8 @@ def write_revit_build_code_map(activities: pd.DataFrame) -> None:
                 "element_end",
             ],
         ]
-        .assign(task_name=lambda df: df["export_task_name"])
-        .rename(columns={"export_task_name": "build_code"})
-        .sort_values(["task_id", "level", "element_start", "element_id"])
+        .drop_duplicates(subset=["element_id", "build_code", "task_id", "element_start", "element_end"])
+        .sort_values(["task_id", "level", "element_start", "build_code", "element_id"])
         .reset_index(drop=True)
     )
     pushback_map.to_csv(REVIT_BUILD_CODE_MAP_PATH, index=False)

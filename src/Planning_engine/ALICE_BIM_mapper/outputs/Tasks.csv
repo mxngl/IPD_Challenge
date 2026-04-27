@@ -10,7 +10,7 @@ Laydown Area Preparation,site_setup_crew,1,
 Full Basement Excavation,earthwork_crew_excavation_crew,1,excavator
 Shoring / Stabilization,shoring_stabilization_crew,1,
 Subgrade Preparation,earthwork_crew_excavation_crew,1,compactor_roller
-Footings – Form/Rebar/Pour,concrete_crew,1,concrete_pump
+Footings - Form/Rebar/Pour,concrete_crew,1,concrete_pump
 Grade Beams,concrete_crew,1,
 Basement Retaining Walls,concrete_crew,1,concrete_pump
 Waterproofing & Drainage,earthwork_crew_excavation_crew,1,
@@ -22,4 +22,8 @@ Frame: Columns,structural_crew,1,mobile_crane
 Floor,structural_crew,1,mobile_crane
 Frame: Beams,,,
 Roof,structural_crew,1,mobile_crane
-Facade Install + Glazing,facade_install_crew,1,mobile_crane
+Glass Install + Glazing,facade_install_crew,1,mobile_crane
+Exterior Wall Install,,,
+Mesh Install,facade_install_crew,1,
+Interior Walls,interiors_crew,1,
+Ceiling Installation,interiors_crew,1,

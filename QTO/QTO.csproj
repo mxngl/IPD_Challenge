@@ -7,9 +7,12 @@
     <PlatformTarget>x64</PlatformTarget>
     <AssemblyName>QTO</AssemblyName>
     <RootNamespace>QTO</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="*.cs" />
+
     <Reference Include="RevitAPI">
       <HintPath>C:\Program Files\Autodesk\Revit 2026\RevitAPI.dll</HintPath>
       <Private>false</Private>

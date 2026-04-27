@@ -10,7 +10,7 @@ A1150,Laydown Area Preparation,2029-10-11T09:00,2029-10-11T09:00,site_setup_crew
 A1170,Full Basement Excavation,2029-10-01T09:00,2029-10-09T17:00,earthwork_crew_excavation_crew,excavator
 A1180,Shoring / Stabilization,2029-10-10T09:00,2029-10-16T17:00,shoring_stabilization_crew,
 A1190,Subgrade Preparation,2029-10-10T09:00,2029-10-15T17:00,earthwork_crew_excavation_crew,compactor_roller
-A1200,Footings – Form/Rebar/Pour,2029-10-16T09:00,2029-10-29T17:00,concrete_crew,concrete_pump
+A1200,Footings - Form/Rebar/Pour,2029-10-16T09:00,2029-10-29T17:00,concrete_crew,concrete_pump
 A1210,Grade Beams,2029-11-08T09:00,2029-11-16T17:00,concrete_crew,
 A1220,Basement Retaining Walls,2029-11-19T09:00,2029-11-21T17:00,concrete_crew,concrete_pump
 A1230,Waterproofing & Drainage,2029-11-22T09:00,2029-11-28T17:00,earthwork_crew_excavation_crew,
@@ -22,4 +22,8 @@ A1330,Frame: Columns,2030-01-08T09:00,2030-01-15T17:00,structural_crew,mobile_cr
 A1340,Floor,2030-01-03T09:00,2030-01-07T17:00,structural_crew,mobile_crane
 A1350,Frame: Beams,2029-12-26T09:00,2030-01-02T17:00,,
 A1420,Roof,2030-01-16T09:00,2030-01-21T17:00,structural_crew,mobile_crane
-A1590,Facade Install + Glazing,2030-01-22T09:00,2030-03-06T17:00,facade_install_crew,mobile_crane
+A1590,Glass Install + Glazing,2030-02-13T09:00,2030-03-06T17:00,facade_install_crew,mobile_crane
+A1600,Exterior Wall Install,2030-01-22T09:00,2030-02-12T17:00,,
+A1610,Mesh Install,2030-03-07T09:00,2030-03-28T17:00,facade_install_crew,
+A1740,Interior Walls,2030-03-07T09:00,2030-04-25T17:00,interiors_crew,
+A1760,Ceiling Installation,2030-04-26T09:00,2030-05-17T17:00,interiors_crew,

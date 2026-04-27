@@ -1,0 +1,6 @@
+C:\Ashmitha\Stanford\Quarter 2\PBL\IPD Challenge\QTO\build_tmp\obj\QTO\Debug\net8.0\QTO.csproj.AssemblyReference.cache
+C:\Ashmitha\Stanford\Quarter 2\PBL\IPD Challenge\QTO\build_tmp\obj\QTO\Debug\net8.0\QTO.GeneratedMSBuildEditorConfig.editorconfig
+C:\Ashmitha\Stanford\Quarter 2\PBL\IPD Challenge\QTO\build_tmp\obj\QTO\Debug\net8.0\QTO.AssemblyInfoInputs.cache
+C:\Ashmitha\Stanford\Quarter 2\PBL\IPD Challenge\QTO\build_tmp\obj\QTO\Debug\net8.0\QTO.AssemblyInfo.cs
+C:\Ashmitha\Stanford\Quarter 2\PBL\IPD Challenge\QTO\build_tmp\obj\QTO\Debug\net8.0\QTO.csproj.CoreCompileInputs.cache
+C:\Ashmitha\Stanford\Quarter 2\PBL\IPD Challenge\QTO\build_tmp\obj\QTO\Debug\net8.0\QTO.sourcelink.json

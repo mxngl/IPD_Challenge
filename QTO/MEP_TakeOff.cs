@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
 using System.Linq;
 using System.Text;
 using Autodesk.Revit.Attributes;
@@ -59,7 +58,7 @@ namespace QTO
                     return Result.Succeeded;
                 }
 
-                string csvPath = GetScheduleFilePath("MEP_TakeOff.csv");
+                string csvPath = ExportPathHelper.GetScheduleFilePath(doc, "MEP_TakeOff");
                 ExportElementsToCsv(doc, mepElements, csvPath);
 
                 TaskDialog.Show(
@@ -113,37 +112,17 @@ namespace QTO
                 .ToList();
         }
 
-        private string GetScheduleFilePath(string fileName)
-        {
-            string assemblyDirectory = Path.GetDirectoryName(
-                System.Reflection.Assembly.GetExecutingAssembly().Location
-            ) ?? "";
-
-            DirectoryInfo? directory = new DirectoryInfo(assemblyDirectory);
-            while (directory != null &&
-                   !Directory.Exists(Path.Combine(directory.FullName, "revit_schedules")))
-            {
-                directory = directory.Parent;
-            }
-
-            string schedulesDirectory = directory != null
-                ? Path.Combine(directory.FullName, "revit_schedules")
-                : Path.Combine(assemblyDirectory, "revit_schedules");
-
-            Directory.CreateDirectory(schedulesDirectory);
-            return Path.Combine(schedulesDirectory, fileName);
-        }
-
         private void ExportElementsToCsv(Document doc, IList<Element> elementsToExport, string filePath)
         {
             StringBuilder csv = new StringBuilder();
             csv.AppendLine(
-                "ElementId,Category,Family,Type,Level,Mark,System Name,System Type,Service Type,Classification,Size,Diameter,Width,Height,Length,Area,Volume,Material,Weight,Unit Weight,Insulation Thickness,Lining Thickness,Airflow,Flow,Pressure Drop,Cooling Capacity,Heating Capacity,Power,Voltage,Current,Apparent Load,Connected Load,Connector Count,Connector Flow,Connector Demand,Connector Max Diameter (in),Connector Max Width (in),Connector Max Height (in),Comments,Parameter Snapshot"
+                "ElementId,Category,Family,Type,Level,Mark,System Name,System Type,Service Type,Classification,Size,Diameter,Width,Height,Length,Area,Volume,Material,Weight,Unit Weight,Insulation Thickness,Lining Thickness,Airflow,Flow,Pressure Drop,Cooling Capacity,Heating Capacity,Power,Voltage,Current,Apparent Load,Connected Load,Connector Count,Connector Flow,Connector Demand,Connector Max Diameter (in),Connector Max Width (in),Connector Max Height (in),Location Type,Position X (ft),Position Y (ft),Position Z (ft),Start X (ft),Start Y (ft),Start Z (ft),End X (ft),End Y (ft),End Z (ft),Rotation (deg),Bounding Box Min X (ft),Bounding Box Min Y (ft),Bounding Box Min Z (ft),Bounding Box Max X (ft),Bounding Box Max Y (ft),Bounding Box Max Z (ft),Bounding Box Center X (ft),Bounding Box Center Y (ft),Bounding Box Center Z (ft),Comments,Parameter Snapshot"
             );
 
             foreach (Element elem in elementsToExport)
             {
                 ConnectorMetrics connectorMetrics = GetConnectorMetrics(elem);
+                SpatialElementData spatialData = SpatialElementData.FromElement(elem);
 
                 string elementId = elem.Id.Value.ToString();
                 string category = elem.Category?.Name ?? "";
@@ -289,6 +268,26 @@ namespace QTO
                     EscapeCsv(FormatDouble(connectorMetrics.MaxDiameterInches)),
                     EscapeCsv(FormatDouble(connectorMetrics.MaxWidthInches)),
                     EscapeCsv(FormatDouble(connectorMetrics.MaxHeightInches)),
+                    EscapeCsv(spatialData.LocationType),
+                    EscapeCsv(spatialData.PositionXFeet),
+                    EscapeCsv(spatialData.PositionYFeet),
+                    EscapeCsv(spatialData.PositionZFeet),
+                    EscapeCsv(spatialData.StartXFeet),
+                    EscapeCsv(spatialData.StartYFeet),
+                    EscapeCsv(spatialData.StartZFeet),
+                    EscapeCsv(spatialData.EndXFeet),
+                    EscapeCsv(spatialData.EndYFeet),
+                    EscapeCsv(spatialData.EndZFeet),
+                    EscapeCsv(spatialData.RotationDegrees),
+                    EscapeCsv(spatialData.BoundingBoxMinXFeet),
+                    EscapeCsv(spatialData.BoundingBoxMinYFeet),
+                    EscapeCsv(spatialData.BoundingBoxMinZFeet),
+                    EscapeCsv(spatialData.BoundingBoxMaxXFeet),
+                    EscapeCsv(spatialData.BoundingBoxMaxYFeet),
+                    EscapeCsv(spatialData.BoundingBoxMaxZFeet),
+                    EscapeCsv(spatialData.BoundingBoxCenterXFeet),
+                    EscapeCsv(spatialData.BoundingBoxCenterYFeet),
+                    EscapeCsv(spatialData.BoundingBoxCenterZFeet),
                     EscapeCsv(comments),
                     EscapeCsv(parameterSnapshot)
                 ));
@@ -567,3 +566,7 @@ namespace QTO
         }
     }
 }
+
+
+
+

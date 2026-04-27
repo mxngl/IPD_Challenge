@@ -3,6 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from pathlib import Path
 import re
+from typing import cast
 
 import pandas as pd
 
@@ -22,6 +23,7 @@ CREW_PATH = ALICE_BIM_OUTPUTS_DIR / "Crew.csv"
 EQUIPMENT_PATH = ALICE_BIM_OUTPUTS_DIR / "Equipment.csv"
 
 CENTRAL_BIM_PATH = PROJECT_DIR / "outputs" / "takt_zones" / "central_bim_model_with_takt.csv"
+PREFAB_MAPPING_PATH = PLANNING_ENGINE_DIR / "Prefab_BIM_Mapper" / "outputs" / "Prefab_Wall_Mapping.csv"
 MICRO_SCHEDULE_PATH = OUTPUTS_DIR / "Micro_Schedule.csv"
 MICRO_LOG_PATH = OUTPUTS_DIR / "Micro_Schedule_Log.md"
 
@@ -40,6 +42,26 @@ class TaskContext:
     unit: str
     productivity_dependency: str
     crew_hours: list[int]
+
+
+SUPERSTRUCTURE_TASKS = {
+    "frame: beams",
+    "floor",
+    "frame: columns",
+    "roof",
+}
+
+ENVELOPE_TASKS = {
+    "exterior wall install",
+    "glass install + glazing",
+    "facade install + glazing",
+    "mesh install",
+}
+
+INTERIOR_TASKS = {
+    "interior walls",
+    "ceiling installation",
+}
 
 
 def parse_datetime(value: object) -> pd.Timestamp:
@@ -197,16 +219,18 @@ def parse_bim_map_selectors(bim_map: object) -> list[tuple[str, str]]:
         family = attributes.get("family", "")
         type_name = attributes.get("type", "")
         level = attributes.get("level", "")
-        if not category:
-            continue
-        if family:
+        if category and family:
             selectors.append(("Category:Family", f"{category}:{family}"))
-        elif type_name:
+        elif category and type_name:
             selectors.append(("Category:Type", f"{category}:{type_name}"))
-        elif level:
+        elif category and level:
             selectors.append(("Category:Level", f"{category}:{level}"))
-        else:
+        elif category:
             selectors.append(("Category", category))
+        elif family:
+            selectors.append(("Family", family))
+        elif type_name:
+            selectors.append(("Type", type_name))
     return selectors
 
 
@@ -239,6 +263,10 @@ def match_elements(elements: pd.DataFrame, bim_map: str) -> pd.DataFrame:
                     & (elements["Level"].fillna("").astype(str).str.strip() == level)
                 ]
             )
+        elif bim_rule == "Family":
+            matches.append(elements[elements["Family"].fillna("").astype(str) == token])
+        elif bim_rule == "Type":
+            matches.append(elements[elements["Type"].fillna("").astype(str) == token])
 
     if not matches:
         return elements.iloc[0:0].copy()
@@ -339,6 +367,77 @@ def prepare_task_elements(task: TaskContext, elements: pd.DataFrame) -> pd.DataF
     result = pd.concat(ordered_levels, ignore_index=True)
     result["order_in_task"] = range(1, len(result) + 1)
     return result
+
+
+def task_phase(task_name: str) -> str | None:
+    normalized = normalize_task_name(task_name).casefold()
+    if normalized in SUPERSTRUCTURE_TASKS:
+        return "superstructure"
+    if normalized in ENVELOPE_TASKS:
+        return "envelope"
+    if normalized in INTERIOR_TASKS:
+        return "interior"
+    return None
+
+
+def envelope_support_ready_time(
+    level_text: str, level_task_finishes: dict[str, dict[str, pd.Timestamp]]
+) -> pd.Timestamp | None:
+    current_sort_key = level_sort_key(level_text)
+    candidate_levels = sorted(level_task_finishes.keys(), key=level_sort_key)
+
+    for candidate_level in candidate_levels:
+        if level_sort_key(candidate_level) <= current_sort_key:
+            continue
+        task_finishes = level_task_finishes[candidate_level]
+        if "Floor" in task_finishes:
+            return task_finishes["Floor"]
+        if "Roof" in task_finishes:
+            return task_finishes["Roof"]
+    return None
+
+
+def max_defined_timestamps(*timestamps: pd.Timestamp | None) -> pd.Timestamp | None:
+    defined = [timestamp for timestamp in timestamps if timestamp is not None]
+    if not defined:
+        return None
+    return max(defined)
+
+
+def previous_level(level_text: str, level_task_finishes: dict[str, dict[str, pd.Timestamp]]) -> str | None:
+    ordered_levels = sorted(level_task_finishes.keys(), key=level_sort_key)
+    try:
+        index = ordered_levels.index(level_text)
+    except ValueError:
+        return None
+    if index <= 0:
+        return None
+    return ordered_levels[index - 1]
+
+
+def cycle_sort_key(
+    job: dict[str, object],
+    level_indices: dict[str, int],
+) -> tuple[object, ...]:
+    task = cast(TaskContext, job["task"])
+    phase = str(job["phase"])
+    level_text = str(job["level"])
+    level_index = level_indices[level_text]
+    normalized_task_name = normalize_task_name(task.task_name).casefold()
+
+    if normalized_task_name == "frame: columns":
+        return (level_index, 0, task.start_date, task.task_id)
+    if normalized_task_name == "frame: beams":
+        return (max(level_index - 1, 0), 1, task.start_date, task.task_id)
+    if normalized_task_name == "floor":
+        return (max(level_index - 1, 0), 2, task.start_date, task.task_id)
+    if normalized_task_name == "roof":
+        return (max(level_index - 1, 0), 3, task.start_date, task.task_id)
+    if phase == "envelope":
+        return (level_index, 4, task.start_date, task.task_id)
+    if phase == "interior":
+        return (level_index, 5, task.start_date, task.task_id)
+    return (level_index, 9, task.start_date, task.task_id)
 
 
 def element_units(row: pd.Series, unit: str) -> float:
@@ -671,24 +770,171 @@ def load_resource_counts() -> tuple[dict[str, int], dict[str, int]]:
     return crew_counts, equipment_counts
 
 
+def load_prefab_mapping() -> tuple[dict[str, list[str]], set[str], dict[str, str], set[str]]:
+    if not PREFAB_MAPPING_PATH.exists():
+        return {}, set(), {}, set()
+
+    mapping = pd.read_csv(PREFAB_MAPPING_PATH, dtype=str).fillna("")
+    if not {"prefab_group_id", "host_wall_element_id", "element_id", "category"}.issubset(mapping.columns):
+        return {}, set(), {}, set()
+
+    host_to_members: dict[str, list[str]] = {}
+    prefab_attached_ids: set[str] = set()
+    element_to_prefab_group: dict[str, str] = {}
+    prefab_non_host_ids: set[str] = set()
+
+    for _, row in mapping.iterrows():
+        prefab_group_id = clean_text(row["prefab_group_id"])
+        host_id = clean_text(row["host_wall_element_id"])
+        element_id = clean_text(row["element_id"])
+        category = clean_text(row["category"])
+        if prefab_group_id and element_id:
+            element_to_prefab_group[element_id] = prefab_group_id
+        if not host_id or not element_id or element_id == host_id:
+            continue
+        host_to_members.setdefault(host_id, [])
+        if element_id not in host_to_members[host_id]:
+            host_to_members[host_id].append(element_id)
+        prefab_non_host_ids.add(element_id)
+        if category in {"Curtain Panels", "Curtain Wall Mullions"}:
+            prefab_attached_ids.add(element_id)
+
+    return host_to_members, prefab_attached_ids, element_to_prefab_group, prefab_non_host_ids
+
+
+def schedule_element_batches(
+    task: TaskContext,
+    task_elements: pd.DataFrame,
+    start_time: pd.Timestamp,
+    parallel_count: int,
+    schedule_rows: list[dict[str, object]],
+    prefab_members_by_host: dict[str, list[pd.Series]] | None = None,
+    element_to_prefab_group: dict[str, str] | None = None,
+) -> pd.Timestamp:
+    t = align_to_work_time(start_time, task.crew_hours)
+
+    for batch_start in range(0, len(task_elements), parallel_count):
+        batch = task_elements.iloc[batch_start : batch_start + parallel_count].copy()
+        batch_end = t
+
+        for _, element in batch.iterrows():
+            units_per_element = element_units(element, task.unit)
+            raw_hours = duration_from_productivity(units_per_element, task.productivity)
+            scheduled_hours = max(raw_hours, 1 / 60)
+
+            element_ready_time = push_count_work_to_next_day_if_needed(
+                t, scheduled_hours, task.crew_hours, task.unit
+            )
+            element_start, element_end, segments = allocate_work_segments(
+                element_ready_time, scheduled_hours, task.crew_hours
+            )
+            if element_end > batch_end:
+                batch_end = element_end
+            slots = segment_slots(segments)
+
+            for slot_index, (slot_start, slot_end, slot_active_duration_hr) in enumerate(slots, start=1):
+                base_row = {
+                    "task_id": task.task_id,
+                    "task_name": task.task_name,
+                    "order_in_task": int(element["order_in_task"]),
+                    "batch_index": batch_start // parallel_count + 1,
+                    "slot_index": slot_index,
+                    "slot_start": slot_start.isoformat(),
+                    "slot_end": slot_end.isoformat(),
+                    "element_start": element_start.isoformat(),
+                    "element_end": element_end.isoformat(),
+                    "scheduled_duration_hr": round(scheduled_hours, 4),
+                    "raw_duration_hr": round(raw_hours, 4),
+                    "slot_active_duration_hr": round(slot_active_duration_hr, 4),
+                    "units_per_element": round(units_per_element, 4),
+                    "unit": task.unit,
+                    "productivity": task.productivity,
+                    "productivity_dependency": task.productivity_dependency,
+                    "parallel_count": parallel_count,
+                    "crew_hours": ",".join(str(hour) for hour in task.crew_hours),
+                    "macro_start": task.start_date.isoformat(),
+                    "macro_end": task.end_date.isoformat(),
+                }
+
+                def append_element_row(target: pd.Series) -> None:
+                    schedule_rows.append(
+                        {
+                            **base_row,
+                            "element_id": str(target["ElementId"]),
+                            "element_key": str(target["element_key"]),
+                            "source_model": target["source_model"],
+                            "level": target.get("Level", ""),
+                            "category": target.get("Category", ""),
+                            "family": target.get("Family", ""),
+                            "type": target.get("Type", ""),
+                            "coord_x_ft": round(float(target["coord_x"]), 3),
+                            "coord_y_ft": round(float(target["coord_y"]), 3),
+                            "coord_z_ft": round(float(target["coord_z"]), 3),
+                            "takt_id": clean_text(target.get("takt_id", "")),
+                            "prefab_group_id": (
+                                element_to_prefab_group.get(str(target["ElementId"]), "")
+                                if element_to_prefab_group
+                                else ""
+                            ),
+                        }
+                    )
+
+                append_element_row(element)
+
+                host_id = str(element["ElementId"])
+                if prefab_members_by_host and host_id in prefab_members_by_host:
+                    for companion in prefab_members_by_host[host_id]:
+                        append_element_row(companion)
+
+        t = batch_end
+
+    return t
+
+
 def build_micro_schedule() -> tuple[pd.DataFrame, list[str]]:
     elements = load_model_elements()
     task_contexts = build_task_contexts()
     crew_counts, equipment_counts = load_resource_counts()
+    (
+        prefab_member_ids_by_host,
+        prefab_attached_ids,
+        element_to_prefab_group,
+        prefab_non_host_ids,
+    ) = load_prefab_mapping()
+    element_lookup = {
+        str(row["ElementId"]): row
+        for _, row in elements.drop_duplicates(subset=["ElementId"]).iterrows()
+    }
+    prefab_members_by_host = {
+        host_id: [element_lookup[member_id] for member_id in member_ids if member_id in element_lookup]
+        for host_id, member_ids in prefab_member_ids_by_host.items()
+    }
 
     schedule_rows: list[dict[str, object]] = []
     log_lines: list[str] = []
     project_cursor: pd.Timestamp | None = None
-    pooled_contingency_hours = 0.0
-    last_task_context: TaskContext | None = None
+    phase_jobs: list[dict[str, object]] = []
+    level_phase_cursors: dict[str, dict[str, pd.Timestamp]] = {}
+    level_task_finishes: dict[str, dict[str, pd.Timestamp]] = {}
+    task_name_cursors: dict[str, pd.Timestamp] = {}
 
     for task in task_contexts:
         if not task.bim_map.strip():
             task_elements = build_non_bim_task_elements(task)
         else:
             task_elements = prepare_task_elements(task, elements)
+        normalized_task_name = normalize_task_name(task.task_name).casefold()
+        if normalized_task_name == "glass install + glazing" and prefab_attached_ids:
+            task_elements = task_elements[
+                ~task_elements["ElementId"].astype(str).isin(prefab_attached_ids)
+            ].copy()
+        if normalized_task_name == "exterior wall install" and prefab_non_host_ids:
+            task_elements = task_elements[
+                ~task_elements["ElementId"].astype(str).isin(prefab_non_host_ids)
+            ].copy()
         b = len(task_elements)
         total_hours = max(working_hours_between(task.start_date, task.end_date, task.crew_hours), 0.5)
+        phase = task_phase(task.task_name)
 
         if task.productivity_dependency == "equipment":
             n = equipment_counts.get(task.equipment_type, 1)
@@ -711,100 +957,123 @@ def build_micro_schedule() -> tuple[pd.DataFrame, list[str]]:
             f"`p={task.productivity}`, `e={e_value:.4f} hr/element` -> {comparison}."
         )
 
-        task_start = task.start_date if project_cursor is None else project_cursor
-        t = align_to_work_time(task_start, task.crew_hours)
         parallel_count = max(n, 1)
-
-        for batch_start in range(0, b, parallel_count):
-            batch = task_elements.iloc[batch_start : batch_start + parallel_count].copy()
-            batch_end = t
-
-            for _, element in batch.iterrows():
-                units_per_element = element_units(element, task.unit)
-                raw_hours = duration_from_productivity(units_per_element, task.productivity)
-                scheduled_hours = max(raw_hours, 1 / 60)
-
-                element_ready_time = push_count_work_to_next_day_if_needed(
-                    t, scheduled_hours, task.crew_hours, task.unit
+        if phase is None or "Level" not in task_elements.columns:
+            task_start = task.start_date if project_cursor is None else project_cursor
+            task_finish = schedule_element_batches(
+                task,
+                task_elements,
+                task_start,
+                parallel_count,
+                schedule_rows,
+                prefab_members_by_host if normalized_task_name == "exterior wall install" else None,
+                element_to_prefab_group,
+            )
+            finish_delta_hours = (task_finish - task.end_date).total_seconds() / 3600.0
+            if finish_delta_hours > 0:
+                log_lines.append(
+                    f"  Calendar-constrained finish is `{task_finish.isoformat()}`, which is `{finish_delta_hours:.2f} hr` later than macro end."
                 )
-                element_start, element_end, segments = allocate_work_segments(
-                    element_ready_time, scheduled_hours, task.crew_hours
+            else:
+                contingency_hours = working_hours_between(task_finish, task.end_date, task.crew_hours)
+                log_lines.append(
+                    f"  Calendar-constrained finish is `{task_finish.isoformat()}`, which is `{abs(finish_delta_hours):.2f} hr` earlier than macro end."
                 )
-                if element_end > batch_end:
-                    batch_end = element_end
-                slots = segment_slots(segments)
+                log_lines.append(
+                    f"  Recovered `{contingency_hours:.2f} hr` of macro working time within this task window."
+                )
+            project_cursor = task_finish
+            continue
 
-                for slot_index, (slot_start, slot_end, slot_active_duration_hr) in enumerate(slots, start=1):
-                    schedule_rows.append(
-                        {
-                            "task_id": task.task_id,
-                            "task_name": task.task_name,
-                            "element_id": str(element["ElementId"]),
-                            "element_key": str(element["element_key"]),
-                            "source_model": element["source_model"],
-                            "level": element.get("Level", ""),
-                            "category": element.get("Category", ""),
-                            "family": element.get("Family", ""),
-                            "type": element.get("Type", ""),
-                            "coord_x_ft": round(float(element["coord_x"]), 3),
-                            "coord_y_ft": round(float(element["coord_y"]), 3),
-                            "coord_z_ft": round(float(element["coord_z"]), 3),
-                            "takt_id": clean_text(element.get("takt_id", "")),
-                            "order_in_task": int(element["order_in_task"]),
-                            "batch_index": batch_start // parallel_count + 1,
-                            "slot_index": slot_index,
-                            "slot_start": slot_start.isoformat(),
-                            "slot_end": slot_end.isoformat(),
-                            "element_start": element_start.isoformat(),
-                            "element_end": element_end.isoformat(),
-                            "scheduled_duration_hr": round(scheduled_hours, 4),
-                            "raw_duration_hr": round(raw_hours, 4),
-                            "slot_active_duration_hr": round(slot_active_duration_hr, 4),
-                            "units_per_element": round(units_per_element, 4),
-                            "unit": task.unit,
-                            "productivity": task.productivity,
-                            "productivity_dependency": task.productivity_dependency,
-                            "parallel_count": parallel_count,
-                            "crew_hours": ",".join(str(hour) for hour in task.crew_hours),
-                            "macro_start": task.start_date.isoformat(),
-                            "macro_end": task.end_date.isoformat(),
-                        }
-                    )
+        for level, level_df in sorted(task_elements.groupby("Level", sort=False), key=lambda pair: level_sort_key(pair[0])):
+            level_text = clean_text(level) or "Unassigned"
+            phase_jobs.append(
+                {
+                    "task": task,
+                    "phase": phase,
+                    "level": level_text,
+                    "level_df": level_df.copy(),
+                    "parallel_count": parallel_count,
+                }
+            )
 
-            t = batch_end
+    ordered_levels = sorted({str(job["level"]) for job in phase_jobs}, key=level_sort_key)
+    level_indices = {level: index for index, level in enumerate(ordered_levels)}
+    phase_jobs.sort(key=lambda job: cycle_sort_key(job, level_indices))
 
-        contingency_hours = working_hours_between(t, task.end_date, task.crew_hours)
-        pooled_contingency_hours += contingency_hours
-        finish_delta_hours = (t - task.end_date).total_seconds() / 3600.0
-        if finish_delta_hours > 0:
-            log_lines.append(
-                f"  Calendar-constrained finish is `{t.isoformat()}`, which is `{finish_delta_hours:.2f} hr` later than macro end."
+    for job in phase_jobs:
+        task = cast(TaskContext, job["task"])
+        phase = cast(str, job["phase"])
+        level_text = cast(str, job["level"])
+        level_df = cast(pd.DataFrame, job["level_df"])
+        parallel_count = cast(int, job["parallel_count"])
+        normalized_task_name = normalize_task_name(task.task_name).casefold()
+
+        level_phase_cursors.setdefault(level_text, {})
+        level_task_finishes.setdefault(level_text, {})
+
+        if normalized_task_name == "frame: columns":
+            prior_level = previous_level(level_text, level_task_finishes)
+            prior_envelope_finish = None
+            if prior_level is not None:
+                prior_envelope_finish = level_phase_cursors.get(prior_level, {}).get("envelope")
+            dependency_cursor = max_defined_timestamps(
+                task_name_cursors.get(task.task_name),
+                prior_envelope_finish,
+            )
+        elif normalized_task_name == "frame: beams":
+            prior_level = previous_level(level_text, level_task_finishes)
+            prior_columns_finish = None
+            if prior_level is not None:
+                prior_columns_finish = level_task_finishes.get(prior_level, {}).get("Frame: Columns")
+            dependency_cursor = max_defined_timestamps(
+                task_name_cursors.get(task.task_name),
+                prior_columns_finish,
+            )
+        elif normalized_task_name == "floor":
+            dependency_cursor = max_defined_timestamps(
+                task_name_cursors.get(task.task_name),
+                level_task_finishes[level_text].get("Frame: Beams"),
+            )
+        elif normalized_task_name == "roof":
+            prior_level = previous_level(level_text, level_task_finishes)
+            prior_columns_finish = None
+            if prior_level is not None:
+                prior_columns_finish = level_task_finishes.get(prior_level, {}).get("Frame: Columns")
+            dependency_cursor = max_defined_timestamps(
+                task_name_cursors.get(task.task_name),
+                prior_columns_finish,
+            )
+        elif phase == "envelope":
+            support_cursor = envelope_support_ready_time(level_text, level_task_finishes)
+            dependency_cursor = max_defined_timestamps(
+                level_task_finishes[level_text].get("Frame: Columns"),
+                level_phase_cursors[level_text].get("envelope"),
+                support_cursor,
+                task_name_cursors.get(task.task_name),
+            )
+        elif phase == "interior":
+            dependency_cursor = max_defined_timestamps(
+                level_phase_cursors[level_text].get("envelope"),
+                level_phase_cursors[level_text].get("interior"),
+                task_name_cursors.get(task.task_name),
             )
         else:
-            log_lines.append(
-                f"  Calendar-constrained finish is `{t.isoformat()}`, which is `{abs(finish_delta_hours):.2f} hr` earlier than macro end."
-            )
-            log_lines.append(
-                f"  Recovered `{contingency_hours:.2f} hr` of macro working time and pooled it into end-of-schedule contingency."
-            )
+            dependency_cursor = None
 
-        project_cursor = t
-        last_task_context = task
-
-    if last_task_context is not None and pooled_contingency_hours > 1e-9 and project_cursor is not None:
-        contingency_end = append_contingency_rows(
+        level_start = dependency_cursor if dependency_cursor is not None else task.start_date
+        task_finish = schedule_element_batches(
+            task,
+            level_df,
+            level_start,
+            parallel_count,
             schedule_rows,
-            project_cursor,
-            pooled_contingency_hours,
-            last_task_context.crew_hours,
-            project_cursor,
-            project_cursor,
+            prefab_members_by_host if normalized_task_name == "exterior wall install" else None,
+            element_to_prefab_group,
         )
-        log_lines.append(
-            f"- `CONTINGENCY Contingency`: appended `{pooled_contingency_hours:.2f} hr` at the end of the schedule "
-            f"from `{project_cursor.isoformat()}` to `{contingency_end.isoformat()}`."
-        )
-        project_cursor = contingency_end
+        task_name_cursors[task.task_name] = task_finish
+        level_phase_cursors[level_text][phase] = task_finish
+        level_task_finishes[level_text][task.task_name] = task_finish
 
     micro_df = pd.DataFrame(
         schedule_rows,
@@ -822,6 +1091,7 @@ def build_micro_schedule() -> tuple[pd.DataFrame, list[str]]:
             "coord_y_ft",
             "coord_z_ft",
             "takt_id",
+            "prefab_group_id",
             "order_in_task",
             "batch_index",
             "slot_index",

@@ -23,6 +23,7 @@ INCLUDED_WBS_NAMES = {
     "EARTHWORK & BASEMENT",
     "SUPERSTRUCTURE",
     "ENVELOPE",
+    "INTERIOR",
 }
 
 
@@ -43,6 +44,14 @@ def to_text(value: object) -> str:
     if pd.isna(value):
         return ""
     return str(value).strip()
+
+
+def normalize_task_name(value: object) -> str:
+    text = to_text(value)
+    text = text.replace("â€“", "-").replace("â€”", "-").replace("âˆ’", "-")
+    for dash in ("\u2013", "\u2014", "\u2212"):
+        text = text.replace(dash, "-")
+    return re.sub(r"\s+", " ", text).strip()
 
 
 def to_count_text(value: object) -> str:
@@ -117,7 +126,7 @@ def build_outputs() -> dict[str, list[str]]:
 
     for _, task_row in scoped_tasks.sort_values("Id*").iterrows():
         task_id = to_text(task_row["Id*"])
-        task_name = to_text(task_row["Name*"])
+        task_name = normalize_task_name(task_row["Name*"])
 
         task_crew_rows = task_crews[task_crews["Task Id*"] == task_id]
         task_equipment_rows = task_equipment[task_equipment["Task Id*"] == task_id]

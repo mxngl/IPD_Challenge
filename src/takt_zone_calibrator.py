@@ -60,6 +60,8 @@ PROJECT_DIR
     / "01_Island_MEP_Concept2_V4_2026-04-08_11-47-28am_detached_MEP_TakeOff.csv"
 )
 
+CURRENT_SCHEDULES_DIR = PROJECT_DIR / "revit_schedules" / "Current"
+
 LEVEL_SEQUENCE = ["L -1", "L 0", "L 1"]
 ZONE_FACE_COLORS = ["#ff6b6b", "#4dabf7", "#51cf66", "#ffd43b", "#b197fc", "#ffa94d"]
 BIM_SCHEDULE_PATHS = [
@@ -69,6 +71,12 @@ BIM_SCHEDULE_PATHS = [
     STRUCT_STRUCTURAL_SCHEDULE_PATH,
     ARCHITECTURE_MEP_SCHEDULE_PATH,
 ]
+
+
+def current_bim_schedule_paths() -> list[Path]:
+    if not CURRENT_SCHEDULES_DIR.exists():
+        return []
+    return sorted(CURRENT_SCHEDULES_DIR.glob("*.csv"), key=lambda path: path.name.casefold())
 
 
 def load_plot_elements(schedule_paths: list[Path]) -> pd.DataFrame:
@@ -476,6 +484,177 @@ def save_central_bim_exports(bim_df: pd.DataFrame, enriched_bim_df: pd.DataFrame
     print(f"Saved combined BIM model with takt ids to: {CENTRAL_BIM_WITH_TAKT_OUTPUT_PATH}")
 
 
+def build_prefab_wall_mapping(
+    bim_df: pd.DataFrame,
+    bbox_tolerance_ft: float = 0.5,
+) -> pd.DataFrame:
+    required_bbox_columns = [
+        "Bounding Box Min X (ft)",
+        "Bounding Box Min Y (ft)",
+        "Bounding Box Min Z (ft)",
+        "Bounding Box Max X (ft)",
+        "Bounding Box Max Y (ft)",
+        "Bounding Box Max Z (ft)",
+    ]
+    if bim_df.empty or any(column not in bim_df.columns for column in required_bbox_columns):
+        return pd.DataFrame(
+            columns=[
+                "prefab_group_id",
+                "host_wall_element_id",
+                "element_id",
+                "category",
+                "family",
+                "type",
+                "level",
+                "takt_id",
+                "source_schedule",
+            ]
+        )
+
+    enriched = bim_df.copy()
+    enriched["element_center_x_ft"] = enriched["Bounding Box Center X (ft)"].where(
+        enriched["Bounding Box Center X (ft)"].notna(),
+        enriched["Position X (ft)"],
+    )
+    enriched["element_center_y_ft"] = enriched["Bounding Box Center Y (ft)"].where(
+        enriched["Bounding Box Center Y (ft)"].notna(),
+        enriched["Position Y (ft)"],
+    )
+    enriched["element_center_z_ft"] = enriched["Bounding Box Center Z (ft)"].where(
+        enriched["Bounding Box Center Z (ft)"].notna(),
+        enriched["Position Z (ft)"],
+    )
+
+    host_walls = enriched[
+        (enriched["Category"].astype(str) == "Walls")
+        & (enriched["Type"].astype(str).str.contains("EXTERIOR", case=False, na=False))
+    ].copy()
+    host_walls = host_walls.dropna(
+        subset=[
+            "element_center_x_ft",
+            "element_center_y_ft",
+            "element_center_z_ft",
+            *required_bbox_columns,
+        ]
+    )
+    host_walls = host_walls.sort_values(["Level", "element_center_y_ft", "element_center_x_ft", "ElementId"]).reset_index(drop=True)
+
+    attached_candidates = enriched[
+        enriched["Category"].astype(str).isin({"Curtain Panels", "Curtain Wall Mullions"})
+    ].copy()
+    attached_candidates = attached_candidates.dropna(
+        subset=["element_center_x_ft", "element_center_y_ft", "element_center_z_ft"]
+    )
+
+    prefab_rows: list[dict[str, object]] = []
+    assignments: dict[str, tuple[str, float]] = {}
+    host_by_group_id: dict[str, pd.Series] = {}
+    candidate_by_id: dict[str, pd.Series] = {}
+
+    for host_index, (_, wall) in enumerate(host_walls.iterrows(), start=1):
+        wall_level = str(wall.get("Level", "")).strip()
+        prefab_group_id = f"PREFAB_WALL_{wall_level.replace(' ', '').replace('-', 'NEG')}_{host_index:03d}"
+        wall_center = np.array(
+            [
+                float(wall["element_center_x_ft"]),
+                float(wall["element_center_y_ft"]),
+                float(wall["element_center_z_ft"]),
+            ]
+        )
+        host_wall_element_id = str(wall["ElementId"])
+
+        prefab_rows.append(
+            {
+                "prefab_group_id": prefab_group_id,
+                "host_wall_element_id": host_wall_element_id,
+                "element_id": host_wall_element_id,
+                "category": wall.get("Category", ""),
+                "family": wall.get("Family", ""),
+                "type": wall.get("Type", ""),
+                "level": wall_level,
+                "takt_id": wall.get("takt_id", ""),
+                "source_schedule": wall.get("source_schedule", ""),
+            }
+        )
+        host_by_group_id[prefab_group_id] = wall
+
+        min_x = float(wall["Bounding Box Min X (ft)"]) - bbox_tolerance_ft
+        min_y = float(wall["Bounding Box Min Y (ft)"]) - bbox_tolerance_ft
+        min_z = float(wall["Bounding Box Min Z (ft)"]) - bbox_tolerance_ft
+        max_x = float(wall["Bounding Box Max X (ft)"]) + bbox_tolerance_ft
+        max_y = float(wall["Bounding Box Max Y (ft)"]) + bbox_tolerance_ft
+        max_z = float(wall["Bounding Box Max Z (ft)"]) + bbox_tolerance_ft
+
+        nearby = attached_candidates[
+            (attached_candidates["Level"].fillna("").astype(str).str.strip() == wall_level)
+            & (attached_candidates["element_center_x_ft"] >= min_x)
+            & (attached_candidates["element_center_x_ft"] <= max_x)
+            & (attached_candidates["element_center_y_ft"] >= min_y)
+            & (attached_candidates["element_center_y_ft"] <= max_y)
+            & (attached_candidates["element_center_z_ft"] >= min_z)
+            & (attached_candidates["element_center_z_ft"] <= max_z)
+        ]
+
+        for _, candidate in nearby.iterrows():
+            candidate_id = str(candidate["ElementId"])
+            candidate_by_id[candidate_id] = candidate
+            candidate_center = np.array(
+                [
+                    float(candidate["element_center_x_ft"]),
+                    float(candidate["element_center_y_ft"]),
+                    float(candidate["element_center_z_ft"]),
+                ]
+            )
+            distance = float(np.linalg.norm(candidate_center - wall_center))
+            previous = assignments.get(candidate_id)
+            if previous is not None and previous[1] <= distance:
+                continue
+
+            assignments[candidate_id] = (prefab_group_id, distance)
+
+    for candidate_id, (prefab_group_id, _) in assignments.items():
+        candidate = candidate_by_id[candidate_id]
+        host_wall = host_by_group_id[prefab_group_id]
+        prefab_rows.append(
+            {
+                "prefab_group_id": prefab_group_id,
+                "host_wall_element_id": str(host_wall["ElementId"]),
+                "element_id": candidate_id,
+                "category": candidate.get("Category", ""),
+                "family": candidate.get("Family", ""),
+                "type": candidate.get("Type", ""),
+                "level": candidate.get("Level", ""),
+                "takt_id": candidate.get("takt_id", ""),
+                "source_schedule": candidate.get("source_schedule", ""),
+            }
+        )
+
+    prefab_df = pd.DataFrame(prefab_rows)
+    if prefab_df.empty:
+        return prefab_df
+
+    prefab_df = prefab_df.drop_duplicates(subset=["prefab_group_id", "element_id"]).reset_index(drop=True)
+    return prefab_df[
+        [
+            "prefab_group_id",
+            "host_wall_element_id",
+            "element_id",
+            "category",
+            "family",
+            "type",
+            "level",
+            "takt_id",
+            "source_schedule",
+        ]
+    ]
+
+
+def save_prefab_mapping(prefab_df: pd.DataFrame) -> None:
+    OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
+    prefab_df.to_csv(PREFAB_MAPPING_OUTPUT_PATH, index=False)
+    print(f"Saved prefab wall mapping to: {PREFAB_MAPPING_OUTPUT_PATH}")
+
+
 def load_existing_takt_zones() -> dict[str, object] | None:
     if not OUTPUT_PATH.exists():
         return None
@@ -484,6 +663,7 @@ def load_existing_takt_zones() -> dict[str, object] | None:
 
 def main() -> None:
     plot_schedule_paths = [ARCHITECTURE_SCHEDULE_PATH, STRUCT_ARCHITECTURE_SCHEDULE_PATH]
+    central_bim_schedule_paths = current_bim_schedule_paths()
     all_elements = load_plot_elements(plot_schedule_paths)
     existing_zone_data = load_existing_takt_zones()
 
@@ -513,16 +693,16 @@ def main() -> None:
             zones_by_level[level] = collect_zones_for_level(level, elements_2d, image, affine)
 
         existing_zone_data = {
-            "schedule_paths": [str(path) for path in BIM_SCHEDULE_PATHS],
+            "schedule_paths": [str(path) for path in central_bim_schedule_paths],
             "floor_plan_image_by_level": {level: str(path) for level, path in BACKGROUND_BY_LEVEL.items()},
             "calibration_affine_by_level": calibration_affine_by_level,
             "levels": zones_by_level,
         }
-        save_zones(BIM_SCHEDULE_PATHS, existing_zone_data)
+        save_zones(central_bim_schedule_paths, existing_zone_data)
     else:
         print(f"Using existing takt zones from: {OUTPUT_PATH}")
 
-    combined_bim_df = load_and_combine_bim_schedules(BIM_SCHEDULE_PATHS)
+    combined_bim_df = load_and_combine_bim_schedules(central_bim_schedule_paths)
     if combined_bim_df.empty:
         print("No BIM schedules were combined, so takt ids were not assigned.")
         return
