@@ -1,0 +1,9 @@
+Name*;Name Snake Case - read only;Available quantity;Cost per hr*;Idle Cost Enabled*;External id - read only;Idle Cost per hr;Idle Time Calendar;Ramp Resource*;Color
+Compactor/Roller;compactor_roller;1;0;FALSCH;;;5dx10hr;FALSCH;
+Concrete Pump;concrete_pump;1;0;FALSCH;;;5dx10hr;FALSCH;
+Dozer;dozer;1;0;FALSCH;;;5dx10hr;FALSCH;
+Dump Truck;dump_truck;4;0;FALSCH;;;5dx10hr;FALSCH;
+Excavator;excavator;2;0;FALSCH;;;5dx10hr;FALSCH;
+Forklift / Telehandler;forklift_telehandler;2;0;FALSCH;;;5dx10hr;FALSCH;
+Mobile Crane;mobile_crane;1;0;FALSCH;;0;5dx10hr;FALSCH;#a5fd9b
+Scissor Lift;scissor_lift;4;0;FALSCH;;;5dx10hr;FALSCH;

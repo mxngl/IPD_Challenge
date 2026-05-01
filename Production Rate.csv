@@ -1,0 +1,8 @@
+Name*;Name snake Case - read only;Qty/Hr*
+Backfill/Compaction (cy/hr);backfill_compaction_cy_hr_;35
+MEP Rough-In per Trade (sf/hr);mep_rough_in_per_trade_sf_hr_;200
+Hauling (cy/hr);hauling_cy_hr_;30
+Interior (sf/hr);interior_sf_hr_;250
+Excavation (cy/hr);excavation_cy_hr_;40
+Proofroll (sf/hr);proofroll_sf_hr_;2000
+Slab-on-Grade (sf/hr);slab_on_grade_sf_hr_;300
